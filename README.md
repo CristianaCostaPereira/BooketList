@@ -1,9 +1,8 @@
 # BooketList 👻📚📖
 Final project for the <ins>ITGest Academy</ins>. <br>
 
-<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg" width="700" height="550">
+<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg" width="850" height="650">
 
-<br>
 <br>
 
 ## Introduction
