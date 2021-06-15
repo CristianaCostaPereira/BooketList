@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-06-15T11:44:14.039Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="geDhZPlcEcbGtBbfuUG2" version="14.7.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-15T11:45:16.998Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="pfFnidAxtW60qRHlX2Vk" version="14.7.8" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -166,7 +166,7 @@
         <mxCell id="C0fRwAjCjaMEzh7malcR-56" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;" vertex="1" parent="C0fRwAjCjaMEzh7malcR-55">
           <mxGeometry width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="C0fRwAjCjaMEzh7malcR-57" value="book_publisher_id INT, NN, UQ, AI" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" vertex="1" parent="C0fRwAjCjaMEzh7malcR-55">
+        <mxCell id="C0fRwAjCjaMEzh7malcR-57" value="book_publisher_id INT" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" vertex="1" parent="C0fRwAjCjaMEzh7malcR-55">
           <mxGeometry x="30" width="210" height="30" as="geometry" />
         </mxCell>
         <mxCell id="C0fRwAjCjaMEzh7malcR-58" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="C0fRwAjCjaMEzh7malcR-30">
