@@ -22,7 +22,7 @@ const bodyParser = require('body-parser')
 const mysql = require ('mysql2')
 
 // import JS files
-const reader = require('./reader')
+const reader = require('./routes/internal/reader')
 
 const PORT = 3000
 
