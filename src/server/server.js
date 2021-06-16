@@ -1,4 +1,3 @@
-// // require is like an import
 // const express = require('express')
 
 // const server = express()

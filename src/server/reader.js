@@ -1,5 +1,7 @@
 const reader = []
 
+const db = require('../server/db')
+
 module.exports = (app) => {
   app.get('/reader', (req, res) => {
       res.send({
@@ -16,6 +18,16 @@ module.exports = (app) => {
       })
   })
 
+  app.get('/test', (req, res) => {
+    db.query(`SELECT * FROM reader`, (error, results) => {
+      if (error) {
+        throw error
+      }
+  
+      res.send(results)
+    })
+  })
+
   // Get reader by id
   app.get('/reader/:id', (req, res) => {
 
@@ -26,7 +38,7 @@ module.exports = (app) => {
   })
 
   // Create new reader
-  app.post('/reader', (req, res) => {
+  app.post('/login', (req, res) => {
     const reader = req.body // represents one reader
 
     reader.id = reader.length + 1 // creates the property id in my object
