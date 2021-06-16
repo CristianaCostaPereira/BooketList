@@ -3,7 +3,10 @@ const { validate } = require('indicative/validator')
 const { sanitize } = require('indicative/sanitizer')
 const bcrypt = require('bcrypt')
 
+const apiKey = 'AIzaSyBAd1FEN4dykVTAKZNqqf9XxIx_CNXClJ8'
+
 const db = require('../../db')
+const axios = require('axios');
 
 function removePasswordProperty(object) {
   delete object.password
@@ -28,14 +31,29 @@ module.exports = (app) => {
       })
   })
 
-  app.get('/test', (req, res) => {
-    db.query(`SELECT * FROM reader`, (error, results) => {
-      if (error) {
-        throw error
-      }
 
-      res.send(results)
-    })
+  app.get('/test', async (req, res) => {
+    // db.query(`SELECT * FROM reader`, (error, results) => {
+    //   if (error) {
+    //     throw error
+    //   }
+
+    //   res.send(results)
+    // })
+    // Make a request for a user with a given ID
+
+    try {
+      //axios was giving circular json error
+      // applyed sugestion of deconstructing response
+      // https://dev.to/sarah_chima/destructuring-assignment---arrays-16f
+      
+      const { data: result } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=hRQbSgAACAAJ&key=${apiKey}`);
+
+      res.send(result)
+    } catch (error) {
+      console.error(error);
+    }
+
   })
 
   // Get reader by id
