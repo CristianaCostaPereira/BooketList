@@ -3,14 +3,17 @@ const { validate } = require('indicative/validator')
 const { sanitize } = require('indicative/sanitizer')
 const bcrypt = require('bcrypt')
 
-const apiKey = 'AIzaSyBAd1FEN4dykVTAKZNqqf9XxIx_CNXClJ8'
-
 const db = require('../../db')
 const axios = require('axios');
+const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
 
-function removePasswordProperty(object) {
-  delete object.password
-}
+
+const API_KEY = process.env.API_KEY
+console.log(API_KEY)
+
+// function removePasswordProperty(object) {
+//   delete object.password
+// }
 
 const reader = []
 
@@ -47,7 +50,7 @@ module.exports = (app) => {
       // applyed sugestion of deconstructing response
       // https://dev.to/sarah_chima/destructuring-assignment---arrays-16f
       
-      const { data: result } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=hRQbSgAACAAJ&key=${apiKey}`);
+      const { data: result } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=hRQbSgAACAAJ&key=${API_KEY}`);
 
       res.send(result)
     } catch (error) {
