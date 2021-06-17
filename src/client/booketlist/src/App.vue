@@ -3,6 +3,9 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      absolute
+      dark
+      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     >
       <v-list-item>
         <v-list-item-content>
@@ -42,7 +45,7 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>BooketList</v-toolbar-title>
+      <v-toolbar-title icon='mdi-ghost-outline'>BooketList</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -56,7 +59,7 @@
     data () {
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
+          { title: 'Dashboard', icon: 'mdi-ghost-outline', to: '/' },
           { title: 'Book Preview', icon: 'mdi-book-open-page-variant-outline', to: 'book-preview' },
           { title: 'List', icon: 'mdi-bookshelf', to: 'list' }
         ],
