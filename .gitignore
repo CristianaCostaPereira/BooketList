@@ -22,7 +22,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-
 # Build and Release Folders
 bin-debug/
 bin-release/
