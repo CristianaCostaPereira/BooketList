@@ -10,7 +10,7 @@
 
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg"></v-img>
+          <v-img src="https://64.media.tumblr.com/89bc148ede0b273a79fc3599d1b9da4c/6c89bb77ae2c792e-3f/s1280x1920/142e8810788d75cc26e65d285e2882f63f64c484.jpg"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>
