@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Dashboard from '../components/Dashboard.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Dashboard',
+    component: Dashboard
   },
   {
     path: '/book-preview',
@@ -16,7 +16,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (book-preview.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "book-preview" */ '../views/BookPreview.vue')
+    component: () => import(/* webpackChunkName: "book-preview" */ '../components/BookPreview.vue')
+  },
+  {
+    path: '/list',
+    name: 'List',
+    // route level code-splitting
+    // this generates a separate chunk (book-preview.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "book-preview" */ '../components/List.vue')
   }
 ]
 

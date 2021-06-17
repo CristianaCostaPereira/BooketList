@@ -56,9 +56,9 @@
     data () {
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+          { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
           { title: 'Book Preview', icon: 'mdi-book-open-page-variant-outline', to: 'book-preview' },
-          { title: 'List', icon: 'mdi-bookshelf', to: '/' }
+          { title: 'List', icon: 'mdi-bookshelf', to: 'list' }
         ],
         drawer: null 
       }
