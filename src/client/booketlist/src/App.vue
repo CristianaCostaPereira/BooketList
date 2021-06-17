@@ -44,7 +44,11 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title icon='mdi-ghost-outline'>BooketList</v-toolbar-title>
+      <v-toolbar-title>BooketList</v-toolbar-title>
+      
+      <v-btn icon>
+        <v-icon>mdi-ghost-outline</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -62,7 +66,7 @@
           { title: 'Book Preview', icon: 'mdi-book-open-page-variant-outline', to: 'book-preview' },
           { title: 'List', icon: 'mdi-bookshelf', to: 'list' }
         ],
-        drawer: null 
+        drawer: null
       }
     },
   }
