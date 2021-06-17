@@ -57,10 +57,10 @@
       return {
         items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'List', icon: 'mdi-playlist-star', to: '/' },
-          { title: 'About', icon: 'mdi-help-box', to: 'about' },
+          { title: 'Book Preview', icon: 'mdi-book-open-page-variant-outline', to: 'book-preview' },
+          { title: 'List', icon: 'mdi-bookshelf', to: '/' }
         ],
-        drawer: null
+        drawer: null 
       }
     },
   }
