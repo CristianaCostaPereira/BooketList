@@ -5,7 +5,7 @@
       app
       absolute
       dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      src="https://64.media.tumblr.com/89bc148ede0b273a79fc3599d1b9da4c/6c89bb77ae2c792e-3f/s1280x1920/142e8810788d75cc26e65d285e2882f63f64c484.jpg"
     >
 
       <v-list-item class="px-2">
@@ -49,9 +49,10 @@
 
     <v-app-bar
       app
-      src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg">
+      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
+
       <v-app-bar-nav-icon @click="drawer = !drawer">
-        <v-btn icon>
+        <v-btn icon x-large>
           <v-icon>mdi-ghost-outline</v-icon>
         </v-btn>
       </v-app-bar-nav-icon>
