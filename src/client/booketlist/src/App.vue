@@ -4,9 +4,16 @@
       v-model="drawer"
       app
       absolute
+      dark      
+      mini-variant-width="100"
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     >
-      <v-list-item>
+
+      <v-list-item class="px-2">
+        <v-list-item-avatar>
+          <v-img src="https://64.media.tumblr.com/89bc148ede0b273a79fc3599d1b9da4c/6c89bb77ae2c792e-3f/s1280x1920/142e8810788d75cc26e65d285e2882f63f64c484.jpg"></v-img>
+        </v-list-item-avatar>
+
         <v-list-item-content>
           <v-list-item-title class="text-h6">
             Menu
@@ -45,7 +52,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>BooketList</v-toolbar-title>
-      
+
       <v-btn icon>
         <v-icon>mdi-ghost-outline</v-icon>
       </v-btn>
@@ -62,7 +69,7 @@
     data () {
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-ghost-outline', to: '/' },
+          { title: 'Dashboard', icon: 'mdi-ghost', to: '/' },
           { title: 'Book Preview', icon: 'mdi-book-open-page-variant-outline', to: 'book-preview' },
           { title: 'List', icon: 'mdi-bookshelf', to: 'list' }
         ],
