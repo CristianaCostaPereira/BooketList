@@ -1,4 +1,4 @@
-const authentication = require('../middlewares/auth')
+const authentication = require('../middlewares/authentication')
 
 const readersRouter = require('./internal/reader')
 

@@ -3,13 +3,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken') // Para importar o pacote
 
 const db = require('../../db')
+console.log('here');
 
 module.exports = (req, res) => { validate(req.body,
   {
     email: 'required|email',
     password: 'required'
   }).then((value) => {
-    db.query('SELECT * FROM reader WHERE email = ? AND status != 0', [value.email], (error, results) => {
+    db.query('SELECT * FROM reader WHERE email = ? AND password = ?', [value.email, value.password], (error, results) => {
       if (results.length === 0) {
         res.status(400).send('Cannot find any account that matches the given email and password')
 

@@ -1,13 +1,10 @@
-// const authentication = require('../middlewares/authentication')
+// Referenciar um módulo sem especificar o arquivo, para no package.json olhar para este ficheiro
+const server = require('./server')
+const middlewares = require('./middlewares')
+const routes = require('./routes')
 
-// const readerRouter = require('./internal/reader')
-
-// const login = require('./public/login')
-
-// module.exports = {
-//   register(app) {
-//     app.use('/reader', authentication, readerRouter)
-    
-//     app.post('/login', login)
-//   }
-// }
+// the 'appServer or app' bellow is the same as our server
+server.bootstrap((appServer) => {
+  middlewares.register(appServer)
+  routes.register(appServer)
+})
