@@ -56,67 +56,6 @@ module.exports = (app) => {
     }
 
   })
-
-  // Get reader by id
-  app.get('/reader/:id', (req, res) => {
-
-    // find(): Get the value of the first element in the array
-    const reader = reader.find((reader) => reader.id == req.params.id)
-
-    res.send(reader)
-  })
-
-  // Create new reader
-  app.post('/login', (req, res) => {
-    const reader = req.body // represents one reader
-
-    reader.id = reader.length + 1 // creates the property id in my object
-
-    res.send(reader) // returns the inserted reader {}
-  })
-
-  // Update reader
-  app.put('/reader/:id', (req, res) => {
-    const { id } = req.params // the same as const id = req.params.id
-
-    const data = req.body
-
-    const reader = reader.find((reader) => reader.id == id)
-
-    Object.assign(reader, data) // applies all properties inside of the object
-
-    res.send(reader)
-  })
-
-  app.patch('/reader/:id/activated', (req, res) => {
-    const { id } = req.params
-
-    const { isActive } = req.body
-
-    const reader = reader.find((reader) => reader.id == id)
-
-    if (isActive) {
-      reader.status = 'Active'
-    } else {
-      reader.status = 'Inactive'
-    }
-
-    res.send(reader)
-  })
-
-  app.delete('/reader/:id/', (req, res) => {
-    const { id } = req.params
-
-    const readerIndex = reader.findIndex((reader) => reader.id == id) // returns the index of the first element in the array that matches the condition or -1 if no match was found
-
-    const reader = reader[readerIndex] // gives the element in the reader [], it is a number
-
-    if (readerIndex !== -1) {
-      reader.splice(readerIndex, 1) // removes one element from the []
-    }
-
-    res.send(reader)
-  })
 }
 
 
@@ -184,23 +123,23 @@ module.exports = (app) => {
 //   })
 // })
 
-// router.get('/:id', (req, res, next) => {
-//   const { id } = req.params
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params
 
-//   db.query('SELECT * FROM reader WHERE id = ? LIMIT 1', [id], (error, results, _) => {
-//     if (error) {
-//       throw error
-//     }
+  db.query('SELECT * FROM reader WHERE id = ? LIMIT 1', [id], (error, results, _) => {
+    if (error) {
+      throw error
+    }
 
-//     removePasswordProperty(results[0])
+    removePasswordProperty(results[0])
 
-//     res.send({
-//       code: 200,
-//       meta: null,
-//       data: results[0]
-//     })
-//   })
-// })
+    res.send({
+      code: 200,
+      meta: null,
+      data: results[0]
+    })
+  })
+})
 
 // router.post('/', (req, res) => {
 //   const reader = req.body
@@ -251,51 +190,51 @@ module.exports = (app) => {
 //   })
 // })
 
-// router.put('/:id', (req, res) => {
-//   const { id } = req.params
+router.put('/:id', (req, res) => {
+  const { id } = req.params
 
-//   const reader = req.body
+  const reader = req.body
 
-//   validate(reader, {
-//     email: 'email',
-//     status: 'boolean',
-//     password: 'min:6',
-//     passwordSame: 'requiredIf:password|same:password'
-//   }).then(async (value) => {
-//     sanitize(value, {
-//       email: 'trim|lowerCase',
-//       password: 'trim'
-//     })
+  validate(reader, {
+    email: 'email',
+    status: 'boolean',
+    password: 'min:6',
+    passwordSame: 'requiredIf:password|same:password'
+  }).then(async (value) => {
+    sanitize(value, {
+      email: 'trim|lowerCase',
+      password: 'trim'
+    })
 
-//     if (value.password) {
-//       value.password = await bcrypt.hash(value.password, 10)
+    if (value.password) {
+      value.password = await bcrypt.hash(value.password, 10)
 
-//       delete value.passwordSame
-//     }
+      delete value.passwordSame
+    }
 
-//     db.query('UPDATE reader SET ? WHERE id = ?', [value, id], (error, results, _) => {
-//       if (error) {
-//         throw error
-//       }
+    db.query('UPDATE reader SET ? WHERE id = ?', [value, id], (error, results, _) => {
+      if (error) {
+        throw error
+      }
 
-//       db.query('SELECT * FROM reader WHERE id = ? LIMIT 1', [id], (error, results, _) => {
-//         if (error) {
-//           throw error
-//         }
+      db.query('SELECT * FROM reader WHERE id = ? LIMIT 1', [id], (error, results, _) => {
+        if (error) {
+          throw error
+        }
 
-//         removePasswordProperty(results[0])
+        removePasswordProperty(results[0])
 
-//         res.send({
-//           code: 200,
-//           meta: null,
-//           data: results[0]
-//         })
-//       })
-//     })
-//   }).catch((error) => {
-//     res.status(400).send(error)
-//   })
-// })
+        res.send({
+          code: 200,
+          meta: null,
+          data: results[0]
+        })
+      })
+    })
+  }).catch((error) => {
+    res.status(400).send(error)
+  })
+})
 
 // router.patch('/:id/activated', (req, res) => {
 //   const { id } = req.params

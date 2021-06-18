@@ -3,7 +3,7 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      absolute
+      fixed
       dark
       src="@/assets/side_menu.jpg"
     >
