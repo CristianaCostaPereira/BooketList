@@ -11,12 +11,12 @@ const routes = [
     component: Dashboard
   },
   {
-    path: '/book-preview',
-    name: 'Book Preview',
+    path: '/login',
+    name: 'Login',
     // route level code-splitting
     // this generates a separate chunk (book-preview.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "book-preview" */ '../components/BookPreview.vue')
+    component: () => import(/* webpackChunkName: "book-preview" */ '../components/login.vue')
   },
   {
     path: '/list',
