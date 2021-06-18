@@ -5,9 +5,9 @@ const { JsonWebTokenError } = jwt
 // For every request/route validates if we have the authentication token
 
 module.exports = (req, res, next) => {
-  const token = req.header('Authorization') // my token (eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjIzMjM4MTYxfQ.4lfAuyCaQImyuYj1gUM2tEGS0dGdP1_Ke5ByPUwVJf0)
+  const token = req.header('Authorization')
 
-  if (!authorization) {
+  if (!token) {
     res.status(400).send('JWT not provided')
 
     return
@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
   try {
     const { id } = jwt.verify(token, secret) // destruturação do objecto que resultar, para só extrair o id
 
-    db.query('SELECT * FROM reader WHERE id = ?', [id], (error, results) => {
+    db.query('SELECT * FROM reader WHERE reader_id = ?', [id], (error, results) => {
       if (error) {
         throw error
       }

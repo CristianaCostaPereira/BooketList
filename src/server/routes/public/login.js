@@ -23,7 +23,7 @@ module.exports = (req, res) => { validate(req.body,
               delete results[0].password // para não ter de ser preciso a row na BD
 
               // sign para criptografar um valor usando o secret
-              const token = jwt.sign({id: results[0].id}, secret) // will give me my token
+              const token = jwt.sign({id: results[0].reader_id}, secret) // will give me my token
 
               res.send(token)
 
