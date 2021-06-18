@@ -5,7 +5,7 @@
       app
       absolute
       dark
-      src="https://64.media.tumblr.com/89bc148ede0b273a79fc3599d1b9da4c/6c89bb77ae2c792e-3f/s1280x1920/142e8810788d75cc26e65d285e2882f63f64c484.jpg"
+      src="@/assets/side_menu.jpg"
     >
 
       <v-list-item class="px-2">
