@@ -1,15 +1,13 @@
-// const auth = require('../middlewares/auth')
+const authentication = require('../middlewares/auth')
 
-// const usersRouter = require('./internal/users')
-// const todosRouter = require('./internal/todos')
+const readersRouter = require('./internal/reader')
 
-// const login = require('./public/login')
+const login = require('./public/login')
 
-// module.exports = {
-//   register(app) {
-//     app.use('/users', auth, usersRouter)
-//     app.use('/todos', auth, todosRouter)
+module.exports = {
+  register(app) {
+    app.use('/readers', authentication, readersRouter)
     
-//     app.post('/login', login)
-//   }
-// }
+    app.post('/login', login)
+  }
+}

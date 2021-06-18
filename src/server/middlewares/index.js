@@ -3,7 +3,7 @@
 // const sqlInjection = require('./sql_injection')
 // const xss = require('./xss')
 
-// // middleware: vai ser executada sempre que uma rota for chamada
+// // middleware: vai ser executada sempre que uma rota for chamada, excepto a do login
 // // vai dar acesso a todas a informações de get e post da requisição
 // const middlewares = [
 //   bodyParser.json(), // disponibiliza-nos o corpo da requisição, o nosso req.body. Tem de ser sempre do mais independante para o mais depedente

@@ -1,6 +1,8 @@
-// const db = require('../db')
-// const jwt = require('jsonwebtoken')
-// const { JsonWebTokenError } = jwt
+const db = require('../db')
+const jwt = require('jsonwebtoken')
+const { JsonWebTokenError } = jwt
+
+// For every request/route validates if we have the authentication token
 
 // module.exports = (req, res, next) => {
 //   const token = req.header('Authorization') // my token (eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjIzMjM4MTYxfQ.4lfAuyCaQImyuYj1gUM2tEGS0dGdP1_Ke5ByPUwVJf0)
