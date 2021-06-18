@@ -15,8 +15,6 @@ console.log(API_KEY)
 //   delete object.password
 // }
 
-const reader = []
-
 
 module.exports = (app) => {
   app.get('/reader', (req, res) => {
@@ -73,8 +71,6 @@ module.exports = (app) => {
     const reader = req.body // represents one reader
 
     reader.id = reader.length + 1 // creates the property id in my object
-
-    reader.push(reader) // inserts into my []
 
     res.send(reader) // returns the inserted reader {}
   })
