@@ -16,7 +16,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (book-preview.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "book-preview" */ '../components/login.vue')
+    component: () => import(/* webpackChunkName: "book-preview" */ '../components/Login.vue')
   },
   {
     path: '/list',
