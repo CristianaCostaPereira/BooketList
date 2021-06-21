@@ -13,7 +13,10 @@
         height="300px"
         dark
       >
-        <v-row class="fill-height mt-2 ml-2">
+        <v-row
+          justify="end"
+          class="fill-height mt-2 mr-2">
+
           <v-btn
             dark
             icon
@@ -24,6 +27,26 @@
       </v-img>
 
       <v-list two-line>
+        <v-card-text>
+          <v-row
+            align="center"
+            class="mx-0 mb-3"
+          >
+            <v-rating
+              :value="4"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14">
+            </v-rating>
+
+            <div class="grey--text ms-3">
+              4 (405)
+            </div>
+          </v-row>
+        </v-card-text>
+
         <v-list-item>
           <v-list-item-icon>
             <v-icon color="indigo">
@@ -86,6 +109,7 @@ export default {
           ],
           publisher: "ASA",
           publishedDate: "2017",
+          description: "As palavras que nunca te direi Tenho-as dentro do meu coração, Saem através de mim com emoção, São levadas para onde, não sei. São o som da expressão do que sinto, São como verdades ditas em oração, São pensamentos voláteis e ilusão.",
           industryIdentifiers: [
             {
               type: "ISBN_10",
