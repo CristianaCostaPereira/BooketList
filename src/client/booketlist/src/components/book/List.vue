@@ -13,6 +13,7 @@
 
       <v-row>
         <v-spacer></v-spacer>
+
         <v-col
           v-for="card in cards"
           :key="card"
@@ -27,8 +28,8 @@
             >
               <span
                 class="text-h5 white--text pl-4 pt-4 d-inline-block"
-                v-text="card"
-              ></span>
+                v-text="card">
+              </span>
             </v-img>
 
             <v-card-actions class="white justify-center">
@@ -54,7 +55,7 @@
 <script>
   export default {
     data: () => ({
-      types: ['Places to Be', 'Places to See'],
+      types: ['Mystery', 'Thriller'],
       cards: ['Good', 'Best', 'Finest'],
       socials: [
         {
