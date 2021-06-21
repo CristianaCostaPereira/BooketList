@@ -22,6 +22,11 @@ const routes = [
     path: '/list',
     name: 'List',
     component: () => import('../components/book/List')
+  },
+  {
+    path: '/show',
+    name: 'Show',
+    component: () => import('../components/book/Show')
   }
 ]
 
