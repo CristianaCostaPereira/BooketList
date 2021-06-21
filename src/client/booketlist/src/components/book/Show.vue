@@ -21,7 +21,7 @@
             dark
             icon
           >
-            <v-icon color="black">mdi-heart-outline</v-icon>
+            <v-icon color="red lighten-3">mdi-heart</v-icon>
           </v-btn>
         </v-row>
       </v-img>
