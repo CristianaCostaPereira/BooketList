@@ -1,95 +1,74 @@
 <template>
-  <v-card
-    max-width="375"
-    class="mx-auto mt-4"
-  >
-    <v-img
-      src="https://cdn.vuetifyjs.com/images/lists/ali.png"
-      height="300px"
-      dark
+  <div>
+    <div class="text-h3 pl-12 pt-12">
+      Book preview
+    </div>
+
+    <v-card
+      max-width="300"
+      class="mx-auto mt-4"
     >
-      <v-row class="fill-height">
-        <v-card-title>
-          <v-btn
-            dark
-            icon>
-
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
-
-          <v-spacer></v-spacer>
-
-          <v-btn
-            dark
-            icon
-            class="mr-4">
-
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
-
+      <v-img
+        :src= "volumeInfo.imageLinks.smallThumbnail"
+        height="300px"
+        dark
+      >
+        <v-row class="fill-height mt-2 ml-2">
           <v-btn
             dark
             icon
           >
-            <v-icon>mdi-dots-vertical</v-icon>
+            <v-icon color="black">mdi-heart-outline</v-icon>
           </v-btn>
-        </v-card-title>
+        </v-row>
+      </v-img>
 
-        <v-spacer></v-spacer>
+      <v-list two-line>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon color="indigo">
+              mdi-book-open-page-variant
+            </v-icon>
+          </v-list-item-icon>
 
-        <v-card-title class="white--text pl-12 pt-12">
-          <div class="text-h4 pl-12 pt-12">
-            Book preview
-          </div>
-        </v-card-title>
-      </v-row>
-    </v-img>
+          <v-list-item-content>
+            <v-list-item-title>Title:</v-list-item-title>
+            <v-list-item-subtitle>As Palavras que nunca te direi</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
 
-    <v-list two-line>
-      <v-list-item>
-        <v-list-item-icon>
-          <v-icon color="indigo">
-            mdi-book-open-page-variant
-          </v-icon>
-        </v-list-item-icon>
+        <v-divider inset></v-divider>
 
-        <v-list-item-content>
-          <v-list-item-title>Title:</v-list-item-title>
-          <v-list-item-subtitle>As Palavras que nunca te direi</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon color="indigo">
+              mdi-bookshelf
+            </v-icon>
+          </v-list-item-icon>
 
-      <v-divider inset></v-divider>
+          <v-list-item-content>
+            <v-list-item-title>Authors:</v-list-item-title>
+            <v-list-item-subtitle>Nicholas Sparks</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
 
-      <v-list-item>
-        <v-list-item-icon>
-          <v-icon color="indigo">
-            mdi-bookshelf
-          </v-icon>
-        </v-list-item-icon>
+        <v-divider inset></v-divider>
 
-        <v-list-item-content>
-          <v-list-item-title>Authors:</v-list-item-title>
-          <v-list-item-subtitle>Nicholas Sparks</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon color="indigo">
+              mdi-bookshelf
+            </v-icon>
+          </v-list-item-icon>
 
-      <v-divider inset></v-divider>
-
-      <v-list-item>
-        <v-list-item-icon>
-          <v-icon color="indigo">
-            mdi-bookshelf
-          </v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title>Published Date:</v-list-item-title>
-          <v-list-item-subtitle>2017</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-card>
+          <v-list-item-content>
+            <v-list-item-title>Published Date:</v-list-item-title>
+            <v-list-item-subtitle>2017</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-card>
+  </div>
 </template>
 
 <script>
