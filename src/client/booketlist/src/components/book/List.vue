@@ -1,100 +1,88 @@
 <template>
-  <v-card
-    flat
-    tile
-  >
-    <v-container
-      v-for="type in types"
-      :key="type"
-      class="grey lighten-4"
-      fluid
-    >
-      <v-subheader>{{ type }}</v-subheader>
-
-      <v-row>
-        <v-col
-          v-for="card in cards"
-          :key="card"
-          cols="12"
-          sm="5"
-          md="4"
-          lg="3"
+  <v-card>
+    <v-row>
+      <v-col
+        v-for="card in cards"
+        :key="card"
+        cols="12"
+        sm="5"
+        md="4"
+        lg="3"
+      >
+        <v-card
+          max-width="300"
+          class="mx-auto mt-4"
         >
-          <v-card
-            max-width="300"
-            class="mx-auto mt-2"
+          <v-img
+            :src= "volumeInfo.imageLinks.smallThumbnail"
+            height="450px"
+            dark
           >
-            <v-img
-              :src= "volumeInfo.imageLinks.smallThumbnail"
-              height="450px"
-              dark
-            >
+            <v-row
+              justify="end"
+              class="fill-height mt-2 mr-2">
+
+              <v-btn
+                dark
+                icon
+              >
+                <v-icon color="red lighten-3">mdi-heart</v-icon>
+              </v-btn>
+            </v-row>
+          </v-img>
+
+          <v-list>
+            <v-card-text>
               <v-row
-                justify="end"
-                class="fill-height mt-2 mr-2">
+                align="center"
+                class="mx-0 mb-1"
+              >
+                <v-rating
+                  :value="4"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="18">
+                </v-rating>
 
-                <v-btn
-                  dark
-                  icon
-                >
-                  <v-icon color="red lighten-3">mdi-heart</v-icon>
-                </v-btn>
+                <div class="grey--text ms-3">
+                  4 (405)
+                </div>
               </v-row>
-            </v-img>
+            </v-card-text>
 
-            <v-list>
-              <v-card-text>
-                <v-row
-                  align="center"
-                  class="mx-0 mb-1"
-                >
-                  <v-rating
-                    :value="4"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="18">
-                  </v-rating>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="#713c36">
+                  mdi-book-open-page-variant
+                </v-icon>
+              </v-list-item-icon>
 
-                  <div class="grey--text ms-3">
-                    4 (405)
-                  </div>
-                </v-row>
-              </v-card-text>
+              <v-list-item-content>
+                <v-list-item-title>Title:</v-list-item-title>
+                <v-list-item-subtitle>{{ volumeInfo.title }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="#713c36">
-                    mdi-book-open-page-variant
-                  </v-icon>
-                </v-list-item-icon>
+            <v-divider inset></v-divider>
 
-                <v-list-item-content>
-                  <v-list-item-title>Title:</v-list-item-title>
-                  <v-list-item-subtitle>{{ volumeInfo.title }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="#713c36">
+                  mdi-account-multiple
+                </v-icon>
+              </v-list-item-icon>
 
-              <v-divider inset></v-divider>
-
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="#713c36">
-                    mdi-account-multiple
-                  </v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                  <v-list-item-title>Authors:</v-list-item-title>
-                  <v-list-item-subtitle>{{ volumeInfo.authors }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+              <v-list-item-content>
+                <v-list-item-title>Authors:</v-list-item-title>
+                <v-list-item-subtitle>{{ volumeInfo.authors }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
