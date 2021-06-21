@@ -12,14 +12,13 @@
       <v-subheader>{{ type }}</v-subheader>
 
       <v-row>
-        <v-spacer></v-spacer>
-
         <v-col
           v-for="card in cards"
           :key="card"
           cols="12"
-          sm="6"
+          sm="5"
           md="4"
+          lg="3"
         >
           <v-card
             max-width="300"
@@ -43,7 +42,7 @@
               </v-row>
             </v-img>
 
-            <v-list two-line>
+            <v-list>
               <v-card-text>
                 <v-row
                   align="center"
@@ -55,7 +54,7 @@
                     dense
                     half-increments
                     readonly
-                    size="14">
+                    size="18">
                   </v-rating>
 
                   <div class="grey--text ms-3">
@@ -66,7 +65,7 @@
 
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="indigo">
+                  <v-icon color="#713c36">
                     mdi-book-open-page-variant
                   </v-icon>
                 </v-list-item-icon>
@@ -81,8 +80,8 @@
 
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="indigo">
-                    mdi-account-supervisor
+                  <v-icon color="#713c36">
+                    mdi-account-multiple
                   </v-icon>
                 </v-list-item-icon>
 
@@ -171,7 +170,7 @@ export default {
         quoteSharingAllowed: false
       },
       types: ['Mystery', 'Thriller'],
-      cards: ['Good', 'Best', 'Finest']
+      cards: ['Good', 'Best', 'Finest', 'Mystery', 'Thriller'],
     }
   }
 }
