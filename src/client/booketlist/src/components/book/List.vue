@@ -59,16 +59,16 @@
       cards: ['Good', 'Best', 'Finest'],
       socials: [
         {
+          icon: 'mdi-heart',
+          color: 'red lighten-3',
+        },
+        {
           icon: 'mdi-facebook',
           color: 'indigo',
         },
         {
           icon: 'mdi-linkedin',
           color: 'cyan darken-1',
-        },
-        {
-          icon: 'mdi-instagram',
-          color: 'red lighten-3',
         },
       ],
     }),
