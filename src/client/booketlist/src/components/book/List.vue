@@ -87,6 +87,8 @@
 </template>
 
 <script>
+const axios = require('axios')
+
 export default {
   data () {
     return {
@@ -159,6 +161,30 @@ export default {
       },
       cards: ['Good', 'Best', 'Finest', 'Mystery', 'Thriller'],
     }
+  },
+
+  methods: {
+    async fetchFavorites() {
+      
+      let retrievedToken = window.localStorage.getItem('book-token')
+
+      let config = {
+        headers: {
+          'Authorization': retrievedToken
+        }
+      }
+      try {
+        const response = await axios.get('http://localhost:3000/readers/1/books', config)
+        console.log(response.data)
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+
+  created () {
+    this.fetchFavorites()
   }
 }
 </script>
