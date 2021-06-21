@@ -4,7 +4,7 @@
     style="max-width: 500px; margin-top:10px"
   >
     <v-toolbar
-      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      src="@/assets/bg-2.jpg"
       cards
       dark
       flat
@@ -131,6 +131,7 @@
 </template>
 
 <script>
+  const axios = require('axios')
   export default {
     data: () => ({
       agreement: false,
@@ -147,5 +148,20 @@
         required: v => !!v || 'This field is required',
       },
     }),
+
+    methods: {
+      async login() {
+        try {
+          const response = await axios.post('http://localhost:3000/login');
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    },
+
+    created () {
+      this.login()
+    }
   }
 </script>

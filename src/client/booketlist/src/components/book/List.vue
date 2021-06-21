@@ -157,7 +157,6 @@ export default {
         accessViewStatus: "NONE",
         quoteSharingAllowed: false
       },
-      types: ['Mystery', 'Thriller'],
       cards: ['Good', 'Best', 'Finest', 'Mystery', 'Thriller'],
     }
   }

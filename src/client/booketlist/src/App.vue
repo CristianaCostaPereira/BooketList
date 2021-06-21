@@ -49,7 +49,7 @@
 
     <v-app-bar
       app
-      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
+      src="@/assets/bg-2.jpg">
 
       <v-app-bar-nav-icon @click="drawer = !drawer">
         <v-btn icon x-large>

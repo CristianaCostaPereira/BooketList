@@ -1,7 +1,10 @@
 // require is like an import
 const express = require('express')
+var cors = require('cors')
 
 const server = express()
+
+server.use(cors())
 
 const EXPRESS_PORT = 3000
 
