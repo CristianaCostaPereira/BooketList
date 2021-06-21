@@ -73,7 +73,7 @@
         items: [
           { title: 'Dashboard', icon: 'mdi-ghost', to: '/' },
           { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'list' },
-          { title: 'Single Book', icon: 'mdi-book-open-page-variant', to: 'show' }
+          { title: 'Book Preview', icon: 'mdi-book-open-page-variant', to: 'show' }
         ],
         drawer: null
       }
