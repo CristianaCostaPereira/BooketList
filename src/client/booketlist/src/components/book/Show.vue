@@ -30,7 +30,7 @@
         <v-card-text>
           <v-row
             align="center"
-            class="mx-0 mb-3"
+            class="mx-0 mb-1"
           >
             <v-rating
               :value="4"
@@ -72,21 +72,6 @@
           <v-list-item-content>
             <v-list-item-title>Authors:</v-list-item-title>
             <v-list-item-subtitle>Nicholas Sparks</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider inset></v-divider>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-bookshelf
-            </v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>Published Date:</v-list-item-title>
-            <v-list-item-subtitle>2017</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
