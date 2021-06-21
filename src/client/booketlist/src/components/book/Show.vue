@@ -33,7 +33,7 @@
 
           <v-list-item-content>
             <v-list-item-title>Title:</v-list-item-title>
-            <v-list-item-subtitle>As Palavras que nunca te direi</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ volumeInfo.title }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
@@ -42,7 +42,7 @@
         <v-list-item>
           <v-list-item-icon>
             <v-icon color="indigo">
-              mdi-bookshelf
+              mdi-account-supervisor
             </v-icon>
           </v-list-item-icon>
 
