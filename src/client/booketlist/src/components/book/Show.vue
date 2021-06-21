@@ -1,8 +1,7 @@
-
-  <template>
+<template>
   <v-card
     max-width="375"
-    class="mx-auto"
+    class="mx-auto mt-4"
   >
     <v-img
       src="https://cdn.vuetifyjs.com/images/lists/ali.png"
@@ -13,8 +12,8 @@
         <v-card-title>
           <v-btn
             dark
-            icon
-          >
+            icon>
+
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
 
@@ -23,8 +22,8 @@
           <v-btn
             dark
             icon
-            class="mr-4"
-          >
+            class="mr-4">
+
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
 
@@ -92,3 +91,80 @@
     </v-list>
   </v-card>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      kind: "books#volume",
+      id: "TOGgtgEACAAJ",
+      etag: "y2YAI/Nz85c",
+      selfLink: "https://www.googleapis.com/books/v1/volumes/TOGgtgEACAAJ",
+      volumeInfo: {
+          title: "As palavras que nunca te direi",
+          authors: [
+            "Nicholas Sparks"
+          ],
+          publisher: "ASA",
+          publishedDate: "2017",
+          industryIdentifiers: [
+            {
+              type: "ISBN_10",
+              identifier: "989233910X"
+            },
+            {
+              type: "ISBN_13",
+              identifier: "9789892339108"
+            }
+          ],
+          readingModes: {
+            text: false,
+            image: false
+          },
+          pageCount: 319,
+          printedPageCount: 319,
+          dimensions: {
+            height: "24.00 cm"
+          },
+          printType: "BOOK",
+          maturityRating: "NOT_MATURE",
+          allowAnonLogging: false,
+          contentVersion: "preview-1.0.0",
+          panelizationSummary: {
+            containsEpubBubbles: false,
+            containsImageBubbles: false
+          },
+          imageLinks: {
+            smallThumbnail: "http://books.google.com/books/content?id=TOGgtgEACAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE72TuOySCkSzyeMwZ2qx64StJQJ1FR0WzMVLtxmkqrAcdAU8MOaSuL5jwgBIJeJDSQgQkw58Mq8M-tGu9OaGufPIVHAD-xA6TIcjEapLBAHjhjkRPBkyo97xKuUxRYDSFzlKn3-S&source=gbs_api",
+            thumbnail: "http://books.google.com/books/content?id=TOGgtgEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE713GW9wO7Aq4hV3oaqcx0ip6M31wROshuE79bAk8eU39HGNr7ywtyLY0lou7mSHrs_OYmr67fgjmmDyPRo_K7tiWWvR1riHFQDepRWy5Ehg4-ihA6p_VQVLm9umh8G2QLMeRfmj&source=gbs_api"
+          },
+          language: "pt",
+          previewLink: "http://books.google.pt/books?id=TOGgtgEACAAJ&hl=&source=gbs_api",
+          infoLink: "https://play.google.com/store/books/details?id=TOGgtgEACAAJ&source=gbs_api",
+          canonicalVolumeLink: "https://play.google.com/store/books/details?id=TOGgtgEACAAJ"
+      },
+      saleInfo: {
+        country: "PT",
+        saleability: "NOT_FOR_SALE",
+        isEbook: false
+      },
+      accessInfo: {
+        country: "PT",
+        viewability: "NO_PAGES",
+        embeddable: false,
+        publicDomain: false,
+        textToSpeechPermission: "ALLOWED",
+        epub: {
+          isAvailable: false
+        },
+        pdf: {
+          "isAvailable": false
+        },
+        webReaderLink: "http://play.google.com/books/reader?id=TOGgtgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        accessViewStatus: "NONE",
+        quoteSharingAllowed: false
+      }
+    }
+  }
+}
+</script>
