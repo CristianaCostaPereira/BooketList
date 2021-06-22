@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-lg-8">
               <h1 class="card-title">{{ volumeInfo.title }}</h1>
 
-              <h5 class="card-text plot mt-4 mb-4">{{ volumeInfo.description }}</h5>
+              <h5 class="card-text mt-4 mb-4">{{ volumeInfo.description }}</h5>
 
               <div class="card-text">
                 <label>Authors: </label>
@@ -50,15 +50,6 @@
                 <label>Price: </label>
                 {{ saleInfo.listPrice.amount }}€
               </div>
-
-              <div class="row">
-                <div class="col-sm-4 score-cards">
-
-                  <div class="score-class">
-                    <span><b>{{ volumeInfo.averageRating }}</b></span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -87,7 +78,7 @@
 const axios = require('axios')
 
 export default {
-  name: 'Movies',
+  name: 'Show',
 
   data () {
     return {
