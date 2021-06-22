@@ -49,11 +49,12 @@
 
     <v-app-bar
       app
-      src="@/assets/bg-2.jpg">
+      color="#cea068"
+      dark>
 
       <v-app-bar-nav-icon @click="drawer = !drawer">
         <v-btn icon x-large>
-          <v-icon>mdi-ghost-outline</v-icon>
+          <v-icon>mdi-ghost</v-icon>
         </v-btn>
       </v-app-bar-nav-icon>
 
