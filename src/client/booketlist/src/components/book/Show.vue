@@ -1,158 +1,209 @@
 <template>
-  <div>
-    <div class="text-h3 pl-12 pt-12">
-      Book preview
-    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-3">
+        <div class="card">
+          <div class="row card-body">
+            <img class="col-xs-12 col-lg-4" :src="volumeInfo.imageLinks.smallThumbnail" alt="sans"/>
 
-    <v-card
-      max-width="300"
-      class="mx-auto mt-4"
-    >
-      <v-img
-        :src= "volumeInfo.imageLinks.smallThumbnail"
-        height="300px"
-        dark
-      >
-        <v-row
-          justify="end"
-          class="fill-height mt-2 mr-2">
+            <div class="col-xs-12 col-lg-8">
+              <h1 class="card-title">title</h1>
 
-          <v-btn
-            dark
-            icon
-          >
-            <v-icon color="red lighten-3">mdi-heart</v-icon>
-          </v-btn>
-        </v-row>
-      </v-img>
+              <h5 class="card-text plot mt-4 mb-4">a lot of text, description</h5>
 
-      <v-list two-line>
-        <v-card-text>
-          <v-row
-            align="center"
-            class="mx-0 mb-1"
-          >
-            <v-rating
-              :value="4"
-              color="amber"
-              dense
-              half-increments
-              readonly
-              size="14">
-            </v-rating>
+              <div class="card-text">
+                <label>Year: </label>
+              </div>
 
-            <div class="grey--text ms-3">
-              4 (405)
+              <div class="card-text">
+                <label>Runtime: </label>
+              </div>
+
+              <div class="card-text">
+                <label>Genre: </label>
+              </div>
+
+              <div class="card-text">
+                <label>Director: </label>
+              </div>
+
+              <div class="card-text">
+                <label>Actors: </label>
+              </div>
+
+              <div class="card-text">
+                <label>Awards: </label>
+              </div>
+              
+              <div class="card-text mb-4">
+                <label>BoxOffice: </label>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4 score-cards">
+
+                  <div class="score-class">
+                    <span><b>{{ volumeInfo.averageRating }}</b></span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </v-row>
-        </v-card-text>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-book-open-page-variant
-            </v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>Title:</v-list-item-title>
-            <v-list-item-subtitle>{{ volumeInfo.title }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider inset></v-divider>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-account-supervisor
-            </v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>Authors:</v-list-item-title>
-            <v-list-item-subtitle>Nicholas Sparks</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-card>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+const axios = require('axios')
+
 export default {
+  name: 'Movies',
+
   data () {
     return {
       kind: "books#volume",
-      id: "TOGgtgEACAAJ",
-      etag: "y2YAI/Nz85c",
-      selfLink: "https://www.googleapis.com/books/v1/volumes/TOGgtgEACAAJ",
+      id: "ivzfRJGrdFsC",
+      etag: "8IYKt1qUYrQ",
+      selfLink: "https://www.googleapis.com/books/v1/volumes/ivzfRJGrdFsC",
       volumeInfo: {
-          title: "As palavras que nunca te direi",
-          authors: [
-            "Nicholas Sparks"
-          ],
-          publisher: "ASA",
-          publishedDate: "2017",
-          description: "As palavras que nunca te direi Tenho-as dentro do meu coração, Saem através de mim com emoção, São levadas para onde, não sei. São o som da expressão do que sinto, São como verdades ditas em oração, São pensamentos voláteis e ilusão.",
-          industryIdentifiers: [
-            {
-              type: "ISBN_10",
-              identifier: "989233910X"
-            },
-            {
-              type: "ISBN_13",
-              identifier: "9789892339108"
-            }
-          ],
-          readingModes: {
-            text: false,
-            image: false
+        title: "The Da Vinci Code",
+        subtitle: "(Robert Langdon Book 2)",
+        authors: [
+          "Dan Brown"
+        ],
+        publisher: "Random House",
+        publishedDate: "2010-07-06",
+        description: "*INCLUDES AN EXTRACT FROM ORIGIN,THE NEW THRILLER BY DAN BROWN: OUT NOW* --------------------------------------------------------------------------------------------------- Harvard professor Robert Langdon receives an urgent late-night phone call while on business in Paris: the elderly curator of the Louvre has been brutally murdered inside the museum. Alongside the body, police have found a series of baffling codes. As Langdon and a gifted French cryptologist, Sophie Neveu, begin to sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to a mystery that stretches deep into the vault of history. Unless Langdon and Neveu can decipher the labyrinthine code and quickly assemble the pieces of the puzzle, a stunning historical truth will be lost forever...",
+        industryIdentifiers: [
+          {
+            type: "ISBN_13",
+            identifier: "9781409091158"
           },
-          pageCount: 319,
-          printedPageCount: 319,
-          dimensions: {
-            height: "24.00 cm"
-          },
-          printType: "BOOK",
-          maturityRating: "NOT_MATURE",
-          allowAnonLogging: false,
-          contentVersion: "preview-1.0.0",
-          panelizationSummary: {
-            containsEpubBubbles: false,
-            containsImageBubbles: false
-          },
-          imageLinks: {
-            smallThumbnail: "http://books.google.com/books/content?id=TOGgtgEACAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE72TuOySCkSzyeMwZ2qx64StJQJ1FR0WzMVLtxmkqrAcdAU8MOaSuL5jwgBIJeJDSQgQkw58Mq8M-tGu9OaGufPIVHAD-xA6TIcjEapLBAHjhjkRPBkyo97xKuUxRYDSFzlKn3-S&source=gbs_api",
-            thumbnail: "http://books.google.com/books/content?id=TOGgtgEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE713GW9wO7Aq4hV3oaqcx0ip6M31wROshuE79bAk8eU39HGNr7ywtyLY0lou7mSHrs_OYmr67fgjmmDyPRo_K7tiWWvR1riHFQDepRWy5Ehg4-ihA6p_VQVLm9umh8G2QLMeRfmj&source=gbs_api"
-          },
-          language: "pt",
-          previewLink: "http://books.google.pt/books?id=TOGgtgEACAAJ&hl=&source=gbs_api",
-          infoLink: "https://play.google.com/store/books/details?id=TOGgtgEACAAJ&source=gbs_api",
-          canonicalVolumeLink: "https://play.google.com/store/books/details?id=TOGgtgEACAAJ"
+          {
+            type: "ISBN_10",
+            identifier: "1409091155"
+          }
+        ],
+        readingModes: {
+          text: true,
+          image: false
+        },
+        pageCount: 592,
+        printType: "BOOK",
+        categories: [
+          "Fiction"
+        ],
+        averageRating: 3,
+        ratingsCount: 3462,
+        maturityRating: "NOT_MATURE",
+        allowAnonLogging: true,
+        contentVersion: "0.23.22.0.preview.2",
+        panelizationSummary: {
+          containsEpubBubbles: false,
+          containsImageBubbles: false
+        },
+        imageLinks: {
+          smallThumbnail: "http://books.google.com/books/content?id=ivzfRJGrdFsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          thumbnail: "http://books.google.com/books/content?id=ivzfRJGrdFsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        language: "un",
+        previewLink: "http://books.google.pt/books?id=ivzfRJGrdFsC&printsec=frontcover&dq=the+da+vinci+code&hl=&cd=1&source=gbs_api",
+        infoLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC&source=gbs_api",
+        canonicalVolumeLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC"
       },
       saleInfo: {
         country: "PT",
-        saleability: "NOT_FOR_SALE",
-        isEbook: false
+        saleability: "FOR_SALE",
+        isEbook: true,
+        listPrice: {
+          amount: 8.49,
+          currencyCode: "EUR"
+        },
+        retailPrice: {
+          amount: 8.49,
+          currencyCode: "EUR"
+        },
+        buyLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC&rdid=book-ivzfRJGrdFsC&rdot=1&source=gbs_api",
+        offers: [
+          {
+            finskyOfferType: 1,
+            listPrice: {
+              amountInMicros: 8490000,
+              currencyCode: "EUR"
+            },
+            retailPrice: {
+              amountInMicros: 8490000,
+              currencyCode: "EUR"
+            }
+          }
+        ]
       },
       accessInfo: {
         country: "PT",
-        viewability: "NO_PAGES",
-        embeddable: false,
+        viewability: "PARTIAL",
+        embeddable: true,
         publicDomain: false,
-        textToSpeechPermission: "ALLOWED",
+        textToSpeechPermission: "ALLOWED_FOR_ACCESSIBILITY",
         epub: {
-          isAvailable: false
+          isAvailable: true,
+          acsTokenLink: "http://books.google.pt/books/download/The_Da_Vinci_Code-sample-epub.acsm?id=ivzfRJGrdFsC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
         },
         pdf: {
-          "isAvailable": false
+          isAvailable: false
         },
-        webReaderLink: "http://play.google.com/books/reader?id=TOGgtgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
-        accessViewStatus: "NONE",
+        webReaderLink: "http://play.google.com/books/reader?id=ivzfRJGrdFsC&hl=&printsec=frontcover&source=gbs_api",
+        accessViewStatus: "SAMPLE",
         quoteSharingAllowed: false
+      },
+      searchInfo: {
+        textSnippet: "*INCLUDES AN EXTRACT FROM ORIGIN,THE NEW THRILLER BY DAN BROWN: OUT NOW* ---------------------------------------- Harvard professor Robert Langdon receives an urgent late-night ..."
       }
     }
   }
 }
 </script>
+
+<style>
+  input.form-control::placeholder {
+    color: #bebcbca9;
+  }
+  .welcome-card {
+    font-size: 50px;
+  }
+  h1.card-title {
+    font-size: 4.5rem;
+  }
+  h5.plot {
+    text-align: justify;
+    padding: 0px 20px 0px 20px
+  }
+  .score-cards {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .score-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #e9c51edb;
+    border: 2px solid #9a6c6454;
+    padding: 10px;
+    width: 230px;
+    height: 100px;
+    border-radius: 10%;
+  }
+  label {
+    font-weight: 700;
+  }
+  .icon {
+    font-weight: 700;
+    padding-left: 5px;
+  }
+  .imdb-button {
+    width: 100%;
+  }
+  .imdb-button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }

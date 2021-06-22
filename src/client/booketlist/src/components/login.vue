@@ -24,7 +24,7 @@
       ref="form"
       v-model="form"
       class="pa-4 pt-6"
-    >      
+    >
       <v-text-field
         v-model="email"
         :rules="[rules.email]"
@@ -116,7 +116,7 @@
           </v-btn>
 
           <v-spacer></v-spacer>
-          
+
           <v-btn
             class="white--text"
             color="deep-purple accent-4"
@@ -131,9 +131,13 @@
 </template>
 
 <script>
-  const axios = require('axios')
-  export default {
-    data: () => ({
+const axios = require('axios')
+
+export default {
+  name: 'Login',
+
+  data () {
+    return {
       agreement: false,
       dialog: false,
       email: undefined,
@@ -147,28 +151,30 @@
           'Password must contain an upper case letter, a numeric character, and a special character',
         required: v => !!v || 'This field is required',
       },
-    }),
 
-    methods: {
-      async login() {
-        let data = {
-          email: 'cris@gmail.com',
-          password: '123'
-        }
-
-        try {
-          const response = await axios.post('http://localhost:3000/login', data)
-          console.log(response.data)
-          window.localStorage.setItem('book-token', response.data) // Para armazenar o token sem o perder quando mudar a rota/componente
-
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    },
-
-    created () {
-      this.login()
     }
+  },
+
+  methods: {
+    async login() {
+      let data = {
+        email: 'cris@gmail.com',
+        password: '123'
+      }
+
+      try {
+        const response = await axios.post('http://localhost:3000/login', data)
+        console.log(response.data)
+        window.localStorage.setItem('book-token', response.data) // Para armazenar o token sem o perder quando mudar a rota/componente
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+
+  created () {
+    this.login()
   }
+}
 </script>
