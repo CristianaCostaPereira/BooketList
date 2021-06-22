@@ -7,36 +7,48 @@
             <img class="col-xs-12 col-lg-4" :src="volumeInfo.imageLinks.smallThumbnail" alt="sans"/>
 
             <div class="col-xs-12 col-lg-8">
-              <h1 class="card-title">title</h1>
+              <h1 class="card-title">{{ volumeInfo.title }}</h1>
 
-              <h5 class="card-text plot mt-4 mb-4">a lot of text, description</h5>
+              <h5 class="card-text plot mt-4 mb-4">{{ volumeInfo.description }}</h5>
 
               <div class="card-text">
-                <label>Year: </label>
+                <label>Authors: </label>
+                {{ volumeInfo.authors }}
               </div>
 
               <div class="card-text">
-                <label>Runtime: </label>
+                <label>Publish Date: </label>
+                {{ volumeInfo.publishedDate }}
               </div>
 
               <div class="card-text">
-                <label>Genre: </label>
+                <label>Publisher: </label>
+                {{ volumeInfo.publisher }}
               </div>
 
               <div class="card-text">
-                <label>Director: </label>
+                <label>Number of Pages: </label>
+                {{ volumeInfo.pageCount }}
               </div>
 
               <div class="card-text">
-                <label>Actors: </label>
+                <label>Categories: </label>
+                {{ volumeInfo.categories }}
               </div>
 
               <div class="card-text">
-                <label>Awards: </label>
+                <label>Rating: </label>
+                {{ volumeInfo.averageRating }}
+
+                <br>
+
+                <label>Rating Counts: </label>
+                {{ volumeInfo.ratingsCount }}
               </div>
-              
+
               <div class="card-text mb-4">
-                <label>BoxOffice: </label>
+                <label>Price: </label>
+                {{ saleInfo.listPrice.amount }}€
               </div>
 
               <div class="row">
@@ -75,7 +87,7 @@ export default {
         ],
         publisher: "Random House",
         publishedDate: "2010-07-06",
-        description: "*INCLUDES AN EXTRACT FROM ORIGIN,THE NEW THRILLER BY DAN BROWN: OUT NOW* --------------------------------------------------------------------------------------------------- Harvard professor Robert Langdon receives an urgent late-night phone call while on business in Paris: the elderly curator of the Louvre has been brutally murdered inside the museum. Alongside the body, police have found a series of baffling codes. As Langdon and a gifted French cryptologist, Sophie Neveu, begin to sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to a mystery that stretches deep into the vault of history. Unless Langdon and Neveu can decipher the labyrinthine code and quickly assemble the pieces of the puzzle, a stunning historical truth will be lost forever...",
+        description: "Harvard professor Robert Langdon receives an urgent late-night phone call while on business in Paris: the elderly curator of the Louvre has been brutally murdered inside the museum. Alongside the body, police have found a series of baffling codes. As Langdon and a gifted French cryptologist, Sophie Neveu, begin to sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to a mystery that stretches deep into the vault of history. Unless Langdon and Neveu can decipher the labyrinthine code and quickly assemble the pieces of the puzzle, a stunning historical truth will be lost forever...",
         industryIdentifiers: [
           {
             type: "ISBN_13",
