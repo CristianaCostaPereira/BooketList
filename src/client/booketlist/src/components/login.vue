@@ -1,23 +1,39 @@
 <template>
-  <v-card
-    class="mx-auto"
-    style="max-width: 500px; margin-top:10px"
-  >
-    <v-toolbar
-      src="@/assets/bg-2.jpg"
-      cards
-      dark
-      flat
-    >
-      <v-card-title class="text-h6 font-weight-regular">
-        Sign Up
-      </v-card-title>
+  <div class="container">
+    <v-card
+      class="mx-auto"
+      style="max-width: 500px; margin-top: 10px">
 
-      <v-spacer></v-spacer>
+      <form @submit.prevent class="px-4 py-3">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="email@example.com"
+            v-model="email">
+        </div>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password"
+            v-model="password">
+        </div>
+
+        <button class="btn btn-primary" @click="login()">Sign in</button>
+      </form>
+    </v-card>
+
+
+    <!-- Second option for login layout -->
+    <v-card class="mx-auto"
+      style="max-width: 500px; margin-top: 10px">
+      <v-toolbar
+        src="@/assets/book3.jpg"
+        cards
+        dark
+        flat>
+
+        <v-card-title class="text-h5 font-weight-regular">
+          Sign Up
+        </v-card-title>
     </v-toolbar>
 
     <v-form
@@ -127,7 +143,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-card>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -138,12 +155,14 @@ export default {
 
   data () {
     return {
+      password: '',
+      email: '',
+
+
       agreement: false,
       dialog: false,
-      email: undefined,
       form: false,
       isLoading: false,
-      password: undefined,
       rules: {
         email: v => !!(v || '').match(/@/) || 'Please enter a valid email',
         length: len => v => (v || '').length >= len || `Invalid character length, required ${len}`,
@@ -157,8 +176,8 @@ export default {
   methods: {
     async login() {
       let data = {
-        email: 'cris@gmail.com',
-        password: '123'
+        email: this.email,
+        password: this.password
       }
 
       try {
@@ -170,10 +189,6 @@ export default {
         console.error(error);
       }
     }
-  },
-
-  created () {
-    this.login()
   }
 }
 </script>
