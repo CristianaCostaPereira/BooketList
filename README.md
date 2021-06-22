@@ -12,7 +12,7 @@ The main focus of this Web App (built in Vue.js) will be a readList and its core
 You will be able to search for your favorite book or writer and create your very own and personal readList.
 
 ## Project setup
-Clone our fork the project. <br>
+Clone or fork the project. <br>
 Then, install all the required packages:
 
 `cd` into your new folder and in there run:
@@ -65,7 +65,7 @@ So, to run the project for the FrontEnd, open the terminal in the root directory
 npm run serve
 ```
 
-To run the project on server-side, open terminal in the root directory and run the command:
+To run the server-side, open terminal in the root directory and run the command:
 
 ```
 npm run start

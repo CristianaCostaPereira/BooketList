@@ -14,15 +14,14 @@ module.exports = router
 
 router.get('/:id/books', (req, res) => {
   const { id } = req.params
+
   db.query('SELECT * FROM book b JOIN book_reader br ON b.book_id = br.book_id where br.reader_id = ?', [id], (error, results) => {
-  
     if (error) {
       throw error
     }
 
     res.send({
       code: 200,
-      meta: null,
       data: results
     })
   })

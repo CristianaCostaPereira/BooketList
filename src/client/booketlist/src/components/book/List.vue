@@ -2,8 +2,8 @@
   <v-card class="container">
     <v-row>
       <v-col
-        v-for="card in cards"
-        :key="card"
+        v-for="favoriteBook in favoriteBooks"
+        :key="favoriteBook.id"
         cols="12"
         sm="5"
         md="4"
@@ -15,11 +15,11 @@
             <div class="col-md-4">
               <img :src="volumeInfo.imageLinks.smallThumbnail" alt="sans" style="margin-left: 15px; margin-top: 20px; margin-bottom: 25px">
             </div>
-          
+
             <div class="col-md-8">
               <div class="card-body ml-4">
                 <v-icon color="red lighten-3" style="margin-left: 190px;">mdi-heart</v-icon>
-                
+
                 <h5 class="card-title" align="center">{{ volumeInfo.title }}</h5>
 
                 <p class="card-text" align="center">{{ volumeInfo.authors }}</p>
@@ -125,6 +125,8 @@ const axios = require('axios')
 export default {
   data () {
     return {
+      favoriteBooks: [],
+
       kind: "books#volume",
       id: "TOGgtgEACAAJ",
       etag: "y2YAI/Nz85c",
@@ -191,14 +193,12 @@ export default {
         webReaderLink: "http://play.google.com/books/reader?id=TOGgtgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
         accessViewStatus: "NONE",
         quoteSharingAllowed: false
-      },
-      cards: ['Good', 'Best', 'Finest', 'Mystery'],
+      }
     }
   },
 
   methods: {
-    async fetchFavorites() {
-      
+    async fetchFavoritesBooks() {
       let retrievedToken = window.localStorage.getItem('book-token')
 
       let config = {
@@ -207,17 +207,19 @@ export default {
         }
       }
       try {
-        const response = await axios.get('http://localhost:3000/readers/1/books', config)
+        const response = await axios.get('http://localhost:3000/readers/2/books', config)
         console.log(response.data)
 
+        this.favoriteBooks = response.data.data
+
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     }
   },
 
   created () {
-    this.fetchFavorites()
+    this.fetchFavoritesBooks()
   }
 }
 </script>
