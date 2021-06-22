@@ -49,7 +49,7 @@
 
     <v-app-bar
       app
-      color="#cea068"
+      src="@/assets/book6.jpg"
       dark>
 
       <v-app-bar-nav-icon @click="drawer = !drawer">
