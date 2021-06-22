@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="container">
     <v-row>
       <v-col
         v-for="card in cards"
@@ -9,19 +9,34 @@
         md="4"
         lg="3"
       >
+        <!-- Another possible look for display my list of favorite books -->
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img :src="volumeInfo.imageLinks.smallThumbnail" alt="sans" style="margin-left: 15px; margin-top: 20px;">
+              <img :src="volumeInfo.imageLinks.smallThumbnail" alt="sans" style="margin-left: 15px; margin-top: 20px; margin-bottom: 25px">
             </div>
           
             <div class="col-md-8">
               <div class="card-body ml-4">
                 <v-icon color="red lighten-3" style="margin-left: 190px;">mdi-heart</v-icon>
                 
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title" align="center">{{ volumeInfo.title }}</h5>
+
+                <p class="card-text" align="center">{{ volumeInfo.authors }}</p>
+
+                <v-rating
+                  align="center"
+                  :value="4"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="18">
+                </v-rating>
+
+                <div class="grey--text ms-3" align="center">
+                  4 (405)
+                </div>
               </div>
             </div>
           </div>
@@ -177,7 +192,7 @@ export default {
         accessViewStatus: "NONE",
         quoteSharingAllowed: false
       },
-      cards: ['Good', 'Best', 'Finest', 'Mystery', 'Thriller'],
+      cards: ['Good', 'Best', 'Finest', 'Mystery'],
     }
   },
 
