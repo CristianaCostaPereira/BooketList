@@ -222,6 +222,7 @@ export default {
       try {
         const response = await axios.post('http://localhost:3000/login', data)
         console.log(response.data)
+
         window.localStorage.setItem('book-token', response.data) // Para armazenar o token sem o perder quando mudar a rota/componente
 
       } catch (error) {

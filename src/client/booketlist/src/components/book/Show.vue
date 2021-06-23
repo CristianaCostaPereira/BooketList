@@ -177,7 +177,7 @@ export default {
         quoteSharingAllowed: false
       },
       searchInfo: {
-        textSnippet: "*INCLUDES AN EXTRACT FROM ORIGIN,THE NEW THRILLER BY DAN BROWN: OUT NOW* ---------------------------------------- Harvard professor Robert Langdon receives an urgent late-night ..."
+        textSnippet: "Harvard professor Robert Langdon receives an urgent late-night ..."
       }
     }
   }

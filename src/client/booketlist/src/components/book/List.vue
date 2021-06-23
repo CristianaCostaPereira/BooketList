@@ -117,7 +117,7 @@
       </v-col>
     </v-row>
 
-    <!-- Father Component of BookPreview-->
+    <!-- Father Component of BookPreview -->
     <book-preview
       google-api-id="TOGgtgEACAAJ">
     </book-preview>
