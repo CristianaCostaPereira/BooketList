@@ -121,6 +121,10 @@
     <book-preview
       google-api-id="TOGgtgEACAAJ">
     </book-preview>
+
+    <book-preview
+      google-api-id="LUVOPwAACAAJ">
+    </book-preview>
   </v-card>
 </template>
 
