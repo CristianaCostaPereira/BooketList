@@ -4,27 +4,57 @@
       class="mx-auto"
       style="max-width: 500px; margin-top: 10px">
 
-      <form @submit.prevent class="px-4 py-3">
+      <form
+        class="px-4 py-3"
+        @submit.prevent>
+
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="email@example.com"
+          <label
+            for="email"
+            class="form-label">
+
+            Email address
+          </label>
+
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="email@example.com"
             v-model="email">
         </div>
 
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password"
-            v-model="password">
+          <label
+            for="password"
+            class="form-label">
+
+            Password
+          </label>
+
+          <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          v-model="password">
         </div>
 
-        <button class="btn btn-primary" @click="login()">Sign in</button>
+        <button
+          class="btn btn-primary"
+          @click="login()">
+
+          Sign in
+        </button>
       </form>
     </v-card>
 
-
     <!-- Second option for login layout -->
-    <v-card class="mx-auto"
+    <!-- DO NOT forget to pass remove the inline style!!! -->
+    <v-card
+      class="mx-auto"
       style="max-width: 500px; margin-top: 10px">
+
       <v-toolbar
         src="@/assets/book3.jpg"
         cards
@@ -32,117 +62,126 @@
         flat>
 
         <v-card-title class="text-h5 font-weight-regular">
-          Sign Up
+          Sign In
         </v-card-title>
-    </v-toolbar>
+      </v-toolbar>
 
-    <v-form
-      ref="form"
-      v-model="form"
-      class="pa-4 pt-6"
-    >
-      <v-text-field
-        v-model="email"
-        :rules="[rules.email]"
-        filled
-        color="deep-purple"
-        label="Email address"
-        type="email"
-      >
-      </v-text-field>
+      <v-form
+        ref="form"
+        v-model="form"
+        class="pa-4 pt-6">
 
-      <v-text-field
-        v-model="password"
-        :rules="[rules.password, rules.length(6)]"
-        filled
-        color="deep-purple"
-        counter="6"
-        label="Password"
-        style="min-height: 96px"
-        type="password"
-      >
-      </v-text-field>
+        <v-text-field
+          v-model="email"
+          :rules="[rules.email]"
+          filled
+          color="deep-purple"
+          label="Email address"
+          type="email">
+        </v-text-field>
 
-      <v-checkbox
-        v-model="agreement"
-        :rules="[rules.required]"
-        color="deep-purple"
-      >
-        <template v-slot:label>
-          I agree to the&nbsp;
-          <a
-            href="#"
-            @click.stop.prevent="dialog = true"
-          >Terms of Service</a>
-          &nbsp;and&nbsp;
-          <a
-            href="#"
-            @click.stop.prevent="dialog = true"
-          >Privacy Policy</a>*
-        </template>
-      </v-checkbox>
-    </v-form>
+        <v-text-field
+          v-model="password"
+          :rules="[rules.password, rules.length(6)]"
+          filled
+          color="deep-purple"
+          counter="6"
+          label="Password"
+          style="min-height: 96px"
+          type="password"
+        >
+        </v-text-field>
 
-    <v-divider></v-divider>
+        <v-checkbox
+          v-model="agreement"
+          :rules="[rules.required]"
+          color="deep-purple">
 
-    <v-card-actions>
-      <v-btn
-        text
-        @click="$refs.form.reset()"
-      >
-        Clear
-      </v-btn>
+          <template v-slot:label>
+            I agree to the&nbsp;
 
-      <v-spacer></v-spacer>
+            <a
+              href="#"
+              @click.stop.prevent="dialog = true">
 
-      <v-btn
-        :disabled="!form"
-        :loading="isLoading"
-        class="white--text"
-        color="deep-purple accent-4"
-        depressed
-      >
-        Submit
-      </v-btn>
-    </v-card-actions>
+              Terms of Service
+            </a>
 
-    <v-dialog
-      v-model="dialog"
-      absolute
-      max-width="400"
-      persistent
-    >
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-3" src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
-          Legal
-        </v-card-title>
+            &nbsp;and&nbsp;
 
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </v-card-text>
+            <a
+              href="#"
+              @click.stop.prevent="dialog = true">
 
-        <v-divider></v-divider>
+              Privacy Policy
+            </a>*
+          </template>
+        </v-checkbox>
+      </v-form>
 
-        <v-card-actions>
-          <v-btn
-            text
-            @click="agreement = false, dialog = false"
-          >
-            No
-          </v-btn>
+      <v-divider></v-divider>
 
-          <v-spacer></v-spacer>
+      <v-card-actions>
+        <v-btn
+          text
+          @click="$refs.form.reset()">
 
-          <v-btn
-            class="white--text"
-            color="deep-purple accent-4"
-            @click="agreement = true, dialog = false"
-          >
-            Yes
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+          Clear
+        </v-btn>
+
+        <v-spacer></v-spacer>
+
+        <v-btn
+          :disabled="!form"
+          :loading="isLoading"
+          class="white--text"
+          color="deep-purple accent-4"
+          depressed>
+
+          Submit
+        </v-btn>
+      </v-card-actions>
+
+      <v-dialog
+        v-model="dialog"
+        absolute
+        max-width="400"
+        persistent>
+
+        <v-card>
+          <v-card-title
+            class="text-h5 grey lighten-3"
+            src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
+
+            Legal
+          </v-card-title>
+
+          <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-btn
+              text
+              @click="agreement = false, dialog = false">
+
+              No
+            </v-btn>
+
+            <v-spacer></v-spacer>
+
+            <v-btn
+              class="white--text"
+              color="deep-purple accent-4"
+              @click="agreement = true, dialog = false">
+
+              Yes
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -192,3 +231,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  input.form-control::placeholder {
+    color: #bebcbca9;
+  }
+</style>

@@ -116,16 +116,29 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Father Component of BookPreview-->
+    <book-preview
+      google-api-id="TOGgtgEACAAJ">
+    </book-preview>
   </v-card>
 </template>
 
 <script>
+import BookPreview from './BookPreview.vue'
+
 const axios = require('axios')
 
 export default {
+  name: 'List',
+
+  components: {
+    BookPreview
+  },
+
   data () {
     return {
-      favoriteBooks: [],
+      favoriteBooks: [], // has my google_api_id
 
       kind: "books#volume",
       id: "TOGgtgEACAAJ",

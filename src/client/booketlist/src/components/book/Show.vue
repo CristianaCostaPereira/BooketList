@@ -188,41 +188,10 @@ export default {
   input.form-control::placeholder {
     color: #bebcbca9;
   }
-  .welcome-card {
-    font-size: 50px;
-  }
   h1.card-title {
     font-size: 4.5rem;
-  }
-  h5.plot {
-    text-align: justify;
-    padding: 0px 20px 0px 20px
-  }
-  .score-cards {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .score-class {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: #e9c51edb;
-    border: 2px solid #9a6c6454;
-    padding: 10px;
-    width: 230px;
-    height: 100px;
-    border-radius: 10%;
   }
   label {
     font-weight: 700;
   }
-  .icon {
-    font-weight: 700;
-    padding-left: 5px;
-  }
-  .imdb-button {
-    width: 100%;
-  }
-  .imdb-button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  }
+</style>
