@@ -2,17 +2,16 @@
    <!-- Child Component of List-->
   <div
     class="card mb-3 mt-3"
-    style="max-width: 540px; min-height: 280px;"
     v-if="bookDetails">
 
     <div class="row g-0">
       <div class="col-md-4">
-        <img :src="bookDetails.thumbnail" alt="Book Cover" style="margin-left: 15px; margin-top: 20px; margin-bottom: 25px">
+        <img :src="bookDetails.thumbnail" alt="Book Cover">
       </div>
 
       <div class="col-md-8">
         <div class="card-body ml-4">
-          <v-icon color="red lighten-3" style="margin-left: 190px;">mdi-heart</v-icon>
+          <v-icon class="heart-icon" color="red lighten-3">mdi-heart</v-icon>
 
           <h5 class="card-title" align="center">{{ bookDetails.title }}</h5>
 
@@ -22,13 +21,12 @@
             :value="readerRating"
             color="amber"
             dense
-            half-increments
             readonly
             size="18">
           </v-rating>
 
           <div class="grey--text ms-3" align="center">
-            4 (405)
+            {{ readerRating }}
           </div>
         </div>
       </div>
@@ -92,3 +90,20 @@ export default {
   }
 }
 </script>
+
+<style>
+.card {
+  max-width: 540px;
+  min-height: 280px;
+}
+
+img {
+  margin: 20px 0px 25px 15px
+}
+
+.card-body .heart-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+</style>
