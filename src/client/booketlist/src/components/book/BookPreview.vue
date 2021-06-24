@@ -1,7 +1,8 @@
 <template>
+   <!-- Child Component of List-->
   <div
     class="card mb-3 mt-3"
-    style="max-width: 540px;"
+    style="max-width: 540px; min-height: 280px;"
     v-if="bookDetails">
 
     <div class="row g-0">
@@ -16,8 +17,9 @@
           <h5 class="card-title" align="center">{{ bookDetails.title }}</h5>
 
           <v-rating
+            v-if="readerRating"
             align="center"
-            :value="4"
+            :value="readerRating"
             color="amber"
             dense
             half-increments
@@ -45,6 +47,11 @@ export default {
       type: String,
       required: true
     },
+
+    readerRating: {
+      type: Number,
+      required: false
+    }
   },
 
   data () {
