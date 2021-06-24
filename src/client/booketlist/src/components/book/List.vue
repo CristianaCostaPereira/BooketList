@@ -3,9 +3,10 @@
     <v-row>
       <v-col
         cols="12"
-        sm="5"
-        md="4"
-        lg="3"
+        sm="6"
+        md="6"
+        lg="6"
+        xl="3"
         v-for="favoriteBook in favoriteBooks"
         :key="favoriteBook.book_id">
 

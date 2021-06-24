@@ -1,19 +1,25 @@
 <template>
-   <!-- Child Component of List-->
-  <div
-    class="card mb-3 mt-3"
-    v-if="bookDetails">
+  <!-- Child Component of List-->
+  <div>
+    <v-card
+      :color="color"
+      dark
+      v-if="bookDetails">
 
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img :src="bookDetails.thumbnail" alt="Book Cover">
-      </div>
+      <div class="d-flex flex-no-wrap justify-space-evenly">
+        <v-img alt="Book Cover"
+          :src="bookDetails.thumbnail"
+          max-width="128"
+          max-height="200"
+          min-width="128"
+          min-height="200">
+        </v-img>
 
-      <div class="col-md-8">
-        <div class="card-body ml-4">
-          <v-icon class="heart-icon" color="red lighten-3">mdi-heart</v-icon>
-
-          <h5 class="card-title" align="center">{{ bookDetails.title }}</h5>
+        <div>
+          <v-card-title
+            class="text-h5"
+            v-text="bookDetails.title">
+          </v-card-title>
 
           <v-rating
             v-if="readerRating"
@@ -28,9 +34,30 @@
           <div class="grey--text ms-3" align="center">
             {{ readerRating }}
           </div>
+
+          <v-card-actions>
+            <v-btn
+              class="ml-2 mt-3"
+              fab
+              icon
+              height="40px"
+              right
+              width="40px"
+            >
+              <v-icon class="heart-icon" color="red lighten-3">mdi-heart</v-icon>
+            </v-btn>
+
+            <v-btn
+              class="ml-2 mt-5"
+              outlined
+              rounded
+              small>
+              START RADIO
+            </v-btn>
+          </v-card-actions>
         </div>
       </div>
-    </div>
+    </v-card>
   </div>
 </template>
 
@@ -54,7 +81,8 @@ export default {
 
   data () {
     return {
-      bookDetails: null
+      bookDetails: null,
+      color: '#7A6647'
     }
   },
 
@@ -101,9 +129,14 @@ img {
   margin: 20px 0px 25px 15px
 }
 
-.card-body .heart-icon {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+.heart-icon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.v-card__text, .v-card__title {
+  word-break: normal  !important;
+  text-align: center;
 }
 </style>
