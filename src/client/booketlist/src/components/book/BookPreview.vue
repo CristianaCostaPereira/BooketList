@@ -135,6 +135,7 @@
             <button
               type="button"
               class="btn btn-primary"
+              data-bs-dismiss="modal"
               @click="setAsFavorite()">
               
               Save changes

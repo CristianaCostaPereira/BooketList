@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <v-card
-      class="mx-auto"
-      style="max-width: 500px; margin-top: 10px">
+      class="login-main-card mx-auto"
+      style="max-width: 1200px; min-height: 1050px; margin-top: 10px;">
 
       <form
         class="px-4 py-3"
@@ -33,15 +33,15 @@
           </label>
 
           <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Password"
-          v-model="password">
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            v-model="password">
         </div>
 
         <button
-          class="btn btn-primary"
+          class="sign-in btn btn-primary"
           @click="login()">
 
           Sign in
@@ -234,6 +234,22 @@ export default {
 </script>
 
 <style>
+  .login-main-card {
+    background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg');
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+  }
+
+  .form-control, .sign-in{
+    width: 30%;
+    /* float: right; */
+  }
+
+
   input.form-control::placeholder {
     color: #bebcbca9;
   }
