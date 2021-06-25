@@ -38,7 +38,7 @@
 
           <v-card-actions class="book-card-button">
             <v-btn
-              v-if="!favoriteBook"
+              v-if="notYetFavoriteBook"
               align="center"
               outlined
               small
@@ -134,7 +134,8 @@
 
             <button
               type="button"
-              class="btn btn-primary">
+              class="btn btn-primary"
+              @click="setAsFavorite()">
               
               Save changes
             </button>
@@ -167,7 +168,7 @@ export default {
     return {
       bookDetails: null,
       color: '#8D6E63',
-      favoriteBook: true
+      notYetFavoriteBook: true
     }
   },
 
@@ -195,7 +196,11 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+
+    setAsFavorite() {
+      this.notYetFavoriteBook = !this.notYetFavoriteBook
+    },
   },
 
   created () {
