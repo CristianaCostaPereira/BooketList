@@ -12,9 +12,9 @@
           <div class="mb-3">
             <label
               for="email"
-              class="form-label">
+              class="form-label mb-1">
 
-              Email address
+              Email Address
             </label>
 
             <input
@@ -28,7 +28,7 @@
           <div class="mb-3">
             <label
               for="password"
-              class="form-label mt-4">
+              class="form-label mt-4 mb-1">
 
               Password
             </label>
@@ -42,7 +42,7 @@
           </div>
 
           <button
-            class="sign-in btn btn-primary mt-3"
+            class="sign-in btn btn-primary mt-2"
             @click="login()">
 
             Sign in
@@ -241,7 +241,7 @@ export default {
   }
 
   .form-layout {
-    margin: 230px 58px 0px 0px;
+    margin: 240px 55px 0px 0px;
   }
 
   form {
@@ -251,9 +251,20 @@ export default {
     float: right;
   }
 
-  .form-control, .sign-in{
+  .form-label {
+    font-weight: 700;
+  }
+
+  .form-control {
     width: 100%;
     float: right;
+  }
+
+  .sign-in {
+    border: solid 2px #8a653054;
+    width: 100%;
+    float: right;
+    background-color: #d5a334a1;
   }
 
   input.form-control::placeholder {
