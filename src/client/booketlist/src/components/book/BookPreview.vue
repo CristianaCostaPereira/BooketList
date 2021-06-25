@@ -4,6 +4,7 @@
     <v-card
       :color="color"
       dark
+      max-height="199"
       v-if="bookDetails">
 
       <div class="d-flex flex-no-wrap justify-space-evenly">
@@ -42,9 +43,7 @@
               icon
               height="40px"
               right
-              width="40px"
-            >
-              <v-icon class="heart-icon" color="red lighten-3">mdi-heart</v-icon>
+              width="40px">
             </v-btn>
 
             <v-btn
@@ -52,7 +51,10 @@
               outlined
               rounded
               small>
-              START RADIO
+
+              Mark as Favorite
+
+              <v-icon class="heart-icon ml-2" color="red lighten-3">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </div>
