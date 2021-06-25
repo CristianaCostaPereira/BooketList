@@ -7,7 +7,7 @@
       max-height="199"
       v-if="bookDetails">
 
-      <div class="d-flex flex-no-wrap justify-space-evenly">
+      <div class="d-flex flex-no-wrap justify-between">
         <v-img alt="Book Cover"
           :src="bookDetails.thumbnail"
           max-width="128"
@@ -36,20 +36,10 @@
             {{ readerRating }}
           </div>
 
-          <v-card-actions>
+          <v-card-actions class="book-card-button">
             <v-btn
-              class="ml-2 mt-3"
-              fab
-              icon
-              height="40px"
-              right
-              width="40px">
-            </v-btn>
-
-            <v-btn
-              class="ml-2 mt-5"
+              align="center"
               outlined
-              rounded
               small>
 
               Mark as Favorite
@@ -84,7 +74,7 @@ export default {
   data () {
     return {
       bookDetails: null,
-      color: '#7A6647'
+      color: '#a97fa4e3 '
     }
   },
 
@@ -131,6 +121,10 @@ img {
   margin: 20px 0px 25px 15px
 }
 
+.book-card-button {
+  justify-content: center;
+}
+
 .heart-icon {
   position: absolute;
   right: 0px;
@@ -138,7 +132,7 @@ img {
 }
 
 .v-card__text, .v-card__title {
-  word-break: normal  !important;
+  word-break: normal !important;
   text-align: center;
 }
 </style>
