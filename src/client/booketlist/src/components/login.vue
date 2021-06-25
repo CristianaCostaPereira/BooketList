@@ -242,11 +242,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-content: flex-end;
+    float: right;
   }
 
   .form-control, .sign-in{
-    width: 30%;
-    /* float: right; */
+    width: 100%;
+    float: right;
   }
 
 
