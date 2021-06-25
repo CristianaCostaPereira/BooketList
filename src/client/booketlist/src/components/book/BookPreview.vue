@@ -40,16 +40,48 @@
             <v-btn
               align="center"
               outlined
-              small>
+              small
+              data-bs-toggle="modal"
+              data-bs-target="#favoriteBookModal">
 
               Mark as Favorite
 
-              <v-icon class="heart-icon ml-2" color="red lighten-3">mdi-heart</v-icon>
+              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
             </v-btn>
           </v-card-actions>
         </div>
       </div>
     </v-card>
+
+    <!-- Modal -->
+    <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="favoriteBookModalLabel">
+              
+              Personal Details
+              <v-icon
+                class="heart-icon ml-2"
+                color="amber lighten">
+                
+                mdi-star-face
+              </v-icon>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -74,7 +106,7 @@ export default {
   data () {
     return {
       bookDetails: null,
-      color: '#a97fa4e3 '
+      color: '#8D6E63'
     }
   },
 
