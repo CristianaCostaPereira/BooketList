@@ -131,8 +131,6 @@
           Clear
         </v-btn>
 
-        <v-spacer></v-spacer>
-
         <v-btn
           :disabled="!form"
           :loading="isLoading"
