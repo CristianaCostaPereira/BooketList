@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     return
   }
 
-  const secret = "hello"
+  const secret = "c79630834183a56cc26a3a8ed69b3d38"
 
   try {
     const { id } = jwt.verify(token, secret) // destruturação do objecto que resultar, para só extrair o id

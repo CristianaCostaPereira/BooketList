@@ -10,6 +10,7 @@ module.exports = (req, res) => { validate(req.body,
     password: 'required'
   }).then((value) => {
     db.query('SELECT * FROM reader WHERE email = ?', [value.email], (error, results) => {
+      console.log(results);
   
       if (results.length === 0) {
         res.status(400).send('Cannot find any account that matches the given email and password')
@@ -18,14 +19,21 @@ module.exports = (req, res) => { validate(req.body,
         bcrypt.compare(value.password, results[0].password)
           .then((match) => {
             if (match) {
-              const secret = "hello"
-
-              delete results[0].password // para não ter de ser preciso a row na BD
+              const secret = "c79630834183a56cc26a3a8ed69b3d38"
 
               // sign para criptografar um valor usando o secret
               const token = jwt.sign({id: results[0].reader_id}, secret) // will give me my token
 
-              res.send(token)
+              let returnValue = {
+                token: token,
+                reader: {
+                  readerId: 2,
+                  firstName: 'Cris',
+                  lastName: 'Pereira'
+                }
+              }
+
+              res.send(returnValue)
 
             } else {
               res.status(400).send('Cannot find any account that matches the given email and password')

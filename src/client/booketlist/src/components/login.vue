@@ -226,10 +226,11 @@ export default {
         // Actualizar o BE para devolver info do user
         debugger
 
-        window.localStorage.setItem('book-token', response.data) // Para armazenar o token sem o perder quando mudar a rota/componente
+        window.localStorage.setItem('book-token', response.data.token) // Para armazenar o token sem o perder quando mudar a rota/componente
+        window.localStorage.setItem('reader-info', response.data.reader)
 
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     }
   }
