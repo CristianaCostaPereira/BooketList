@@ -38,7 +38,8 @@
               class="form-control"
               id="password"
               placeholder="Password"
-              v-model="password">
+              v-model="password"
+              @keyup.enter="login()">
           </div>
 
           <button
@@ -194,8 +195,8 @@ export default {
 
   data () {
     return {
-      password: '',
-      email: '',
+      email: 'cris@gmail.com',
+      password: '123',
 
 
       agreement: false,
