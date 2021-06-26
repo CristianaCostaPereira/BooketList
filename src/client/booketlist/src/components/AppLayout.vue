@@ -15,7 +15,7 @@
 
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            Menu
+            {{ readerInfo.firstName + ' ' + readerInfo.lastName }}
           </v-list-item-title>
 
           <v-list-item-subtitle>
@@ -78,6 +78,8 @@
 
 <script>
   export default {
+    name: 'AppLayout',
+
     data () {
       return {
         menuItems: [
@@ -86,18 +88,24 @@
           { title: 'Show Favorite Book', icon: 'mdi-book-open-page-variant', to: 'show' },
           // { title: 'Logout', icon: 'mdi-logout-variant', to: 'login' }
         ],
-        drawer: null
+        drawer: null,
+        readerInfo: null
       }
     },
 
     methods: {
       logout() {
-        // Removes token from localStorage
+        // Removes token and readerInfo from localStorage
         window.localStorage.removeItem('book-token')
+        window.localStorage.removeItem('reader-info')
 
         // Redirects to login
         this.$router.push({ name: 'Login' })
       }
+    },
+
+    created () {
+      this.readerInfo = JSON.parse(window.localStorage.getItem('reader-info')) // transform the JSON string to object
     }
   }
 </script>

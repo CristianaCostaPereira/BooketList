@@ -9,8 +9,7 @@ module.exports = (req, res) => { validate(req.body,
     email: 'required|email',
     password: 'required'
   }).then((value) => {
-    db.query('SELECT * FROM reader WHERE email = ?', [value.email], (error, results) => {
-      console.log(results);
+    db.query('SELECT * FROM reader WHERE email = ? LIMIT 1', [value.email], (error, results) => {
   
       if (results.length === 0) {
         res.status(400).send('Cannot find any account that matches the given email and password')
@@ -27,9 +26,9 @@ module.exports = (req, res) => { validate(req.body,
               let returnValue = {
                 token: token,
                 reader: {
-                  readerId: 2,
-                  firstName: 'Cris',
-                  lastName: 'Pereira'
+                  readerId: results[0].reader_id,
+                  firstName: results[0].first_name,
+                  lastName: results[0].last_name
                 }
               }
 
