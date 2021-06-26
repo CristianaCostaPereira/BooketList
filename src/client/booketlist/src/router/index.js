@@ -9,7 +9,10 @@ const routes = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
@@ -33,7 +36,10 @@ const routes = [
   {
     path: '/show',
     name: 'Show',
-    component: () => import('../components/book/Show')
+    component: () => import('../components/book/Show'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
@@ -43,6 +49,8 @@ const router = new VueRouter({
   routes
 })
 
+// beforeEach method that is called before each route is processed
+// This is where we can define our checking condition and restrict user access
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('book-token') == null) {
