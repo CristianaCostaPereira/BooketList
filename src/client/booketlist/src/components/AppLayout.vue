@@ -59,6 +59,15 @@
       </v-app-bar-nav-icon>
 
       <v-toolbar-title>BooketList</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="logout()">
+
+        <v-icon class="mr-5">mdi-logout-variant</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -75,10 +84,20 @@
           { title: 'Dashboard', icon: 'mdi-ghost', to: '/' },
           { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'list' },
           { title: 'Show Favorite Book', icon: 'mdi-book-open-page-variant', to: 'show' },
-          { title: 'Logout', icon: 'mdi-logout-variant', to: 'login' }
+          // { title: 'Logout', icon: 'mdi-logout-variant', to: 'login' }
         ],
         drawer: null
       }
     },
+
+    methods: {
+      logout() {
+        // Removes token from localStorage
+        window.localStorage.removeItem('book-token')
+
+        // Redirects to login
+        this.$router.push({ name: 'Login' })
+      }
+    }
   }
 </script>
