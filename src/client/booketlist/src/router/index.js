@@ -7,14 +7,6 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Dashboard',
-    component: Dashboard,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
     path: '/login',
     name: 'Login',
     // route level code-splitting
@@ -25,21 +17,31 @@ const routes = [
       guest: true
     }
   },
+
   {
-    path: '/list',
-    name: 'List',
-    component: () => import('../components/book/List'),
+    path: '/',
+    component: () => import('../components/AppLayout.vue'),
+    redirect: '/dashboard',
     meta: {
       requiresAuth: true
-    }
-  },
-  {
-    path: '/show',
-    name: 'Show',
-    component: () => import('../components/book/Show'),
-    meta: {
-      requiresAuth: true
-    }
+    },
+    children: [
+      {
+        path: '/',
+        name: 'Dashboard',
+        component: Dashboard,
+      },
+      {
+        path: '/list',
+        name: 'List',
+        component: () => import('../components/book/List')
+      },
+      {
+        path: '/show',
+        name: 'Show',
+        component: () => import('../components/book/Show')
+      }
+    ]
   }
 ]
 
