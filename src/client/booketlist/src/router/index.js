@@ -61,7 +61,6 @@ router.beforeEach((to, from, next) => {
         // params: { nextUrl: to.fullPath }
       })
     } else {
-      // let reader = JSON.parse(localStorage.getItem('reader'))
       next()
     }
   } else if (to.matched.some(record => record.meta.guest)) {

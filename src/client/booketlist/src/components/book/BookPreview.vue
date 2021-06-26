@@ -168,7 +168,7 @@ export default {
   data () {
     return {
       bookDetails: null,
-      color: '#8D6E63',
+      color: '#a97fa4e3',
       notYetFavoriteBook: true
     }
   },

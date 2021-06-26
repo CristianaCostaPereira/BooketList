@@ -34,7 +34,8 @@ export default {
 
   data () {
     return {
-      favoriteBooks: [], // has my google_api_id
+      favoriteBooks: [], // has my google_api_id,
+      readerId: null
     }
   },
 
@@ -48,7 +49,7 @@ export default {
         }
       }
       try {
-        const response = await axios.get('http://localhost:3000/readers/1/books', config)
+        const response = await axios.get(`http://localhost:3000/readers/${this.readerId}/books`, config)
 
         this.favoriteBooks = response.data.data
 
@@ -59,6 +60,12 @@ export default {
   },
 
   created () {
+    // To get the logged reader id (dinamic in my request)
+    let readerInfoString = window.localStorage.getItem('reader-info')
+    let readerInfoObject = JSON.parse(readerInfoString)
+
+    this.readerId = readerInfoObject.readerId
+
     this.fetchFavoritesBooks()
   }
 }

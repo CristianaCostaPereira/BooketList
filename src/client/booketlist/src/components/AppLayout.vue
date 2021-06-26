@@ -66,7 +66,7 @@
         icon
         @click="logout()">
 
-        <v-icon class="mr-5">mdi-logout-variant</v-icon>
+        <v-icon class="mr-8">mdi-ghost-off</v-icon>
       </v-btn>
     </v-app-bar>
 
