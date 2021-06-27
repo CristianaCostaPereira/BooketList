@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4">
     <div class="container">
       <div class="input-group flex-nowrap">
         <input
@@ -14,7 +14,7 @@
           id="addon-wrapping"
           @click="bookSearch()">
 
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon>mdi-book-search-outline</v-icon>
         </span>
       </div>
     </div>
@@ -65,12 +65,11 @@
                   align="center"
                   :value="searchedBook.volumeInfo.averageRating"
                   color="amber"
-                  dense
                   readonly
-                  size="18">
+                  size="16">
                 </v-rating>
 
-                <div class="grey--text ms-3" align="center">
+                <div class="ms-3" align="center">
                   {{ searchedBook.volumeInfo.ratingsCount }}
                 </div>
 
@@ -119,7 +118,7 @@ export default {
 
   data() {
     return {
-      searchInput: '',
+      searchInput: 'da vinci code',
       searchedBooks: [],
       color: '#a97fa4e3'
     }
@@ -128,12 +127,12 @@ export default {
   methods: {
     async bookSearch() {
       // vai à API externa buscar a lista de livros que dê match ao input
-      // const API_KEY = await process.env.API_KEY
+      const API_KEY = await process.env.API_KEY
 
       let config = {
         params: {
           q: this.searchInput,
-          key: 'AIzaSyBAd1FEN4dykVTAKZNqqf9XxIx_CNXClJ8'
+          key: API_KEY
         }
       }
 
@@ -141,11 +140,10 @@ export default {
 
       // guardar os resultados no []
       this.searchedBooks = response.data.items
-     
+
 
       // max results
       // paginação / offset
-      // apresentar resultados no template
     }
   }
 }
