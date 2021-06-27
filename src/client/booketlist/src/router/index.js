@@ -21,7 +21,6 @@ const routes = [
   {
     path: '/',
     component: () => import('../components/AppLayout.vue'),
-    redirect: '/dashboard',
     meta: {
       requiresAuth: true
     },
@@ -40,6 +39,11 @@ const routes = [
         path: '/show',
         name: 'Show',
         component: () => import('../components/book/Show')
+      },
+      {
+        path: '/search',
+        name: 'BookSearch',
+        component: () => import('../components/book/BookSearch')
       }
     ]
   }

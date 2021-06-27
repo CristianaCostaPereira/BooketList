@@ -22,7 +22,7 @@
             v-text="bookDetails.title">
           </v-card-title>
 
-          <!-- <v-rating
+          <v-rating
             v-if="readerRating"
             align="center"
             :value="readerRating"
@@ -34,7 +34,7 @@
 
           <div class="grey--text ms-3" align="center">
             {{ readerRating }}
-          </div> -->
+          </div>
 
           <v-card-actions class="book-card-button">
             <v-btn
@@ -113,7 +113,6 @@
                 :value="readerRating"
                 color="amber"
                 dense
-                readonly
                 size="18">
               </v-rating>
 

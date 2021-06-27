@@ -2,6 +2,7 @@
   <div class="container">
     <v-card
       class="login-main-card mx-auto"
+      :elevation="24"
       style="max-width: 1200px; min-height: 1050px; margin-top: 10px;">
 
       <form

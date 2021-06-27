@@ -1,0 +1,158 @@
+<template>
+  <div>
+    <div class="container">
+      <div class="input-group flex-nowrap">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search Book Title / Writer"
+          v-model="searchInput"
+          @keyup.enter="bookSearch()">
+
+        <span
+          class="input-group-text"
+          id="addon-wrapping"
+          @click="bookSearch()">
+
+          <v-icon>mdi-magnify</v-icon>
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <v-row
+        v-if="searchedBooks">
+        <v-col
+          cols="12"
+          sm="6"
+          md="6"
+          lg="6"
+          xl="3"
+          v-for="(searchedBook, index) in searchedBooks"
+          :key="index">
+
+          <v-card
+            :color="color"
+            dark
+            max-height="199">
+
+            <div class="d-flex flex-no-wrap justify-between">
+              <v-img alt="Book Cover"
+                v-if="searchedBook.volumeInfo && searchedBook.volumeInfo.imageLinks && searchedBook.volumeInfo.imageLinks.thumbnail"
+                :src="searchedBook.volumeInfo.imageLinks.thumbnail"
+                max-width="128"
+                max-height="200"
+                min-width="128"
+                min-height="200">
+              </v-img>
+
+              <v-img alt="Book Cover"
+                v-else
+                src="@/assets/bookNotFound.jpg"
+                max-width="128"
+                max-height="200"
+                min-width="128"
+                min-height="200">
+              </v-img>
+
+              <div>
+                <v-card-title
+                  class="text-h5"
+                  v-text="searchedBook.volumeInfo.title">
+                </v-card-title>
+
+                <v-rating
+                  align="center"
+                  :value="searchedBook.volumeInfo.averageRating"
+                  color="amber"
+                  dense
+                  readonly
+                  size="18">
+                </v-rating>
+
+                <div class="grey--text ms-3" align="center">
+                  {{ searchedBook.volumeInfo.ratingsCount }}
+                </div>
+
+                <!-- <v-card-actions class="book-card-button">
+                  <v-btn
+                    v-if="notYetFavoriteBook"
+                    align="center"
+                    outlined
+                    small
+                    data-bs-toggle="modal"
+                    data-bs-target="#favoriteBookModal">
+
+                    Mark as Favorite
+
+                    <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
+                  </v-btn>
+
+                  <v-btn
+                    v-else
+                    align="center"
+                    outlined
+                    small
+                    data-bs-toggle="modal"
+                    data-bs-target="#favoriteBookModal">
+
+                    Edit Favorite Book
+
+                    <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
+                  </v-btn>
+                </v-card-actions> -->
+              </div>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </div>
+</template>
+
+<script>
+const axios = require('axios')
+// const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
+
+export default {
+  name: 'BookSearch',
+
+  data() {
+    return {
+      searchInput: '',
+      searchedBooks: [],
+      color: '#a97fa4e3'
+    }
+  },
+
+  methods: {
+    async bookSearch() {
+      // vai à API externa buscar a lista de livros que dê match ao input
+      // const API_KEY = await process.env.API_KEY
+
+      let config = {
+        params: {
+          q: this.searchInput,
+          key: 'AIzaSyBAd1FEN4dykVTAKZNqqf9XxIx_CNXClJ8'
+        }
+      }
+
+      const response = await axios.get('https://www.googleapis.com/books/v1/volumes', config)
+
+      // guardar os resultados no []
+      this.searchedBooks = response.data.items
+     
+
+      // max results
+      // paginação / offset
+      // apresentar resultados no template
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+  input.form-control::placeholder {
+    color: #bebcbca9;
+  }
+</style>
