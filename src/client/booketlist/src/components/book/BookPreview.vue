@@ -8,8 +8,9 @@
       v-if="bookDetails">
 
       <div class="d-flex flex-no-wrap justify-between">
-        <v-img alt="Book Cover"
+        <v-img
           :src="bookDetails.thumbnail"
+          alt="Book Cover"
           max-width="128"
           max-height="200"
           min-width="128"
@@ -27,9 +28,8 @@
             align="center"
             :value="readerRating"
             color="amber"
-            dense
             readonly
-            size="18">
+            size="16">
           </v-rating>
 
           <div class="grey--text ms-3" align="center">
@@ -75,12 +75,13 @@
             <h5
               class="modal-title"
               id="favoriteBookModalLabel">
-              
+
               Personal Details
+
               <v-icon
                 class="heart-icon ml-2"
                 color="amber lighten">
-                
+
                 mdi-star-face
               </v-icon>
             </h5>
@@ -95,25 +96,52 @@
 
           <div class="modal-body">
             <div class="mb-3">
-              <label for="starReading" class="form-label">Start reading at:</label>
-              <input type="date" class="form-control" id="starReading">
+              <label
+                for="starReading"
+                class="form-label">
+
+                Start reading at:
+              </label>
+
+              <input
+                class="form-control"
+                type="date"
+                id="starReading">
             </div>
 
             <div class="mb-3">
-              <label for="endReading" class="form-label">End reading at:</label>
-              <input type="date" class="form-control" id="endReading">
+              <label
+                for="endReading"
+                class="form-label">
+
+                End reading at:
+              </label>
+
+              <input
+                class="form-control"
+                type="date"
+                id="endReading">
             </div>
 
             <div class="mb-3">
-              <label for="readerPersonalRating" class="form-label">My personal rating:</label>
-              <input type="text" class="form-control" id="readerPersonalRating">
+              <label
+                for="readerPersonalRating"
+                class="form-label">
+
+                My personal rating:
+              </label>
+
+              <input
+                class="form-control"
+                type="text"
+                id="readerPersonalRating">
+
               <v-rating
                 v-if="readerRating"
                 align="center"
                 :value="readerRating"
                 color="amber"
-                dense
-                size="18">
+                size="16">
               </v-rating>
 
               <div class="grey--text ms-3" align="center">
@@ -127,7 +155,7 @@
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal">
-              
+
               Close
             </button>
 
@@ -136,7 +164,7 @@
               class="btn btn-primary"
               data-bs-dismiss="modal"
               @click="setAsFavorite()">
-              
+
               Save changes
             </button>
           </div>
