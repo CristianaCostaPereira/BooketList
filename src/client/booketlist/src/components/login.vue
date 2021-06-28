@@ -48,7 +48,7 @@
           <div class="form-buttons">
            <button
               class="clear btn btn-primary mt-2"
-              @click="$refs.form.reset()">
+              @click="resetForm()">
 
               Clear
             </button>
@@ -60,61 +60,10 @@
 
               Sign in
             </button>
+
           </div>
         </div>
       </form>
-    </v-card>
-
-    <!-- Second option for login layout -->
-    <!-- DO NOT forget to pass remove the inline style!!! -->
-    <v-card
-      class="mx-auto"
-      style="max-width: 500px; margin-top: 10px">
-
-      <v-form
-        ref="form"
-        v-model="form"
-        class="pa-4 pt-6">
-
-        <v-text-field
-          v-model="email"
-          :rules="[rules.email]"
-          filled
-          color="deep-purple"
-          label="Email address">
-        </v-text-field>
-
-        <v-text-field
-          v-model="password"
-          :rules="[rules.password, rules.length(6)]"
-          filled
-          color="deep-purple"
-          counter="6"
-          label="Password"
-          style="min-height: 96px"
-          type="password"
-        >
-        </v-text-field>
-      </v-form>
-
-      <v-card-actions>
-        <v-btn
-          text
-          @click="$refs.form.reset()">
-
-          Clear
-        </v-btn>
-
-        <v-btn
-          :disabled="!form"
-          :loading="isLoading"
-          class="white--text"
-          color="deep-purple accent-4"
-          depressed>
-
-          Submit
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -129,22 +78,13 @@ export default {
     return {
       email: 'cris@gmail.com',
       password: '123',
-
-
-      form: false,
-      isLoading: false,
-      rules: {
-        email: v => !!(v || '').match(/@/) || 'Please enter a valid email',
-        length: len => v => (v || '').length >= len || `Invalid character length, required ${len}`,
-        password: v => !!(v || '').match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/) ||
-          'Password must contain an upper case letter, a numeric character, and a special character',
-        required: v => !!v || 'This field is required',
-      },
+      isLoading: false
     }
   },
 
   methods: {
     async login() {
+      console.log('login')
       let data = {
         email: this.email,
         password: this.password
@@ -163,6 +103,12 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+
+    resetForm() {
+      console.log('reset')
+      this.email = ''
+      this.password = ''
     }
   }
 }
@@ -178,7 +124,7 @@ export default {
   }
 
   .form-layout {
-    margin: 240px 55px 0px 0px;
+    margin: 225px 40px 0px 0px;
   }
 
   form {
