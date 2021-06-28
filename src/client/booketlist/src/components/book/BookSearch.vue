@@ -106,33 +106,18 @@
                   {{ searchedBook.volumeInfo.ratingsCount }}
                 </div>
 
-                <!-- <v-card-actions class="book-card-button">
+                <v-card-actions class="book-card-button">
                   <v-btn
-                    v-if="notYetFavoriteBook"
                     align="center"
                     outlined
                     small
-                    data-bs-toggle="modal"
-                    data-bs-target="#favoriteBookModal">
+                    @click="makeFavorite()">
 
                     Mark as Favorite
 
                     <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
                   </v-btn>
-
-                  <v-btn
-                    v-else
-                    align="center"
-                    outlined
-                    small
-                    data-bs-toggle="modal"
-                    data-bs-target="#favoriteBookModal">
-
-                    Edit Favorite Book
-
-                    <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
-                  </v-btn>
-                </v-card-actions> -->
+                </v-card-actions>
               </div>
             </div>
           </v-card>
@@ -160,7 +145,7 @@ export default {
   methods: {
     async bookSearch() {
       this.searchedBooks = []
-      
+
       // vai à API externa buscar a lista de livros que dê match ao input
       const API_KEY = await process.env.API_KEY
 
@@ -179,6 +164,19 @@ export default {
 
       // max results
       // paginação / offset
+    },
+
+    makeFavorite() {
+      // pedido BE com o id do reader + id do livro seleccionado
+      
+
+
+
+      // No BE:
+      // 1º ver se existe o livro na BD
+      // Caso exista colocar na tabela pivot book-reader o id do livro e do reader
+      // Caso não exista 1o coloca na tabela book e de seguida coloca como favorito
+
     }
   }
 }
