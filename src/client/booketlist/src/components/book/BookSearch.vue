@@ -18,32 +18,35 @@
         </span>
       </div>
 
-      <div id="background"></div>
-        <div class="top mb-8">
-          <h2>Welcome to you BooketList App</h2>
-        </div>
-
-        <div class="ghost-drawing">
-          <div class="ghost-copy">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
+      <div
+        v-if="!searchedBooks.length">
+        <div id="background"></div>
+          <div class="top mb-8">
+            <h2>Welcome to you BooketList App</h2>
           </div>
 
-          <div class="ghost">
-            <div class="face">
-              <div class="eye"></div>
-              <div class="eye-right"></div>
-              <div class="mouth"></div>
+          <div class="ghost-drawing">
+            <div class="ghost-copy">
+              <div class="one"></div>
+              <div class="two"></div>
+              <div class="three"></div>
+              <div class="four"></div>
             </div>
+
+            <div class="ghost">
+              <div class="face">
+                <div class="eye"></div>
+                <div class="eye-right"></div>
+                <div class="mouth"></div>
+              </div>
+            </div>
+
+            <div class="shadow"></div>
           </div>
 
-          <div class="shadow"></div>
+          <div class="bottom">
+            <p>Boo, looks like a ghost loves this page!</p>
         </div>
-
-        <div class="bottom">
-          <p>Boo, looks like a ghost stole this page!</p>
       </div>
     </div>
 
@@ -156,6 +159,8 @@ export default {
 
   methods: {
     async bookSearch() {
+      this.searchedBooks = []
+      
       // vai à API externa buscar a lista de livros que dê match ao input
       const API_KEY = await process.env.API_KEY
 
@@ -331,13 +336,14 @@ body {
 }
 
 .bottom {
+  font-size: 25px;
   margin-top: 10px;
 }
 
 /*text styling*/
 h2 {
   font-family: $big;
-  color: $white;
+  color: #8d6856;
   text-align: center;
   font-size: 4em;
   margin: 0;
