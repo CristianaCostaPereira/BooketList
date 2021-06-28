@@ -203,7 +203,7 @@ export default {
   }
 
   .sign-in, .clear {
-    border: solid 2px #8a653054;
+    border: solid 1px #8a653054;
     width: 50%;
     float: right;
     margin-right: 5px;
