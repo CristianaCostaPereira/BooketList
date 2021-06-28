@@ -113,7 +113,7 @@
 
 <script>
 const axios = require('axios')
-// const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
+const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
 
 export default {
   name: 'BookSearch',

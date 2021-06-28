@@ -268,8 +268,12 @@ export default {
     border: solid 2px #8a653054;
     width: 100%;
     float: right;
-    background-color: #d5a334a1;
+    background-color: #d5a334a1
   }
+
+  .sign-in:hover {
+    background-color: #753f8cb5;
+}
 
   input.form-control::placeholder {
     color: #bebcbca9;
