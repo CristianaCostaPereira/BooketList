@@ -23,7 +23,10 @@
               class="form-control"
               id="email"
               placeholder="email@example.com"
-              v-model="email">
+              v-model="email"
+              :rules="[rules.email]"
+              filled
+              label="email">
           </div>
 
           <div class="mb-3">
@@ -40,15 +43,30 @@
               id="password"
               placeholder="Password"
               v-model="password"
+              :rules="[rules.password, rules.length(6)]"
+              filled
+              color="deep-purple"
+              counter="6"
+              label="password"
               @keyup.enter="login()">
           </div>
 
-          <button
-            class="sign-in btn btn-primary mt-2"
-            @click="login()">
+          <v-card-actions class="form-buttons">
+           <button
+              class="clear btn btn-primary mt-2"
+              @click="$refs.form.reset()">
 
-            Sign in
-          </button>
+              Clear
+            </button>
+
+            <button
+              class="sign-in btn btn-primary mt-2"
+              :loading="isLoading"
+              @click="login()">
+
+              Sign in
+            </button>
+          </v-card-actions>
         </div>
       </form>
     </v-card>
@@ -58,17 +76,6 @@
     <v-card
       class="mx-auto"
       style="max-width: 500px; margin-top: 10px">
-
-      <v-toolbar
-        src="@/assets/book3.jpg"
-        cards
-        dark
-        flat>
-
-        <v-card-title class="text-h5 font-weight-regular">
-          Sign In
-        </v-card-title>
-      </v-toolbar>
 
       <v-form
         ref="form"
@@ -80,8 +87,7 @@
           :rules="[rules.email]"
           filled
           color="deep-purple"
-          label="Email address"
-          type="email">
+          label="Email address">
         </v-text-field>
 
         <v-text-field
@@ -95,35 +101,7 @@
           type="password"
         >
         </v-text-field>
-
-        <v-checkbox
-          v-model="agreement"
-          :rules="[rules.required]"
-          color="deep-purple">
-
-          <template v-slot:label>
-            I agree to the&nbsp;
-
-            <a
-              href="#"
-              @click.stop.prevent="dialog = true">
-
-              Terms of Service
-            </a>
-
-            &nbsp;and&nbsp;
-
-            <a
-              href="#"
-              @click.stop.prevent="dialog = true">
-
-              Privacy Policy
-            </a>*
-          </template>
-        </v-checkbox>
       </v-form>
-
-      <v-divider></v-divider>
 
       <v-card-actions>
         <v-btn
@@ -143,47 +121,6 @@
           Submit
         </v-btn>
       </v-card-actions>
-
-      <v-dialog
-        v-model="dialog"
-        absolute
-        max-width="400"
-        persistent>
-
-        <v-card>
-          <v-card-title
-            class="text-h5 grey lighten-3"
-            src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
-
-            Legal
-          </v-card-title>
-
-          <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-card-actions>
-            <v-btn
-              text
-              @click="agreement = false, dialog = false">
-
-              No
-            </v-btn>
-
-            <v-spacer></v-spacer>
-
-            <v-btn
-              class="white--text"
-              color="deep-purple accent-4"
-              @click="agreement = true, dialog = false">
-
-              Yes
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -200,8 +137,6 @@ export default {
       password: '123',
 
 
-      agreement: false,
-      dialog: false,
       form: false,
       isLoading: false,
       rules: {
@@ -264,14 +199,19 @@ export default {
     float: right;
   }
 
-  .sign-in {
+  .form-buttons {
+    width: 102%;
+  }
+
+  .sign-in, .clear {
     border: solid 2px #8a653054;
-    width: 100%;
+    width: 50%;
     float: right;
+    margin-right: 5px;
     background-color: #d5a334a1
   }
 
-  .sign-in:hover {
+  .sign-in:hover, .clear:hover {
     background-color: #753f8cb5;
 }
 
