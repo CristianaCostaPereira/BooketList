@@ -169,6 +169,9 @@ export default {
 </script>
 
 <style>
+  body {
+    background-color: #312621;
+  }
   .login-main-card {
     background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg');
   }
