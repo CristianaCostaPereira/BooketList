@@ -170,7 +170,8 @@ export default {
 
 <style>
   body {
-    background-color: #312621;
+    background-image: url('https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380_960_720.jpg');
+    background-size: cover;
   }
   .login-main-card {
     background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg');
