@@ -23,10 +23,8 @@
               class="form-control"
               id="email"
               placeholder="email@example.com"
-              v-model="email"
-              :rules="[rules.email]"
-              filled
-              label="email">
+              required
+              v-model="email">
           </div>
 
           <div class="mb-3">
@@ -43,15 +41,11 @@
               id="password"
               placeholder="Password"
               v-model="password"
-              :rules="[rules.password, rules.length(6)]"
-              filled
-              color="deep-purple"
-              counter="6"
-              label="password"
+              required
               @keyup.enter="login()">
           </div>
 
-          <v-card-actions class="form-buttons">
+          <div class="form-buttons">
            <button
               class="clear btn btn-primary mt-2"
               @click="$refs.form.reset()">
@@ -66,7 +60,7 @@
 
               Sign in
             </button>
-          </v-card-actions>
+          </div>
         </div>
       </form>
     </v-card>
@@ -200,7 +194,9 @@ export default {
   }
 
   .form-buttons {
-    width: 102%;
+    width: 101%;
+    display: flex;
+
   }
 
   .sign-in, .clear {
