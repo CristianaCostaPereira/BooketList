@@ -57,6 +57,9 @@ const router = new VueRouter({
 
 // beforeEach method that is called before each route is processed
 // This is where we can define our checking condition and restrict user access
+/* some() method checks if any of the elements in an array pass a test (provided as a function).
+The some() method executes the function once for each element present in the array:
+If it finds an array element where the function returns a true value, some() returns true (and does not check the remaining values) */
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('book-token') == null) {

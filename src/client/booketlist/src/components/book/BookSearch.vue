@@ -37,17 +37,19 @@
             max-height="199">
 
             <div class="d-flex flex-no-wrap justify-between">
-              <v-img alt="Book Cover"
+              <v-img
                 v-if="searchedBook.volumeInfo && searchedBook.volumeInfo.imageLinks && searchedBook.volumeInfo.imageLinks.thumbnail"
                 :src="searchedBook.volumeInfo.imageLinks.thumbnail"
+                alt="Book Cover"
                 max-width="128"
                 max-height="200"
                 min-width="128"
                 min-height="200">
               </v-img>
 
-              <v-img alt="Book Cover"
+              <v-img
                 v-else
+                alt="Book Cover"
                 src="@/assets/bookNotFound.jpg"
                 max-width="128"
                 max-height="200"
