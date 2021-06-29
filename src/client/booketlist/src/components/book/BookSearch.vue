@@ -71,7 +71,7 @@
             dark
             max-height="200">
 
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
               <v-img
                 v-if="searchedBook.volumeInfo && searchedBook.volumeInfo.imageLinks && searchedBook.volumeInfo.imageLinks.thumbnail"
                 :src="searchedBook.volumeInfo.imageLinks.thumbnail"
@@ -92,9 +92,10 @@
                 min-height="200">
               </v-img>
 
-              <div>
+              <div class="api-card-content">
                 <v-card-title
                   class="text-h5"
+                  align="center"
                   v-text="searchedBook.volumeInfo.title">
                 </v-card-title>
 
@@ -333,6 +334,13 @@ export default {
 
   .book-api-list {
     padding: 35px;
+  }
+
+  .api-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 32px 0px 30px;
   }
 
   @keyframes scale {
