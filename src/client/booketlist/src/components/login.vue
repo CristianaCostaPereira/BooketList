@@ -96,7 +96,7 @@ export default {
         // Se bem autenticada -> redirect para dashboard
         // Actualizar o BE para devolver info do user
         window.localStorage.setItem('book-token', response.data.token) // Para armazenar o token sem o perder quando mudar a rota/componente
-        window.localStorage.setItem('reader-info', JSON.stringify(response.data.reader))
+        window.localStorage.setItem('reader-info', JSON.stringify(response.data.reader)) // Para guardar a informação do reader
 
         this.$router.push({ name: 'Dashboard' })
 

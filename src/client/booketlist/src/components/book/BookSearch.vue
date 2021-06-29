@@ -116,7 +116,7 @@
                     align="center"
                     outlined
                     small
-                    @click="makeFavorite()">
+                    @click="makeFavorite(searchedBook.id)">
 
                     Mark as Favorite
 
@@ -144,7 +144,11 @@ export default {
       searchInput: 'da vinci code',
       searchedBooks: [],
       color: '#a97fa4e3',
-      readerId: null
+
+      // Para armazenar o que precisamos para o pedido
+      // O que vem da localStorage
+      readerId: null,
+      token: null
     }
   },
 
@@ -172,16 +176,20 @@ export default {
       // paginação / offset
     },
 
-    async makeFavorite() {
+    async makeFavorite(googleApiId) {
       // pedido BE com o id do reader + id do livro seleccionado
+      // O que vai no body
       let data = {
-        bookId: book_id
+        google_api_id: googleApiId
+      }
+      let config = {
+        headers: {
+          'Authorization': this.token
+        }
       }
 
       try {
-        const response = await axios.post(`http://localhost:3000/readers/${this.readerId}/books/make-favorite`, data)
-
-        this.favoriteBooks = response.data.data
+        const response = await axios.post(`http://localhost:3000/readers/${this.readerId}/books/make-favorite`, data, config)
 
       } catch (error) {
         console.error(error)
@@ -193,6 +201,16 @@ export default {
       // Caso não exista 1o coloca na tabela book e de seguida coloca como favorito
 
     }
+  },
+
+  created () {
+    // To get the logged reader id (dinamic in my request)
+    let readerInfoString = window.localStorage.getItem('reader-info')
+    let readerInfoObject = JSON.parse(readerInfoString)
+
+    this.readerId = readerInfoObject.readerId
+
+    this.token = window.localStorage.getItem('book-token')
   }
 }
 </script>
