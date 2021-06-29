@@ -171,10 +171,14 @@ export default {
       // paginação / offset
     },
 
-    makeFavorite() {
+    async makeFavorite() {
       // pedido BE com o id do reader + id do livro seleccionado
+      let data = {
+        readerId: reader_id,
+        bookId: book_id
+      }
 
-
+      const response = await axios.post('/readers/:id/books/make-favorite', data)
 
 
       // No BE:

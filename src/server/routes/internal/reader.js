@@ -33,6 +33,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
   const { google_api_id } = req.body
 
   try {
+    // validate if book exists
     db.query('SELECT book_id FROM book WHERE google_api_id = ?', [google_api_id], (error, results) => {
       if (error) {
         throw error
@@ -55,7 +56,4 @@ router.post('/:id/books/make-favorite', (req, res) => {
   } catch (error) {
     res.status(400).send(error)
   }
-
-  // validate if book exists
-
 })
