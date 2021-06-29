@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="book-api-list">
       <v-row
         v-if="searchedBooks">
         <v-col
@@ -69,9 +69,9 @@
           <v-card
             :color="color"
             dark
-            max-height="199">
+            max-height="200">
 
-            <div class="d-flex flex-no-wrap justify-between">
+            <div class="d-flex">
               <v-img
                 v-if="searchedBook.volumeInfo && searchedBook.volumeInfo.imageLinks && searchedBook.volumeInfo.imageLinks.thumbnail"
                 :src="searchedBook.volumeInfo.imageLinks.thumbnail"
@@ -329,6 +329,10 @@ export default {
     text-align: center;
     color: #733e38cf;
     font-size: 23px;
+  }
+
+  .book-api-list {
+    padding: 35px;
   }
 
   @keyframes scale {
