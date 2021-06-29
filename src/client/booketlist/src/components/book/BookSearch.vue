@@ -143,7 +143,8 @@ export default {
     return {
       searchInput: 'da vinci code',
       searchedBooks: [],
-      color: '#a97fa4e3'
+      color: '#a97fa4e3',
+      readerId: null
     }
   },
 
@@ -174,12 +175,17 @@ export default {
     async makeFavorite() {
       // pedido BE com o id do reader + id do livro seleccionado
       let data = {
-        readerId: reader_id,
         bookId: book_id
       }
 
-      const response = await axios.post('/readers/:id/books/make-favorite', data)
+      try {
+        const response = await axios.post(`http://localhost:3000/readers/${this.readerId}/books/make-favorite`, data)
 
+        this.favoriteBooks = response.data.data
+
+      } catch (error) {
+        console.error(error)
+      }
 
       // No BE:
       // 1º ver se existe o livro na BD
@@ -194,14 +200,15 @@ export default {
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Lato');
 
-  input.form-control::placeholder {
-    color: #bebcbca9;
-  }
-
   $white: #EDEDED;
   $gray: #BFC0C0;
   $dark: #585959;
   $big: 'Abril Fatface', serif;
+
+  input.form-control::placeholder {
+    color: #bebcbca9;
+  }
+
 
   .top {
     margin-top: 120px;
