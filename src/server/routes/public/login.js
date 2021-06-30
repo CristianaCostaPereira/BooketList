@@ -2,14 +2,16 @@ const { validate } = require('indicative/validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken') // Para importar o pacote
 const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
-
 const db = require('../../db')
+
 
 module.exports = (req, res) => { validate(req.body,
   {
     email: 'required|email',
-    password: 'required'
-  }).then((value) => {
+    password: 'required|min:3'
+  })
+  
+  .then((value) => {
     db.query('SELECT * FROM reader WHERE email = ? LIMIT 1', [value.email], (error, results) => {
   
       if (results.length === 0) {
