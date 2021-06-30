@@ -53,6 +53,125 @@
               </div>
           </div>
         </div>
+
+        <v-card-actions class="book-card-button">
+            <v-btn
+              align="center"
+              outlined
+              small
+              data-bs-toggle="modal"
+              data-bs-target="#favoriteBookModal">
+
+              Edit Favorite Book
+
+              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
+            </v-btn>
+        </v-card-actions>
+      </div>
+    </div>
+
+    <!-- Modal for personal book details-->
+    <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="favoriteBookModalLabel">
+
+              Personal Details
+
+              <v-icon
+                class="heart-icon ml-2"
+                color="amber lighten">
+
+                mdi-star-face
+              </v-icon>
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close">
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label
+                for="starReading"
+                class="form-label">
+
+                Start reading at:
+              </label>
+
+              <input
+                class="form-control"
+                type="date"
+                id="starReading">
+            </div>
+
+            <div class="mb-3">
+              <label
+                for="endReading"
+                class="form-label">
+
+                End reading at:
+              </label>
+
+              <input
+                class="form-control"
+                type="date"
+                id="endReading">
+            </div>
+
+            <div class="mb-3">
+              <label
+                for="readerPersonalRating"
+                class="form-label">
+
+                My personal rating:
+              </label>
+
+              <input
+                class="form-control"
+                type="text"
+                id="readerPersonalRating">
+
+              <!-- <v-rating
+                v-if="readerRating"
+                align="center"
+                :value="readerRating"
+                color="amber"
+                size="16">
+              </v-rating>
+
+              <div class="grey--text ms-3" align="center">
+                {{ readerRating }}
+              </div> -->
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+
+              Close
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              @click="setAsFavorite()">
+
+              Save changes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -66,6 +185,8 @@ export default {
 
   data () {
     return {
+      notYetFavoriteBook: true,
+
       kind: "books#volume",
       id: "ivzfRJGrdFsC",
       etag: "8IYKt1qUYrQ",

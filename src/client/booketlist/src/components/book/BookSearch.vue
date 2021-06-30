@@ -122,6 +122,17 @@
 
                     <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
                   </v-btn>
+
+                  <v-btn
+                    align="center"
+                    outlined
+                    small
+                    @click="selectBook(searchedBook)">
+
+                    Details
+
+                    <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
+                  </v-btn>
                 </v-card-actions>
               </div>
             </div>
@@ -129,6 +140,64 @@
         </v-col>
       </v-row>
     </div>
+
+    <!-- Modal for book detail -->
+    <v-row 
+      v-if="selectedBook"
+      justify="center">
+
+      <v-dialog
+        v-model="showModal"
+        width="70%">
+
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">{{ selectedBook.volumeInfo.title }}</span>
+          </v-card-title>
+
+          <v-img
+            v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
+            :src="selectedBook.volumeInfo.imageLinks.thumbnail"
+            alt="Book Cover"
+            max-width="128"
+            max-height="200"
+            min-width="128"
+            min-height="200">
+          </v-img>
+
+          <v-img
+            v-else
+            alt="Book Cover"
+            src="@/assets/bookNotFound.jpg"
+            max-width="128"
+            max-height="200"
+            min-width="128"
+            min-height="200">
+          </v-img>
+          
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              color="green darken-1"
+              text
+              @click="showModal = false"
+            >
+              Disagree
+            </v-btn>
+
+            <v-btn
+              color="green darken-1"
+              text
+              @click="showModal = false"
+            >
+              Agree
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 
@@ -144,6 +213,8 @@ export default {
       searchInput: 'da vinci code',
       searchedBooks: [],
       color: '#a97fa4e3',
+      selectedBook: null,
+      showModal: false,
 
       // Para armazenar o que precisamos para o pedido
       // O que vem da localStorage
@@ -174,6 +245,14 @@ export default {
 
       // max results
       // paginação / offset
+    },
+
+    selectBook(book) {
+      // guarda o livro que seleccionei
+      this.selectedBook = book
+
+      // Only open modal after this.selectedBook is field
+      this.showModal = true
     },
 
     // vai buscar o token e o id do user e envia para o server

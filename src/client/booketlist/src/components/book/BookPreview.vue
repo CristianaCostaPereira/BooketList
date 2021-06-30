@@ -38,29 +38,25 @@
 
           <v-card-actions class="book-card-button">
             <v-btn
-              v-if="notYetFavoriteBook"
               align="center"
               outlined
               small
               data-bs-toggle="modal"
               data-bs-target="#favoriteBookModal">
 
-              Mark as Favorite
+              Edit
 
-              <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
+              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-lead-pencil</v-icon>
             </v-btn>
 
             <v-btn
-              v-else
               align="center"
               outlined
-              small
-              data-bs-toggle="modal"
-              data-bs-target="#favoriteBookModal">
+              small>
 
-              Edit Favorite Book
+              Show Details
 
-              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
+              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-book-open-page-variant-outline</v-icon>
             </v-btn>
           </v-card-actions>
         </div>
@@ -195,8 +191,7 @@ export default {
   data () {
     return {
       bookDetails: null,
-      color: '#a97fa4e3',
-      notYetFavoriteBook: true
+      color: '#a97fa4e3'
     }
   },
 
@@ -238,27 +233,27 @@ export default {
 </script>
 
 <style>
-.card {
-  max-width: 540px;
-  min-height: 280px;
-}
+  .card {
+    max-width: 540px;
+    min-height: 280px;
+  }
 
-img {
-  margin: 20px 0px 25px 15px
-}
+  img {
+    margin: 20px 0px 25px 15px
+  }
 
-.book-card-button {
-  justify-content: center;
-}
+  .book-card-button {
+    justify-content: center;
+  }
 
-.mark-as-favorite-icon {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-}
+  .mark-as-favorite-icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
 
-.v-card__text, .v-card__title {
-  word-break: normal !important;
-  text-align: center;
-}
+  .v-card__text, .v-card__title {
+    word-break: normal !important;
+    text-align: center;
+  }
 </style>
