@@ -26,7 +26,7 @@
         <div id="background"></div>
 
           <div class="top">
-            <h2>Welcome to you BooketList App</h2>
+            <h2>Hello Again</h2>
           </div>
 
           <div class="ghost-drawing">
@@ -49,7 +49,7 @@
           </div>
 
           <div class="bottom">
-            <p>Booo, looks like a ghost loves this page!</p>
+            <p>Go ahead, search for you favorite book!</p>
         </div>
       </div>
     </div>
@@ -161,7 +161,7 @@ export default {
 
       let config = {
         params: {
-          q: this.searchInput,
+          q: this.searchInput, //quando o imput é submetido, faz pedido à api do google
           key: API_KEY
         }
       }
@@ -176,6 +176,7 @@ export default {
       // paginação / offset
     },
 
+    // vai buscar o token e o id do user e envia para o server
     async makeFavorite(googleApiId) {
       // pedido BE com o id do reader + id do livro seleccionado
       // O que vai no body
