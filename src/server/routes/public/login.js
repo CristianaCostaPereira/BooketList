@@ -1,6 +1,7 @@
 const { validate } = require('indicative/validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken') // Para importar o pacote
+const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
 
 const db = require('../../db')
 
@@ -18,10 +19,11 @@ module.exports = (req, res) => { validate(req.body,
         bcrypt.compare(value.password, results[0].password)
           .then((match) => {
             if (match) {
-              const secret = "c79630834183a56cc26a3a8ed69b3d38"
+              const AUTHENTICATION_SECRET = process.env.AUTHENTICATION_SECRET
+              console.log(AUTHENTICATION_SECRET)
 
               // sign para criptografar um valor usando o secret
-              const token = jwt.sign({id: results[0].reader_id}, secret) // will give me my token
+              const token = jwt.sign({id: results[0].reader_id}, AUTHENTICATION_SECRET) // will give me my token
 
               let returnValue = {
                 token: token,
