@@ -1,17 +1,18 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 mt-3">
-        <div class="card">
-          <div class="row card-body">
-            <img class="col-xs-12 col-lg-4" :src="volumeInfo.imageLinks.smallThumbnail" alt="sans"/>
+  <div class="container mt-12">
+    <div class="card mb-3" style="max-width: 1800px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img :src="volumeInfo.imageLinks.smallThumbnail" alt="Book Cover">
+        </div>
+        
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ volumeInfo.title }}</h5>
+            
+            <p class="card-text">{{ volumeInfo.description }}</p>
 
-            <div class="col-xs-12 col-lg-8">
-              <h1 class="card-title">{{ volumeInfo.title }}</h1>
-
-              <h5 class="card-text mt-4 mb-4">{{ volumeInfo.description }}</h5>
-
-              <div class="card-text">
+            <div class="card-text">
                 <label>Authors: </label>
                 {{ volumeInfo.authors }}
               </div>
@@ -50,23 +51,6 @@
                 <label>Price: </label>
                 {{ saleInfo.listPrice.amount }}€
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img :src="volumeInfo.imageLinks.smallThumbnail" alt="sans">
-        </div>
-        
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
