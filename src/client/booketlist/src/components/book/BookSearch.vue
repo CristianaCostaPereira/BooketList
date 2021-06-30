@@ -1,7 +1,7 @@
 <template>
   <div class="pt-12">
     <div class="container">
-      <div class="input-group flex-nowrap">
+      <div class="input-group">
         <input
           type="text"
           class="form-control"
@@ -161,7 +161,7 @@ export default {
 
       let config = {
         params: {
-          q: this.searchInput, //quando o imput é submetido, faz pedido à api do google
+          q: this.searchInput, // quando o input é submetido, faz pedido à api do google
           key: API_KEY
         }
       }
@@ -177,12 +177,13 @@ export default {
     },
 
     // vai buscar o token e o id do user e envia para o server
+    // pedido BE com o id do reader + id do livro seleccionado
     async makeFavorite(googleApiId) {
-      // pedido BE com o id do reader + id do livro seleccionado
       // O que vai no body
       let data = {
         google_api_id: googleApiId
       }
+
       let config = {
         headers: {
           'Authorization': this.token
@@ -228,6 +229,9 @@ export default {
     color: #bebcbca9;
   }
 
+  .form-control {
+    padding: 10px;
+  }
 
   .top {
     margin-top: 120px;
