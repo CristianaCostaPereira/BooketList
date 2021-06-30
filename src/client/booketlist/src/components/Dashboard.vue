@@ -7,7 +7,7 @@
       <div id="background"></div>
 
         <div class="top">
-          <h2>Welcome to you BooketList App</h2>
+          <h1>Welcome to your BooketList App</h1>
         </div>
 
         <div class="ghost-drawing">
@@ -45,8 +45,8 @@
   $big: 'Abril Fatface', serif;
 
   .top {
-    margin-top: 120px;
-    margin-bottom: 65px;
+    margin-top: 140px;
+    margin-bottom: 90px;
   }
 
   .ghost-drawing {
@@ -148,16 +148,15 @@
 
   .bottom {
     font-size: 25px;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   /*text styling*/
-  h2 {
+  h1 {
     font-family: $big;
     color: #8d6856;
     text-align: center;
-    font-size: 4em;
-    margin: 0;
+    font-size: 5em !important;
     text-shadow: -1px 0 $gray, 0 1px $gray, 1px 0 $gray, 0 -1px $gray;
   }
 
@@ -175,17 +174,6 @@
     text-align: center;
     color: #733e38cf;
     font-size: 23px;
-  }
-
-  .book-api-list {
-    padding: 35px;
-  }
-
-  .api-card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px 32px 0px 30px;
   }
 
   @keyframes scale {
