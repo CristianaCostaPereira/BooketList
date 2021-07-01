@@ -28,9 +28,23 @@ router.get('/:id/books', (req, res) => {
 })
 
 router.post('/:id/books/make-favorite', (req, res) => {
-  const { id } = req.params
+  // const { id } = req.params
 
-  const { google_api_id } = req.body
+  const reader_id = req.params.id
+
+  const { 
+    google_api_id,
+    purchase_date,
+    reader_rating,
+    start_reading,
+    end_reading,
+    edition_number,
+    reading_time,
+  } = req.body
+
+
+  
+
 
   try {
     // validate if book exists
@@ -42,7 +56,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
       // res.send(results)
 
       if (results.length === 0) {
-        // When book not found
+        // When book not found insert into book table
         db.query('INSERT INTO book (google_api_id, created_at, updated_at) VALUES (?, now(), now())', [google_api_id], (error, results) => {
           if (error) {
             throw error
@@ -51,7 +65,44 @@ router.post('/:id/books/make-favorite', (req, res) => {
         })
       }
     })
-    res.send('success')
+
+    // book exists on DB for certain
+    db.query('SELECT book_id FROM book WHERE google_api_id = ?', [google_api_id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      
+      let book_id = results[0].book_id // [0] because it comes inside of an array
+
+      var x = {
+        reader_id,
+        book_id,
+        purchase_date,
+        reader_rating,
+        start_reading,
+        end_reading,
+        edition_number,
+        reading_time 
+      }
+
+      var query = db.query('INSERT INTO book_reader SET ?', x,
+      function(err, result) {
+        res.send("success")
+      })
+
+
+    // db.query('INSERT INTO book_reader SET ?'),
+    //   x, (error, results) => {
+    //     if (error) {
+    //       console.log(error)
+    //     }
+    //     res.send(results)
+    //   }
+    })
+
+    
+
+    // res.send('success')
 
   } catch (error) {
     res.status(400).send(error)
