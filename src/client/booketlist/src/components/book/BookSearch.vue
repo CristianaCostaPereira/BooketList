@@ -155,12 +155,10 @@
               <div class="card">
                 <div class="row card-body">
                   <v-img
-                    class="col-xs-12 col-lg-4"
+                    class="book-cover col-xs-12 col-lg-4"
                     v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
                     :src="selectedBook.volumeInfo.imageLinks.thumbnail"
-                    alt="Book Cover"
-                    max-width="300"
-                    max-height="450">
+                    alt="Book Cover">
                   </v-img>
 
                   <v-img
@@ -539,6 +537,12 @@ export default {
 
   .book-card-button {
     margin-left: 20px;
+  }
+
+  .book-cover {
+    margin-left: 50px;
+    max-width: 300px;
+    // max-height: 450px;
   }
 
   @keyframes scale {
