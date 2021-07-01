@@ -177,7 +177,7 @@
                   <div class="card-content col-xs-12 col-lg-8">
                     <h2 class="card-title">{{ selectedBook.volumeInfo.title }}</h2>
 
-                    <h3 class="card-title">{{ selectedBook.volumeInfo.subtitle }}</h3>
+                    <h3 class="card-title mt-5 mb-5">{{ selectedBook.volumeInfo.subtitle }}</h3>
 
                     <div class="card-text">
                       <label>Author: </label>
@@ -204,14 +204,12 @@
                       {{ selectedBook.volumeInfo.categories[0] }}
                     </div>
 
-                    <div class="card-text">
+                    <div
+                      v-if="selectedBook.volumeInfo.averageRating"
+                      class="card-text">
+
                       <label>Rating: </label>
-                      {{ selectedBook.volumeInfo.averageRating }}
-
-                      <br>
-
-                      <label>Rating Counts: </label>
-                      {{ selectedBook.volumeInfo.ratingsCount }}
+                      {{ selectedBook.volumeInfo.averageRating }} ({{ selectedBook.volumeInfo.ratingsCount }})
                     </div>
 
                     <div class="card-text">
@@ -244,7 +242,7 @@
             >
               Mark as Favorite
 
-              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
+              <v-icon class="ml-1" color="amber lighten">mdi-star</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -255,7 +253,6 @@
 
 <script>
 const axios = require('axios')
-const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
 
 export default {
   name: 'BookSearch',
@@ -355,25 +352,6 @@ export default {
   $gray: #BFC0C0;
   $dark: #585959;
   $big: 'Abril Fatface', serif;
-
-  .row.card-body {
-    display: flex;
-    margin: 5px;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-
-
-
-
 
   input.form-control::placeholder {
     color: #bebcbca9;
@@ -544,6 +522,19 @@ export default {
     flex-direction: column;
     align-items: center;
     margin: 0px 32px 0px -5px;
+  }
+
+  .row.card-body {
+    display: flex;
+    margin: 5px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .book-card-button {
