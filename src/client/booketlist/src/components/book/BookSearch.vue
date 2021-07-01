@@ -93,11 +93,10 @@
               </v-img>
 
               <div class="api-card-content">
-                <v-card-title
+                <h5
                   class="text-h5"
-                  align="center"
                   v-text="searchedBook.volumeInfo.title">
-                </v-card-title>
+                </h5>
 
                 <v-rating
                   align="center"
@@ -107,7 +106,7 @@
                   size="16">
                 </v-rating>
 
-                <div class="ms-3" align="center">
+                <div align="center">
                   {{ searchedBook.volumeInfo.ratingsCount }}
                 </div>
 
@@ -118,9 +117,9 @@
                     small
                     @click="makeFavorite(searchedBook.id)">
 
-                    Mark as Favorite
+                    Set as Favorite
 
-                    <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
+                    <v-icon class=" ml-1" color="amber lighten">mdi-star-outline</v-icon>
                   </v-btn>
 
                   <v-btn
@@ -131,7 +130,7 @@
 
                     Details
 
-                    <v-icon class="mark-as-favorite-icon ml-2" color="amber lighten">mdi-star-outline</v-icon>
+                    <v-icon class="ml-1" color="amber lighten">mdi-star-outline</v-icon>
                   </v-btn>
                 </v-card-actions>
               </div>
@@ -152,7 +151,7 @@
 
         <v-card>
           <div class="row">
-            <div class="col-sm-12 mt-5">
+            <div class="col-sm-12">
               <div class="card">
                 <div class="row card-body">
                   <v-img
@@ -179,6 +178,11 @@
                     <h2 class="card-title">{{ selectedBook.volumeInfo.title }}</h2>
 
                     <h3 class="card-title">{{ selectedBook.volumeInfo.subtitle }}</h3>
+
+                    <div class="card-text">
+                      <label>Author: </label>
+                      {{ selectedBook.volumeInfo.authors[0] }}
+                    </div>
 
                     <div class="card-text">
                       <label>Publish Date: </label>
@@ -526,6 +530,10 @@ export default {
     font-size: 23px;
   }
 
+  .text-h5 {
+    text-align: center;
+  }
+
   .book-api-list {
     padding: 35px;
   }
@@ -534,7 +542,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px 32px 0px 30px;
+    margin: 0px 32px 0px -5px;
+  }
+
+  .book-card-button {
+    margin-left: 13px;
   }
 
   @keyframes scale {

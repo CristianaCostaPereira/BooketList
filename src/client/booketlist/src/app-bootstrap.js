@@ -1,4 +1,5 @@
 // This file validates the provided token
+// index.js validation
 import Vue from 'vue'
 import router from './router'
 
