@@ -151,83 +151,74 @@
         width="70%">
 
         <v-card>
-          <v-card-title>
-            <span class="text-h5">{{ selectedBook.volumeInfo.title }}</span>
-          </v-card-title>
+          <div class="row">
+            <div class="col-sm-12 mt-5">
+              <div class="card">
+                <div class="row card-body">
+                  <v-img
+                    class="col-xs-12 col-lg-4"
+                    v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
+                    :src="selectedBook.volumeInfo.imageLinks.thumbnail"
+                    alt="Book Cover"
+                    max-width="300"
+                    max-height="450">
+                  </v-img>
 
-          <v-card-subtitle>
-            <span class="text-h5">{{ selectedBook.volumeInfo.subtitle }}</span>
-          </v-card-subtitle>
+                  <v-img
+                    v-else
+                    class="col-xs-12 col-lg-4"
+                    alt="Book Cover"
+                    src="@/assets/bookNotFound.jpg"
+                    max-width="128"
+                    max-height="200"
+                    min-width="128"
+                    min-height="200">
+                  </v-img>
 
-          <v-img
-            v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
-            :src="selectedBook.volumeInfo.imageLinks.thumbnail"
-            alt="Book Cover"
-            max-width="128"
-            max-height="200"
-            min-width="128"
-            min-height="200">
-          </v-img>
+                  <div class="card-content col-xs-12 col-lg-8">
+                    <h2 class="card-title">{{ selectedBook.volumeInfo.title }}</h2>
 
-          <v-img
-            v-else
-            alt="Book Cover"
-            src="@/assets/bookNotFound.jpg"
-            max-width="128"
-            max-height="200"
-            min-width="128"
-            min-height="200">
-          </v-img>
+                    <h3 class="card-title">{{ selectedBook.volumeInfo.subtitle }}</h3>
 
-          <div>
-            <div class="card-text">
-              <label>Authors: </label>
-              {{ selectedBook.volumeInfo.authors[0] }}
-            
-            </div>
-            <div class="card-text">
-              <label>Authors: </label>
-              {{ selectedBook.volumeInfo.description }}
-            </div>
+                    <h5 class="card-text plot mt-4 mb-4">{{ selectedBook.volumeInfo.description }}</h5>
 
-            <div class="card-text">
-              <label>Publish Date: </label>
-              {{ selectedBook.volumeInfo.publishedDate }}
-            </div>
+                    <div class="card-text">
+                      <label>Publish Date: </label>
+                      {{ selectedBook.volumeInfo.publishedDate }}
+                    </div>
 
-            <div class="card-text">
-              <label>Publisher: </label>
-              {{ selectedBook.volumeInfo.publisher }}
-            </div>
+                    <div class="card-text">
+                      <label>Publisher: </label>
+                      {{ selectedBook.volumeInfo.publisher }}
+                    </div>
 
-            <div class="card-text">
-              <label>Number of Pages: </label>
-              {{ selectedBook.volumeInfo.pageCount }}
-            </div>
+                    <div class="card-text">
+                      <label>Number of Pages: </label>
+                      {{ selectedBook.volumeInfo.pageCount }}
+                    </div>
 
-            <div class="card-text">
-              <label>Categories: </label>
-              {{ selectedBook.volumeInfo.categories[0] }}
-            </div>
+                    <div class="card-text">
+                      <label>Categories: </label>
+                      {{ selectedBook.volumeInfo.categories[0] }}
+                    </div>
 
-            <div class="card-text">
-              <label>Rating: </label>
-              {{ selectedBook.volumeInfo.averageRating }}
+                    <div class="card-text">
+                      <label>Rating: </label>
+                      {{ selectedBook.volumeInfo.averageRating }}
 
-              <br>
+                      <br>
 
-              <label>Rating Counts: </label>
-              {{ selectedBook.volumeInfo.ratingsCount }}
-            </div>
+                      <label>Rating Counts: </label>
+                      {{ selectedBook.volumeInfo.ratingsCount }}
+                    </div>
 
-            <div class="card-text mb-4">
-              <label>Price: </label>
-              {{ selectedBook.saleInfo.listPrice.amount }}€
-            </div>
-
-            <div class="card-text mb-4">
-              <label>Buy Book: </label>
-              {{ selectedBook.saleInfo.buyLink }}
+                    <div class="card-text">
+                      <label>Price: </label>
+                      {{ selectedBook.saleInfo.listPrice.amount }}€
+                    </div>                  
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -248,6 +239,8 @@
               @click="showModal = false"
             >
               Mark as Favorite
+              
+              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -359,6 +352,25 @@ export default {
   $dark: #585959;
   $big: 'Abril Fatface', serif;
 
+  .row.card-body {
+    display: flex;
+    margin: -10px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+
+
+
+
   input.form-control::placeholder {
     color: #bebcbca9;
   }
@@ -412,6 +424,7 @@ export default {
   .eye {
     left: 25%;
   }
+
   .eye-right {
     right: 25%;
   }
@@ -491,6 +504,19 @@ export default {
     color: $gray;
     margin-top: -20px;
     font-weight: 900;
+  }
+
+  h2.card-title {
+    font-size: 4.5rem;
+  }
+
+  h5.plot {
+    text-align: justify;
+    padding: 0px 20px 0px 20px
+  }
+  
+  label {
+    font-weight: 700;
   }
 
   p {
