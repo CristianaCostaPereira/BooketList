@@ -5,10 +5,7 @@
       :elevation="24"
       style="max-width: 1200px; min-height: 1050px; margin-top: 10px;">
 
-      <form
-        class="px-4 py-3"
-        @submit.prevent>
-
+      <div class="form px-4 py-3">
         <div class="form-layout">
           <div class="mb-3">
             <label
@@ -63,7 +60,7 @@
 
           </div>
         </div>
-      </form>
+      </div>
     </v-card>
   </div>
 </template>
@@ -84,7 +81,6 @@ export default {
 
   methods: {
     async login() {
-      console.log('login')
       let data = {
         email: this.email,
         password: this.password
@@ -127,7 +123,7 @@ export default {
     margin: 225px 40px 0px 0px;
   }
 
-  form {
+  .form {
     display: flex;
     flex-direction: column;
     align-content: flex-end;

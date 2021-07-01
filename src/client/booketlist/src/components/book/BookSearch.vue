@@ -512,8 +512,7 @@ export default {
 
   h5.description {
     text-align: justify;
-    margin-left: 100px;
-    margin-top: 30px;
+    margin: 40px 0px 0px 100px;
   }
   
   label {
