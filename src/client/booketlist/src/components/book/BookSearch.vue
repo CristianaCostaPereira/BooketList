@@ -180,8 +180,6 @@
 
                     <h3 class="card-title">{{ selectedBook.volumeInfo.subtitle }}</h3>
 
-                    <h5 class="card-text plot mt-4 mb-4">{{ selectedBook.volumeInfo.description }}</h5>
-
                     <div class="card-text">
                       <label>Publish Date: </label>
                       {{ selectedBook.volumeInfo.publishedDate }}
@@ -215,7 +213,9 @@
                     <div class="card-text">
                       <label>Price: </label>
                       {{ selectedBook.saleInfo.listPrice.amount }}€
-                    </div>                  
+                    </div>       
+
+                    <h5 class="description card-text">{{ selectedBook.volumeInfo.description }}</h5>           
                   </div>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default {
 
   .row.card-body {
     display: flex;
-    margin: -10px;
+    margin: 5px;
     flex-direction: row;
     align-items: center;
   }
@@ -510,9 +510,10 @@ export default {
     font-size: 4.5rem;
   }
 
-  h5.plot {
+  h5.description {
     text-align: justify;
-    padding: 0px 20px 0px 20px
+    margin-left: 100px;
+    margin-top: 30px;
   }
   
   label {
