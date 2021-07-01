@@ -5,52 +5,52 @@
         <div class="col-md-4">
           <img :src="volumeInfo.imageLinks.smallThumbnail" alt="Book Cover">
         </div>
-        
+
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ volumeInfo.title }}</h5>
-            
+
             <p class="card-text">{{ volumeInfo.description }}</p>
 
             <div class="card-text">
                 <label>Authors: </label>
                 {{ volumeInfo.authors }}
-              </div>
+            </div>
 
-              <div class="card-text">
-                <label>Publish Date: </label>
-                {{ volumeInfo.publishedDate }}
-              </div>
+            <div class="card-text">
+              <label>Publish Date: </label>
+              {{ volumeInfo.publishedDate }}
+            </div>
 
-              <div class="card-text">
-                <label>Publisher: </label>
-                {{ volumeInfo.publisher }}
-              </div>
+            <div class="card-text">
+              <label>Publisher: </label>
+              {{ volumeInfo.publisher }}
+            </div>
 
-              <div class="card-text">
-                <label>Number of Pages: </label>
-                {{ volumeInfo.pageCount }}
-              </div>
+            <div class="card-text">
+              <label>Number of Pages: </label>
+              {{ volumeInfo.pageCount }}
+            </div>
 
-              <div class="card-text">
-                <label>Categories: </label>
-                {{ volumeInfo.categories }}
-              </div>
+            <div class="card-text">
+              <label>Categories: </label>
+              {{ volumeInfo.categories }}
+            </div>
 
-              <div class="card-text">
-                <label>Rating: </label>
-                {{ volumeInfo.averageRating }}
+            <div class="card-text">
+              <label>Rating: </label>
+              {{ volumeInfo.averageRating }}
 
-                <br>
+              <br>
 
-                <label>Rating Counts: </label>
-                {{ volumeInfo.ratingsCount }}
-              </div>
+              <label>Rating Counts: </label>
+              {{ volumeInfo.ratingsCount }}
+            </div>
 
-              <div class="card-text mb-4">
-                <label>Price: </label>
-                {{ saleInfo.listPrice.amount }}€
-              </div>
+            <div class="card-text mb-4">
+              <label>Price: </label>
+              {{ saleInfo.listPrice.amount }}€
+            </div>
           </div>
         </div>
 

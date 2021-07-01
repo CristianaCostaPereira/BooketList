@@ -142,7 +142,7 @@
     </div>
 
     <!-- Modal for book detail -->
-    <v-row 
+    <v-row
       v-if="selectedBook"
       justify="center">
 
@@ -154,6 +154,10 @@
           <v-card-title>
             <span class="text-h5">{{ selectedBook.volumeInfo.title }}</span>
           </v-card-title>
+
+          <v-card-subtitle>
+            <span class="text-h5">{{ selectedBook.volumeInfo.subtitle }}</span>
+          </v-card-subtitle>
 
           <v-img
             v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
@@ -174,7 +178,58 @@
             min-width="128"
             min-height="200">
           </v-img>
-          
+
+          <div>
+            <div class="card-text">
+              <label>Authors: </label>
+              {{ selectedBook.volumeInfo.authors[0] }}
+            
+            </div>
+            <div class="card-text">
+              <label>Authors: </label>
+              {{ selectedBook.volumeInfo.description }}
+            </div>
+
+            <div class="card-text">
+              <label>Publish Date: </label>
+              {{ selectedBook.volumeInfo.publishedDate }}
+            </div>
+
+            <div class="card-text">
+              <label>Publisher: </label>
+              {{ selectedBook.volumeInfo.publisher }}
+            </div>
+
+            <div class="card-text">
+              <label>Number of Pages: </label>
+              {{ selectedBook.volumeInfo.pageCount }}
+            </div>
+
+            <div class="card-text">
+              <label>Categories: </label>
+              {{ selectedBook.volumeInfo.categories[0] }}
+            </div>
+
+            <div class="card-text">
+              <label>Rating: </label>
+              {{ selectedBook.volumeInfo.averageRating }}
+
+              <br>
+
+              <label>Rating Counts: </label>
+              {{ selectedBook.volumeInfo.ratingsCount }}
+            </div>
+
+            <div class="card-text mb-4">
+              <label>Price: </label>
+              {{ selectedBook.saleInfo.listPrice.amount }}€
+            </div>
+
+            <div class="card-text mb-4">
+              <label>Buy Book: </label>
+              {{ selectedBook.saleInfo.buyLink }}
+            </div>
+          </div>
 
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -184,7 +239,7 @@
               text
               @click="showModal = false"
             >
-              Disagree
+              Close
             </v-btn>
 
             <v-btn
@@ -192,7 +247,7 @@
               text
               @click="showModal = false"
             >
-              Agree
+              Mark as Favorite
             </v-btn>
           </v-card-actions>
         </v-card>
