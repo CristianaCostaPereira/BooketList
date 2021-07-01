@@ -47,7 +47,7 @@ An account must be created to access the information needed and to validate the 
 * [Google Books API](https://developers.google.com/books/docs/v1/getting_started)
 
 ### Environment Variables
-Declare your API key and three other necessary variables so you can run the code.<br>
+Declare your API key and five other necessary variables so you can run the code.<br>
 Create a `.env file`; should look like:
 ```
 API_KEY=your-api-key
@@ -55,6 +55,8 @@ DB_HOST=your-db-host
 DB_USER=you-db-user
 DB_PASS=your-db-password
 DB_DATABASE=your-db-schema-name
+AUTHENTICATION_SECRET=your-secret
+VUE_APP_API_KEY=your-api-key (this one will be in the .env file of the client-side)
 ```
 
 ## Set the App

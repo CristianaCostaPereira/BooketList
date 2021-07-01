@@ -172,7 +172,6 @@
 
 <script>
 const axios = require('axios')
-const dotenv = require('dotenv').config({path:'C:/Projects/BooketList/.env'})
 
 export default {
   // Child Component
@@ -197,11 +196,11 @@ export default {
 
   methods: {
     async fetchBookDetails() {
-      const API_KEY = process.env.API_KEY
+      const VUE_APP_API_KEY = process.env.VUE_APP_API_KEY
 
       let config = {
         params: {
-          key: API_KEY,
+          key: VUE_APP_API_KEY,
           q: this.googleApiId
         }
       }

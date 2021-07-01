@@ -41,15 +41,8 @@ export default {
 
   methods: {
     async fetchFavoritesBooks() {
-      let retrievedToken = window.localStorage.getItem('book-token')
-
-      let config = {
-        headers: {
-          'Authorization': retrievedToken
-        }
-      }
       try {
-        const response = await axios.get(`http://localhost:3000/readers/${this.readerId}/books`, config)
+        const response = await axios.get(`http://localhost:3000/readers/${this.readerId}/books`)
 
         this.favoriteBooks = response.data.data
 

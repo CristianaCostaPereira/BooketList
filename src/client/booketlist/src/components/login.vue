@@ -2,10 +2,9 @@
   <div class="container">
     <v-card
       class="login-main-card mx-auto"
-      :elevation="24"
-      style="max-width: 1200px; min-height: 1050px; margin-top: 10px;">
+      style="max-width: 1200px; min-height: 1020px; margin-top: 10px;">
 
-      <div class="form px-4 py-3">
+      <div class="login-inputs px-4 py-3">
         <div class="form-layout">
           <div class="mb-3">
             <label
@@ -123,7 +122,7 @@ export default {
     margin: 225px 40px 0px 0px;
   }
 
-  .form {
+  .login-inputs {
     display: flex;
     flex-direction: column;
     align-content: flex-end;

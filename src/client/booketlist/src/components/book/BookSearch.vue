@@ -213,9 +213,9 @@
                     <div class="card-text">
                       <label>Price: </label>
                       {{ selectedBook.saleInfo.listPrice.amount }}€
-                    </div>       
+                    </div>
 
-                    <h5 class="description card-text">{{ selectedBook.volumeInfo.description }}</h5>           
+                    <h5 class="description card-text">{{ selectedBook.volumeInfo.description }}</h5>
                   </div>
                 </div>
               </div>
@@ -239,7 +239,7 @@
               @click="showModal = false"
             >
               Mark as Favorite
-              
+
               <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
             </v-btn>
           </v-card-actions>
@@ -514,7 +514,7 @@ export default {
     text-align: justify;
     margin: 40px 0px 0px 100px;
   }
-  
+
   label {
     font-weight: 700;
   }
