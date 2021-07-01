@@ -46,7 +46,7 @@
 
               Edit
 
-              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-lead-pencil</v-icon>
+              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-book-edit-outline</v-icon>
             </v-btn>
 
             <v-btn

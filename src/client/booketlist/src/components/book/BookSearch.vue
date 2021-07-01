@@ -94,7 +94,7 @@
 
               <div class="api-card-content">
                 <h5
-                  class="text-h5"
+                  class="book-title"
                   v-text="searchedBook.volumeInfo.title">
                 </h5>
 
@@ -119,7 +119,7 @@
 
                     Set as Favorite
 
-                    <v-icon class=" ml-1" color="amber lighten">mdi-star-outline</v-icon>
+                    <v-icon class=" ml-1" color="amber lighten" small>mdi-star-outline</v-icon>
                   </v-btn>
 
                   <v-btn
@@ -130,7 +130,7 @@
 
                     Details
 
-                    <v-icon class="ml-1" color="amber lighten">mdi-star-outline</v-icon>
+                    <v-icon class="ml-1" color="amber lighten" small>mdi-book-open-outline</v-icon>
                   </v-btn>
                 </v-card-actions>
               </div>
@@ -530,8 +530,9 @@ export default {
     font-size: 23px;
   }
 
-  .text-h5 {
+  .book-title {
     text-align: center;
+    font-size: 24px;
   }
 
   .book-api-list {
@@ -546,7 +547,7 @@ export default {
   }
 
   .book-card-button {
-    margin-left: 13px;
+    margin-left: 20px;
   }
 
   @keyframes scale {
