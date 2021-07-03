@@ -2,8 +2,9 @@
   <div class="container mt-12">
     <div class="card mb-3" style="max-width: 1800px;">
       <div class="row g-0">
+        {{googleBookDetails}}
         <div class="col-md-4">
-          <img :src="volumeInfo.imageLinks.smallThumbnail" alt="Book Cover">
+          <img :src="volumeInfo.imageLinks.smallThumbnail" class="book-cover col-xs-12 col-lg-4" alt="Book Cover">
         </div>
 
         <div class="col-md-8">
@@ -180,12 +181,17 @@
 <script>
 const axios = require('axios')
 
+import {
+  mapGetters,
+  // mapActions,
+  // mapMutations
+} from 'vuex'
+
 export default {
   name: 'Show',
 
   data () {
     return {
-      notYetFavoriteBook: true,
 
       kind: "books#volume",
       id: "ivzfRJGrdFsC",
@@ -285,6 +291,14 @@ export default {
         textSnippet: "Harvard professor Robert Langdon receives an urgent late-night ..."
       }
     }
+  },
+
+  computed: {
+    ...mapGetters(['googleBookDetails', 'readerFavoriteDetails'])
+  },
+
+  created() {
+
   }
 }
 </script>

@@ -24,16 +24,16 @@
           </v-card-title>
 
           <v-rating
-            v-if="readerRating"
+            v-if="readerFavoriteDetails.reader_rating"
             align="center"
-            :value="readerRating"
+            :value="readerFavoriteDetails.reader_rating"
             color="amber"
             readonly
             size="16">
           </v-rating>
 
           <div class="grey--text ms-3" align="center">
-            {{ readerRating }}
+            {{ readerFavoriteDetails.reader_rating }}
           </div>
 
           <v-card-actions class="book-card-button">
@@ -52,7 +52,8 @@
             <v-btn
               align="center"
               outlined
-              small>
+              small
+              @click="goToDetails()">
 
               Show Details
 
@@ -133,15 +134,15 @@
                 id="readerPersonalRating">
 
               <v-rating
-                v-if="readerRating"
+                v-if="readerFavoriteDetails.reader_rating"
                 align="center"
-                :value="readerRating"
+                :value="readerFavoriteDetails.reader_rating"
                 color="amber"
                 size="16">
               </v-rating>
 
               <div class="grey--text ms-3" align="center">
-                {{ readerRating }}
+                {{ readerFavoriteDetails.reader_rating }}
               </div>
             </div>
           </div>
@@ -158,8 +159,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              data-bs-dismiss="modal"
-              @click="setAsFavorite()">
+              data-bs-dismiss="modal">
 
               Save changes
             </button>
@@ -176,14 +176,9 @@ const axios = require('axios')
 export default {
   // Child Component
   props: {
-    googleApiId: {
-      type: String,
+    readerFavoriteDetails: {
+      type: Object,
       required: true
-    },
-
-    readerRating: {
-      type: Number,
-      required: false
     }
   },
 
@@ -201,7 +196,7 @@ export default {
       let config = {
         params: {
           key: VUE_APP_API_KEY,
-          q: this.googleApiId
+          q: this.readerFavoriteDetails.google_api_id
         }
       }
       try {
@@ -220,9 +215,9 @@ export default {
       }
     },
 
-    setAsFavorite() {
-      this.notYetFavoriteBook = !this.notYetFavoriteBook
-    },
+    goToDetails() {
+      this.$router.push({ name: 'Show', params: {test: false }})
+    }
   },
 
   created () {

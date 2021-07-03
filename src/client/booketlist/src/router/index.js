@@ -64,8 +64,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('book-token') == null) {
       next({
-        path: '/login',
-        // params: { nextUrl: to.fullPath }
+        path: '/login'
       })
     } else {
       next()

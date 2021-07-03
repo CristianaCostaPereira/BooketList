@@ -12,8 +12,7 @@
 
         <!-- Father Component of BookPreview -->
         <book-preview
-          :google-api-id="favoriteBook.google_api_id"
-          :readerRating="favoriteBook.reader_rating">
+          :reader-favorite-details="favoriteBook">
         </book-preview>
       </v-col>
     </v-row>

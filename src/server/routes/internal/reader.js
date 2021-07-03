@@ -27,6 +27,7 @@ router.get('/:id/books', (req, res) => {
   })
 })
 
+// Associar livro a reader (adicionar favorito)
 router.post('/:id/books/make-favorite', (req, res) => {
   const reader_id = req.params.id
 
