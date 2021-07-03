@@ -31,9 +31,9 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: '/list',
-        name: 'List',
-        component: () => import('../components/book/List')
+        path: '/favorite-list',
+        name: 'FavoriteList',
+        component: () => import('../components/book/FavoriteList')
       },
       {
         path: '/show',

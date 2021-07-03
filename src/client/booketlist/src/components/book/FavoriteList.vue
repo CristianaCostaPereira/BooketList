@@ -25,7 +25,7 @@ import BookPreview from './BookPreview.vue'
 const axios = require('axios')
 
 export default {
-  name: 'List',
+  name: 'FavoriteList',
 
   components: {
     BookPreview

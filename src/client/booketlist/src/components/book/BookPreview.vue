@@ -5,11 +5,11 @@
       :color="color"
       dark
       max-height="199"
-      v-if="bookDetails">
+      v-if="apiInfo">
 
       <div class="d-flex flex-no-wrap justify-between">
         <v-img
-          :src="bookDetails.thumbnail"
+          :src="apiInfo.volumeInfo.imageLinks.thumbnail"
           alt="Book Cover"
           max-width="128"
           max-height="200"
@@ -20,7 +20,7 @@
         <div>
           <v-card-title
             class="text-h5"
-            v-text="bookDetails.title">
+            v-text="apiInfo.volumeInfo.title">
           </v-card-title>
 
           <v-rating
@@ -171,6 +171,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 const axios = require('axios')
 
 export default {
@@ -184,12 +186,16 @@ export default {
 
   data () {
     return {
-      bookDetails: null,
+      apiInfo: null,
       color: '#a97fa4e3'
     }
   },
 
   methods: {
+    ...mapMutations([
+      'setGoogleBookDetails', 'setReaderFavoriteDetails'
+    ]),
+
     async fetchBookDetails() {
       const VUE_APP_API_KEY = process.env.VUE_APP_API_KEY
 
@@ -202,13 +208,7 @@ export default {
       try {
         const response = await axios.get('https://www.googleapis.com/books/v1/volumes', config)
 
-        let apiInfo = response.data.items[0].volumeInfo
-
-        this.bookDetails = {
-          thumbnail: apiInfo.imageLinks.thumbnail,
-          title: apiInfo.title,
-          averageRating: apiInfo.averageRating
-        }
+        this.apiInfo = response.data.items[0]
 
       } catch (error) {
         console.error(error)
@@ -216,7 +216,11 @@ export default {
     },
 
     goToDetails() {
-      this.$router.push({ name: 'Show', params: {test: false }})
+      this.setGoogleBookDetails(this.apiInfo)
+
+      this.setReaderFavoriteDetails(this.readerFavoriteDetails)
+
+      this.$router.push({ name: 'Show'})
     }
   },
 

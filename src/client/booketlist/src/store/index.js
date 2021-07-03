@@ -4,22 +4,26 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
-    googleBookDetails: {
-      bla: 'dsds',
-      hi: 'usdsdsd'
-    },
+    googleBookDetails: {},
 
     readerFavoriteDetails: {}
   },
+
   getters: {
     googleBookDetails: state => state.googleBookDetails,
     readerFavoriteDetails: state => state.readerFavoriteDetails,
   },
+
   mutations: {
-    // increment(state) {
-    //   state.count++
-    // }
+    setGoogleBookDetails(state, payload) {
+      state.googleBookDetails = payload
+    },
+
+    setReaderFavoriteDetails(state, payload) {
+      state.readerFavoriteDetails = payload
+    }
   },
   actions: {
   },

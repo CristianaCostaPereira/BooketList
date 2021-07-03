@@ -85,7 +85,7 @@
         menuItems: [
           { title: 'Dashboard', icon: 'mdi-ghost', to: '/' },
           { title: 'Book Search', icon: 'mdi-book-open-page-variant', to: 'search' },
-          { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'list' },
+          { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'favorite-list' },
           { title: 'Show Favorite Book', icon: 'mdi-book-open-page-variant', to: 'show' },
           // { title: 'Logout', icon: 'mdi-logout-variant', to: 'login' }
         ],

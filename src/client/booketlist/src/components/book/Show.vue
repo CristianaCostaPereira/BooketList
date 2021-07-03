@@ -1,57 +1,86 @@
 <template>
   <div class="container mt-12">
     <div class="card mb-3" style="max-width: 1800px;">
-      <div class="row g-0">
-        {{googleBookDetails}}
-        <div class="col-md-4">
-          <img :src="volumeInfo.imageLinks.smallThumbnail" class="book-cover col-xs-12 col-lg-4" alt="Book Cover">
+      <div class="d-flex">
+        <div class="">
+
+          <v-img
+            min-width="300"
+            min-height="500"
+            alt="Book Cover"
+            :src="buildImageSource">
+          </v-img>
         </div>
 
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ volumeInfo.title }}</h5>
+        <div v-if="formattedBook">
+          <div class="card-content col-xs-12 col-lg-8">
+            
+            <h2 class="card-title">{{ formattedBook.title }}</h2>
 
-            <p class="card-text">{{ volumeInfo.description }}</p>
+            <h3 class="card-title mt-5 mb-5">{{ formattedBook.subtitle }}</h3>
 
-            <div class="card-text">
-                <label>Authors: </label>
-                {{ volumeInfo.authors }}
+            <div class="card-text" 
+              v-if="formattedBook.authors">
+
+              <label>Authors: </label>
+                {{ formattedBook.authors }}
             </div>
 
-            <div class="card-text">
+            <div class="card-text" 
+              v-if="formattedBook.publishedDate">
               <label>Publish Date: </label>
-              {{ volumeInfo.publishedDate }}
+              {{ formattedBook.publishedDate }}
             </div>
 
-            <div class="card-text">
+            <div class="card-text" 
+              v-if="formattedBook.publisher">
               <label>Publisher: </label>
-              {{ volumeInfo.publisher }}
+              {{ formattedBook.publisher }}
             </div>
 
-            <div class="card-text">
+            <div class="card-text" 
+              v-if="formattedBook.pageCount">
               <label>Number of Pages: </label>
-              {{ volumeInfo.pageCount }}
+              {{ formattedBook.pageCount }}
             </div>
 
-            <div class="card-text">
+            <div class="card-text"
+              v-if="formattedBook.categories">
               <label>Categories: </label>
-              {{ volumeInfo.categories }}
+              {{ formattedBook.categories }}
             </div>
 
-            <div class="card-text">
-              <label>Rating: </label>
-              {{ volumeInfo.averageRating }}
+            <div
+              v-if="formattedBook.averageRating"
+              class="card-text">
 
-              <br>
-
-              <label>Rating Counts: </label>
-              {{ volumeInfo.ratingsCount }}
+              <label>Average Rating: </label>
+              {{ formattedBook.averageRating }}
+              
+              <label v-if="formattedBook.ratingsCount">
+                ({{ formattedBook.ratingsCount }})
+              </label>
+              
             </div>
 
-            <div class="card-text mb-4">
+            <v-rating
+                align="center"
+                :value="formattedBook.averageRating"
+                color="amber"
+                readonly
+                size="16">
+              </v-rating>
+
+            <div class="card-text" 
+              v-if="formattedBook.price">
+
               <label>Price: </label>
-              {{ saleInfo.listPrice.amount }}€
+              {{ formattedBook.price }}
             </div>
+
+            <h5 class="description card-text">
+              {{ formattedBook.description }}
+            </h5>
           </div>
         </div>
 
@@ -193,108 +222,98 @@ export default {
   data () {
     return {
 
-      kind: "books#volume",
-      id: "ivzfRJGrdFsC",
-      etag: "8IYKt1qUYrQ",
-      selfLink: "https://www.googleapis.com/books/v1/volumes/ivzfRJGrdFsC",
-      volumeInfo: {
-        title: "The Da Vinci Code",
-        subtitle: "(Robert Langdon Book 2)",
-        authors: [
-          "Dan Brown"
-        ],
-        publisher: "Random House",
-        publishedDate: "2010-07-06",
-        description: "Harvard professor Robert Langdon receives an urgent late-night phone call while on business in Paris: the elderly curator of the Louvre has been brutally murdered inside the museum. Alongside the body, police have found a series of baffling codes. As Langdon and a gifted French cryptologist, Sophie Neveu, begin to sort through the bizarre riddles, they are stunned to find a trail that leads to the works of Leonardo Da Vinci - and suggests the answer to a mystery that stretches deep into the vault of history. Unless Langdon and Neveu can decipher the labyrinthine code and quickly assemble the pieces of the puzzle, a stunning historical truth will be lost forever...",
-        industryIdentifiers: [
-          {
-            type: "ISBN_13",
-            identifier: "9781409091158"
-          },
-          {
-            type: "ISBN_10",
-            identifier: "1409091155"
-          }
-        ],
-        readingModes: {
-          text: true,
-          image: false
-        },
-        pageCount: 592,
-        printType: "BOOK",
-        categories: [
-          "Fiction"
-        ],
-        averageRating: 3,
-        ratingsCount: 3462,
-        maturityRating: "NOT_MATURE",
-        allowAnonLogging: true,
-        contentVersion: "0.23.22.0.preview.2",
-        panelizationSummary: {
-          containsEpubBubbles: false,
-          containsImageBubbles: false
-        },
-        imageLinks: {
-          smallThumbnail: "http://books.google.com/books/content?id=ivzfRJGrdFsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          thumbnail: "http://books.google.com/books/content?id=ivzfRJGrdFsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        language: "un",
-        previewLink: "http://books.google.pt/books?id=ivzfRJGrdFsC&printsec=frontcover&dq=the+da+vinci+code&hl=&cd=1&source=gbs_api",
-        infoLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC&source=gbs_api",
-        canonicalVolumeLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC"
-      },
-      saleInfo: {
-        country: "PT",
-        saleability: "FOR_SALE",
-        isEbook: true,
-        listPrice: {
-          amount: 8.49,
-          currencyCode: "EUR"
-        },
-        retailPrice: {
-          amount: 8.49,
-          currencyCode: "EUR"
-        },
-        buyLink: "https://play.google.com/store/books/details?id=ivzfRJGrdFsC&rdid=book-ivzfRJGrdFsC&rdot=1&source=gbs_api",
-        offers: [
-          {
-            finskyOfferType: 1,
-            listPrice: {
-              amountInMicros: 8490000,
-              currencyCode: "EUR"
-            },
-            retailPrice: {
-              amountInMicros: 8490000,
-              currencyCode: "EUR"
-            }
-          }
-        ]
-      },
-      accessInfo: {
-        country: "PT",
-        viewability: "PARTIAL",
-        embeddable: true,
-        publicDomain: false,
-        textToSpeechPermission: "ALLOWED_FOR_ACCESSIBILITY",
-        epub: {
-          isAvailable: true,
-          acsTokenLink: "http://books.google.pt/books/download/The_Da_Vinci_Code-sample-epub.acsm?id=ivzfRJGrdFsC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-        },
-        pdf: {
-          isAvailable: false
-        },
-        webReaderLink: "http://play.google.com/books/reader?id=ivzfRJGrdFsC&hl=&printsec=frontcover&source=gbs_api",
-        accessViewStatus: "SAMPLE",
-        quoteSharingAllowed: false
-      },
-      searchInfo: {
-        textSnippet: "Harvard professor Robert Langdon receives an urgent late-night ..."
-      }
     }
   },
 
   computed: {
-    ...mapGetters(['googleBookDetails', 'readerFavoriteDetails'])
+    ...mapGetters(['googleBookDetails', 'readerFavoriteDetails']),
+
+    buildImageSource () {
+      if (
+        this.googleBookDetails.volumeInfo &&
+        this.googleBookDetails.volumeInfo.imageLinks && 
+        this.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
+
+        return this.googleBookDetails.volumeInfo.imageLinks.thumbnail
+      } 
+      return '@/assets/bookNotFound.jpg'
+    },
+
+    formattedBook () {
+      if (!this.googleBookDetails) {
+        return null
+      }
+
+      let book = {}
+
+      book.title = this.googleBookDetails.volumeInfo.title
+      book.subtitle = this.googleBookDetails.volumeInfo.subtitle
+
+      let authors = ''
+      let authorsArray = this.googleBookDetails.volumeInfo.authors
+
+      if (authorsArray) {
+        authorsArray.forEach(author => {
+          authors += author + ', '
+        })
+        // to remove last separator characters from the string
+        authors = authors.slice(0, authors.length - 2)
+
+      }
+      book.authors = authors
+
+      if (this.googleBookDetails.volumeInfo.publishedDate) {
+        book.publishedDate = this.googleBookDetails.volumeInfo.publishedDate
+      }
+
+      if (this.googleBookDetails.volumeInfo.publisher) {
+        book.publishedDate = this.googleBookDetails.volumeInfo.publisher
+      }
+
+      if (this.googleBookDetails.volumeInfo.pageCount) {
+        book.pageCount = this.googleBookDetails.volumeInfo.pageCount
+      }
+
+
+      let categories = ''
+      let categoriesArray = this.googleBookDetails.volumeInfo.categories
+
+      if (categoriesArray) {
+        categoriesArray.forEach(category => {
+          categories += category + ', '
+        })
+        // to remove last separator characters from the string
+        categories = categories.slice(0, categories.length - 2)
+
+      }
+      book.categories = categories
+
+      if (this.googleBookDetails.volumeInfo.averageRating) {
+        book.averageRating = parseInt(this.googleBookDetails.volumeInfo.averageRating)
+      }
+
+      if (this.googleBookDetails.volumeInfo.ratingsCount) {
+        book.ratingsCount = this.googleBookDetails.volumeInfo.ratingsCount
+      }
+
+      if (this.googleBookDetails.saleInfo && 
+        this.googleBookDetails.saleInfo.listPrice && 
+        this.googleBookDetails.saleInfo.listPrice.amount) {
+
+        book.price = this.googleBookDetails.saleInfo.listPrice.amount
+
+        if (this.googleBookDetails.saleInfo.listPrice.currencyCode === 'EUR'){
+          book.price += '€'
+        } else {
+          book.price += this.googleBookDetails.saleInfo.listPrice.currencyCode
+        }
+      }      
+
+      if (this.googleBookDetails.volumeInfo.description) {
+        book.description = this.googleBookDetails.volumeInfo.description
+      }
+      return book
+    }
   },
 
   created() {
