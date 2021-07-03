@@ -28,8 +28,6 @@ router.get('/:id/books', (req, res) => {
 })
 
 router.post('/:id/books/make-favorite', (req, res) => {
-  // const { id } = req.params
-
   const reader_id = req.params.id
 
   const { 
@@ -41,10 +39,6 @@ router.post('/:id/books/make-favorite', (req, res) => {
     edition_number,
     reading_time,
   } = req.body
-
-
-  
-
 
   try {
     // validate if book exists
@@ -74,7 +68,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
       
       let book_id = results[0].book_id // [0] because it comes inside of an array
 
-      var x = {
+      var data = {
         reader_id,
         book_id,
         purchase_date,
@@ -85,24 +79,15 @@ router.post('/:id/books/make-favorite', (req, res) => {
         reading_time 
       }
 
-      var query = db.query('INSERT INTO book_reader SET ?', x,
-      function(err, result) {
-        res.send("success")
+      db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
+          if (error) {
+            throw error
+          }
+          res.send("WORKING ;)")
+        })
       })
 
-
-    // db.query('INSERT INTO book_reader SET ?'),
-    //   x, (error, results) => {
-    //     if (error) {
-    //       console.log(error)
-    //     }
-    //     res.send(results)
-    //   }
-    })
-
-    
-
-    // res.send('success')
+    // res.send('results')
 
   } catch (error) {
     res.status(400).send(error)
