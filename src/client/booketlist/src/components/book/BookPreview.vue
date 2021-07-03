@@ -187,7 +187,7 @@ export default {
   data () {
     return {
       apiInfo: null,
-      color: '#a97fa4e3'
+      color: '#492750'
     }
   },
 

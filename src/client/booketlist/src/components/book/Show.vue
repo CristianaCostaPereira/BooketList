@@ -84,126 +84,111 @@
           </div>
         </div>
 
-        <v-card-actions class="book-card-button">
-            <v-btn
-              align="center"
-              outlined
-              small
-              data-bs-toggle="modal"
-              data-bs-target="#favoriteBookModal">
+        <v-card 
+          v-if="readerFavoriteDetails"
+          class="mx-auto"
+          color="purple darken-3"
+          dark
+          max-width="400"
+          
+        >
+          <v-card-title>
+            <v-icon
+              large
+              left
+            >
+              mdi-star-face
+            </v-icon>
+            <span class="text-h6 font-weight-light">My Story</span>
 
-              Edit Favorite Book
+            <v-spacer></v-spacer>
 
-              <v-icon class="heart-icon ml-2" color="amber lighten">mdi-star</v-icon>
+            <v-btn icon
+              @click="openEditModal()">              
+              <v-icon>mdi-pencil</v-icon>
             </v-btn>
-        </v-card-actions>
+          </v-card-title>
+
+          <div class="p-3">
+            <v-card-text class="text-h5 font-weight-bold">
+              “A room without books is like a body without a soul.”
+            </v-card-text>
+
+            <v-rating
+              align="center"
+              :value="formattedReaderDetails.readerRating"
+              color="amber"
+              readonly
+              size="48">
+            </v-rating>
+
+            <v-card-text class="text-h6 font-weight-bold">
+              <div class="reader-details-entry">Added on: {{ formattedReaderDetails.createdAt }}</div>
+              <div class="reader-details-entry">Start on: {{ formattedReaderDetails.start }}</div>
+              <div class="reader-details-entry">End on: {{ formattedReaderDetails.end }}</div>
+              <div class="reader-details-entry">Reading Time: {{ formattedReaderDetails.readingTime }}</div>
+
+            </v-card-text>
+          </div>
+        </v-card>
       </div>
     </div>
 
     <!-- Modal for personal book details-->
-    <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5
-              class="modal-title"
-              id="favoriteBookModalLabel">
+    <v-dialog
+        v-model="isModalOpen"
+        width="500px">
 
-              Personal Details
+        <v-card>
+          <v-card-title>
+            Edit Favorite
+          </v-card-title>
 
-              <v-icon
-                class="heart-icon ml-2"
-                color="amber lighten">
+          <v-card-text class="p-4">
+            <div class="mb-5">
+                <label
+                  for="starReading">
 
-                mdi-star-face
-              </v-icon>
-            </h5>
+                  Start reading at:
+                </label>
 
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close">
-            </button>
-          </div>
+                <input
+                  class="form-control"
+                  type="date"
+                  id="starReading">
+              </div>
 
-          <div class="modal-body">
-            <div class="mb-3">
-              <label
-                for="starReading"
-                class="form-label">
+              <div class="mb-5">
+                <label
+                  for="endReading">
 
-                Start reading at:
-              </label>
+                  End reading at:
+                </label>
 
-              <input
-                class="form-control"
-                type="date"
-                id="starReading">
-            </div>
+                <input
+                  class="form-control"
+                  type="date"
+                  id="endReading">
+              </div>
 
-            <div class="mb-3">
-              <label
-                for="endReading"
-                class="form-label">
+              <div class="mb-5">
+                <label>
 
-                End reading at:
-              </label>
+                  My personal rating:
+                </label>
 
-              <input
-                class="form-control"
-                type="date"
-                id="endReading">
-            </div>
-
-            <div class="mb-3">
-              <label
-                for="readerPersonalRating"
-                class="form-label">
-
-                My personal rating:
-              </label>
-
-              <input
-                class="form-control"
-                type="text"
-                id="readerPersonalRating">
-
-              <!-- <v-rating
-                v-if="readerRating"
-                align="center"
-                :value="readerRating"
-                color="amber"
-                size="16">
-              </v-rating>
-
-              <div class="grey--text ms-3" align="center">
-                {{ readerRating }}
-              </div> -->
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal">
-
-              Close
-            </button>
-
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              @click="setAsFavorite()">
-
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+                <v-rating
+                  v-if="readerFavoriteDetails.reader_rating"
+                  align="center"
+                  :value="readerFavoriteDetails.reader_rating"
+                  color="amber"
+                  size="16">
+                </v-rating>
+                
+              </div>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
   </div>
 </template>
 
@@ -221,7 +206,9 @@ export default {
 
   data () {
     return {
+      isModalOpen: false,
 
+      modalInputsData: null
     }
   },
 
@@ -240,7 +227,7 @@ export default {
     },
 
     formattedBook () {
-      if (!this.googleBookDetails) {
+      if (!Object.entries(this.googleBookDetails).length) {
         return null
       }
 
@@ -313,16 +300,69 @@ export default {
         book.description = this.googleBookDetails.volumeInfo.description
       }
       return book
+    },
+
+    formattedReaderDetails () {
+      if (!Object.entries(this.readerFavoriteDetails).length) {
+        return null
+      }
+
+      let details = {}
+
+      if (this.readerFavoriteDetails.created_at) {
+        details.createdAt = new Date(this.readerFavoriteDetails.created_at).toDateString()
+      }
+
+      if (this.readerFavoriteDetails.start_reading) {
+        details.start = new Date(this.readerFavoriteDetails.start_reading).toDateString()
+      }
+
+      if (this.readerFavoriteDetails.end_reading) {
+        details.end = new Date(this.readerFavoriteDetails.end_reading).toDateString()
+      }
+
+       if (this.readerFavoriteDetails.reader_rating) {
+        details.readerRating = this.readerFavoriteDetails.reader_rating
+      }
+
+      //https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
+      if (this.readerFavoriteDetails.end_reading && this.readerFavoriteDetails.reading_time) {
+        details.readingTime = parseInt(
+          (new Date(this.readerFavoriteDetails.end_reading) - new Date(this.readerFavoriteDetails.created_at))
+          / (1000 * 60 * 60 * 24), 10) + ' days'
+      }
+
+     
+
+
+      return details
     }
   },
 
-  created() {
+  methods: {
+    openEditModal () {
 
+      this.modalInputsData = {
+        startReading: this.readerFavoriteDetails.start_reading,
+        endReading: this.readerFavoriteDetails.end_reading,
+        personalRating: this.readerFavoriteDetails.reader_rating,
+      }
+
+      this.isModalOpen = true
+    }
+  },
+
+  created () {
+    //validar se existe no vuex os dois objetos googleBookDetails e readerFavoriteDetails
+    //se nao tiver entradas reencaminhar
+    if (!Object.entries(this.googleBookDetails).length  || !Object.entries(this.readerFavoriteDetails).length) {
+      this.$router.push({ name: 'Dashboard' })
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
   input.form-control::placeholder {
     color: #bebcbca9;
   }
@@ -331,5 +371,20 @@ export default {
   }
   label {
     font-weight: 700;
+  }
+
+  .reader-details-entry {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .v-dialog .v-card {
+    .v-card__title {
+      background-color: #492750;
+      color: white;
+    }
+    .v-card__text {
+      text-align: left;
+    }    
   }
 </style>
