@@ -147,7 +147,7 @@
           <v-card-text class="p-4">
             <div class="mb-5">
                 <label
-                  for="starReading">
+                  for="startReading">
 
                   Start reading at:
                 </label>
@@ -155,7 +155,8 @@
                 <input
                   class="form-control"
                   type="date"
-                  id="starReading">
+                  id="startReading"
+                  v-model="modalInputsData.startReading">
               </div>
 
               <div class="mb-5">
@@ -168,7 +169,8 @@
                 <input
                   class="form-control"
                   type="date"
-                  id="endReading">
+                  id="endReading"
+                  v-model="modalInputsData.endReading">
               </div>
 
               <div class="mb-5">
@@ -178,11 +180,10 @@
                 </label>
 
                 <v-rating
-                  v-if="readerFavoriteDetails.reader_rating"
                   align="center"
-                  :value="readerFavoriteDetails.reader_rating"
+                  v-model="modalInputsData.personalRating"
                   color="amber"
-                  size="16">
+                  size="30">
                 </v-rating>
                 
               </div>
@@ -208,7 +209,11 @@ export default {
     return {
       isModalOpen: false,
 
-      modalInputsData: null
+      modalInputsData: {
+        startReading: null,
+        endReading: null,
+        personalRating: null,
+      }
     }
   },
 
@@ -342,11 +347,9 @@ export default {
   methods: {
     openEditModal () {
 
-      this.modalInputsData = {
-        startReading: this.readerFavoriteDetails.start_reading,
-        endReading: this.readerFavoriteDetails.end_reading,
-        personalRating: this.readerFavoriteDetails.reader_rating,
-      }
+      this.modalInputsData.startReading = this.readerFavoriteDetails.start_reading
+      this.modalInputsData.endReading = this.readerFavoriteDetails.end_reading
+      this.modalInputsData.personalRating = this.readerFavoriteDetails.reader_rating
 
       this.isModalOpen = true
     }
