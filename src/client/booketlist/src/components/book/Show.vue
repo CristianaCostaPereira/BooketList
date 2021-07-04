@@ -89,9 +89,8 @@
           class="mx-auto"
           color="purple darken-3"
           dark
-          max-width="400"
+          max-width="400">
 
-        >
           <v-card-title>
             <v-icon
               large
@@ -102,6 +101,12 @@
             <span class="text-h6 font-weight-light">My Story</span>
 
             <v-spacer></v-spacer>
+
+            <v-btn icon
+              @click="removeFavoriteBook()">
+
+              <v-icon>mdi-star-remove</v-icon>
+            </v-btn>
 
             <v-btn icon
               @click="openEditModal()">
@@ -129,7 +134,6 @@
               <div class="reader-details-entry mb-1"><span class="pr-1">Purchased on:</span> {{ formattedReaderDetails.purchaseDate }}</div>
               <div class="reader-details-entry mb-1"><span class="pr-1">Edition:</span> {{ formattedReaderDetails.edition }}</div>
               <div class="reader-details-entry mb-1"><span class="pr-1">Reading Time:</span> {{ formattedReaderDetails.readingTime }}</div>
-
             </v-card-text>
           </div>
         </v-card>
@@ -246,7 +250,7 @@
 <script>
 const axios = require('axios')
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
 
 export default {
@@ -383,16 +387,12 @@ export default {
         details.edition = this.readerFavoriteDetails.edition_number + 'ª'
       }
 
-       if (this.readerFavoriteDetails.reader_rating) {
+      if (this.readerFavoriteDetails.reader_rating) {
         details.readerRating = this.readerFavoriteDetails.reader_rating
       }
 
       if (this.readerFavoriteDetails.reading_time) {
         details.readingTime = this.readerFavoriteDetails.reading_time + ' days'
-        // let end = moment(this.readerFavoriteDetails.end_reading)
-        // let start = moment(this.readerFavoriteDetails.start_reading)
-
-        // details.readingTime = end.diff(start, 'days') + ' days'
       }
 
       return details
@@ -400,6 +400,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations([
+      'updateReaderFavoriteDetails'
+    ]),
+
     openEditModal () {
       this.modalInputsData.startReading = moment(this.readerFavoriteDetails.start_reading).format('YYYY-MM-DD')
       this.modalInputsData.endReading = moment(this.readerFavoriteDetails.end_reading).format('YYYY-MM-DD')
@@ -414,10 +418,68 @@ export default {
       this.isModalOpen = false
     },
 
-    updateFavorite () {
+    async updateFavorite() {
       // pedido ao server para update
-      // gravar no vuex a nova info
+      try {
+        let readerId = this.readerFavoriteDetails.reader_id
+        let bookId = this.readerFavoriteDetails.book_id
+
+        if (!readerId || !bookId) {
+          return
+        }
+
+        let readingTime = null
+
+        if (this.readerFavoriteDetails.end_reading && this.readerFavoriteDetails.start_reading) {
+          let end = moment(this.readerFavoriteDetails.end_reading)
+          let start = moment(this.readerFavoriteDetails.start_reading)
+
+          readingTime = end.diff(start, 'days')
+        }
+
+        let data = {
+          start_reading: this.modalInputsData.startReading,
+          end_reading: this.modalInputsData.endReading,
+          purchase_date: this.modalInputsData.purchaseDate,
+          reader_rating: this.modalInputsData.personalRating,
+          reading_time: readingTime,
+          edition_number: this.modalInputsData.edition
+        }
+
+        const response = await axios.put(`http://localhost:3000/readers/${readerId}/books/${bookId}`, data)
+
+        if (response.data.status !== 'success') {
+          //TODO: mensagem
+          return
+        }
+
+        //se sucesso update no vuex
+        this.updateReaderFavoriteDetails(data)
+
+        this.closeModal()
+
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async removeFavoriteBook () {
+
+      let result = await this.$swal({
+        title: 'Are you sure you want to remove book from favorites?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#00557a',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+    })
+
+      if (result.isConfirmed) {
+        debugger
+      }
     }
+
   },
 
   created () {

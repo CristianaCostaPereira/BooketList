@@ -23,6 +23,15 @@ export default new Vuex.Store({
 
     setReaderFavoriteDetails(state, payload) {
       state.readerFavoriteDetails = payload
+    },
+
+    updateReaderFavoriteDetails (state, payload) {      
+      state.readerFavoriteDetails.edition_number = payload.edition_number
+      state.readerFavoriteDetails.end_reading = payload.end_reading
+      state.readerFavoriteDetails.purchase_date = payload.purchase_date
+      state.readerFavoriteDetails.reader_rating = payload.reader_rating
+      state.readerFavoriteDetails.reading_time = payload.reading_time
+      state.readerFavoriteDetails.start_reading = payload.start_reading
     }
   },
   actions: {

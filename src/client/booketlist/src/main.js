@@ -6,13 +6,15 @@ import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import moment from 'moment'
+import { boot } from '@/app-bootstrap'
+import VueSweetalert2 from 'vue-sweetalert2'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { boot } from '@/app-bootstrap'
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 Vue.use(VueAxios, axios, moment)
-
+Vue.use(VueSweetalert2)
 Vue.config.productionTip = false
 
 boot().then(() => {

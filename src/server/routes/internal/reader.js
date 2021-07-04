@@ -95,9 +95,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
   }
 })
 
-
 router.put('/:id/books/:bookId', (req, res) => {
-  
   const { id, bookId } = req.params
 
   const bodyData = {
@@ -120,6 +118,16 @@ router.put('/:id/books/:bookId', (req, res) => {
     }
     res.send(response)
   })
-  
-  
+})
+
+router.delete('/:id/books/:bookId', (req, res) => {
+  const {id, bookId} = req.params
+
+  db.query('DELETE FROM book_reader WHERE reader_id = ? AND book_id = ?', [id, bookId], (error, results) => {
+    if (error) {
+      throw error
+    }
+
+    res.send(results)
+  })
 })
