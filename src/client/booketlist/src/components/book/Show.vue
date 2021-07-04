@@ -464,9 +464,8 @@ export default {
     },
 
     async removeFavoriteBook () {
-
       let result = await this.$swal({
-        title: 'Are you sure you want to remove book from favorites?',
+        title: 'Are you sure you want to remove book from your favorites?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#00557a',
@@ -476,10 +475,28 @@ export default {
     })
 
       if (result.isConfirmed) {
-        debugger
+        try {
+          let readerId = this.readerFavoriteDetails.reader_id
+          let bookId = this.readerFavoriteDetails.book_id
+
+          if (!readerId || !bookId) {
+            return
+          }
+
+          const response = await axios.delete(`http://localhost:3000/readers/${readerId}/books/${bookId}`)
+
+          if (response.data.status !== 'success') {
+            //TODO: mensagem
+            return
+          }
+
+          this.$router.push({ name: 'FavoriteList' })
+
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
-
   },
 
   created () {

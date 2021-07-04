@@ -128,6 +128,8 @@ router.delete('/:id/books/:bookId', (req, res) => {
       throw error
     }
 
-    res.send(results)
+    res.send({
+      status: 'success'
+    })
   })
 })
