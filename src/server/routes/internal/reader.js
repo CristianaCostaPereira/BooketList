@@ -15,7 +15,7 @@ module.exports = router
 router.get('/:id/books', (req, res) => {
   const { id } = req.params
 
-  db.query('SELECT * FROM book b JOIN book_reader br ON b.book_id = br.book_id where br.reader_id = ?', [id], (error, results) => {
+  db.query('SELECT b.book_id, b.google_api_id, br.* FROM book b JOIN book_reader br ON b.book_id = br.book_id where br.reader_id = ?', [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -93,4 +93,33 @@ router.post('/:id/books/make-favorite', (req, res) => {
   } catch (error) {
     res.status(400).send(error)
   }
+})
+
+
+router.put('/:id/books/:bookId', (req, res) => {
+  
+  const { id, bookId } = req.params
+
+  const bodyData = {
+    start_reading,
+    end_reading,
+    purchase_date,
+    reader_rating,
+    reading_time,
+    edition_number
+  } = req.body
+
+  db.query('UPDATE book_reader SET ? WHERE reader_id = ? AND book_id = ?', [bodyData, id, bookId], (error, results) => {
+    if (error) {
+      throw error
+    }
+
+    let response = {
+      status: 'success',
+      data: results
+    }
+    res.send(response)
+  })
+  
+  
 })

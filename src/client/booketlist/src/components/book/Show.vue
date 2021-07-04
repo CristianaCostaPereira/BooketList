@@ -123,10 +123,12 @@
             </v-rating>
 
             <v-card-text class="text-h6 font-weight-bold">
-              <div class="reader-details-entry">Added on: {{ formattedReaderDetails.createdAt }}</div>
-              <div class="reader-details-entry">Start on: {{ formattedReaderDetails.start }}</div>
-              <div class="reader-details-entry">End on: {{ formattedReaderDetails.end }}</div>
-              <div class="reader-details-entry">Reading Time: {{ formattedReaderDetails.readingTime }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">Added on:</span> {{ formattedReaderDetails.createdAt }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">Start on:</span> {{ formattedReaderDetails.start }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">End on:</span> {{ formattedReaderDetails.end }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">Purchased on:</span> {{ formattedReaderDetails.purchaseDate }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">Edition:</span> {{ formattedReaderDetails.edition }}</div>
+              <div class="reader-details-entry mb-1"><span class="pr-1">Reading Time:</span> {{ formattedReaderDetails.readingTime }}</div>
 
             </v-card-text>
           </div>
@@ -174,6 +176,34 @@
               </div>
 
               <div class="mb-5">
+                <label
+                  for="purchaseDate">
+
+                  Purchased at:
+                </label>
+
+                <input
+                  class="form-control"
+                  type="date"
+                  id="purchaseDate"
+                  v-model="modalInputsData.purchaseDate">
+              </div>
+
+              <div class="mb-5">
+                <label
+                  for="edition">
+
+                  Edition:
+                </label>
+
+                <input
+                  class="form-control"
+                  type="text"
+                  id="edition"
+                  v-model="modalInputsData.edition">
+              </div>
+
+              <div class="mb-5">
                 <label>
 
                   My personal rating:
@@ -188,6 +218,26 @@
 
               </div>
           </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              color="deep-purple lighten-2"
+              text
+              @click="closeModal()">
+
+              CLOSE
+            </v-btn>
+
+            <v-btn
+              color="deep-purple lighten-2"
+              text
+              @click="updateFavorite()">
+
+              SAVE
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
   </div>
@@ -209,6 +259,8 @@ export default {
       modalInputsData: {
         startReading: null,
         endReading: null,
+        purchaseDate: null,
+        edition: null,
         personalRating: null,
       }
     }
@@ -323,15 +375,24 @@ export default {
         details.end = moment(this.readerFavoriteDetails.end_reading).format('DD-MM-YYYY')
       }
 
+      if (this.readerFavoriteDetails.purchase_date) {
+        details.purchaseDate = moment(this.readerFavoriteDetails.purchase_date).format('DD-MM-YYYY')
+      }
+
+      if (this.readerFavoriteDetails.edition_number) {
+        details.edition = this.readerFavoriteDetails.edition_number + 'ª'
+      }
+
        if (this.readerFavoriteDetails.reader_rating) {
         details.readerRating = this.readerFavoriteDetails.reader_rating
       }
 
-      if (this.readerFavoriteDetails.end_reading && this.readerFavoriteDetails.reading_time) {
-        let end = moment(this.readerFavoriteDetails.end_reading)
-        let start = moment(this.readerFavoriteDetails.start_reading)
+      if (this.readerFavoriteDetails.reading_time) {
+        details.readingTime = this.readerFavoriteDetails.reading_time + ' days'
+        // let end = moment(this.readerFavoriteDetails.end_reading)
+        // let start = moment(this.readerFavoriteDetails.start_reading)
 
-        details.readingTime = end.diff(start, 'days') + ' days'
+        // details.readingTime = end.diff(start, 'days') + ' days'
       }
 
       return details
@@ -342,9 +403,20 @@ export default {
     openEditModal () {
       this.modalInputsData.startReading = moment(this.readerFavoriteDetails.start_reading).format('YYYY-MM-DD')
       this.modalInputsData.endReading = moment(this.readerFavoriteDetails.end_reading).format('YYYY-MM-DD')
+      this.modalInputsData.purchaseDate = moment(this.readerFavoriteDetails.purchase_date).format('YYYY-MM-DD')
+      this.modalInputsData.edition = this.readerFavoriteDetails.edition_number
       this.modalInputsData.personalRating = this.readerFavoriteDetails.reader_rating
 
       this.isModalOpen = true
+    },
+
+    closeModal () {
+      this.isModalOpen = false
+    },
+
+    updateFavorite () {
+      // pedido ao server para update
+      // gravar no vuex a nova info
     }
   },
 
