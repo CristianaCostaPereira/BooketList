@@ -14,31 +14,31 @@
 
         <div v-if="formattedBook">
           <div class="card-content col-xs-12 col-lg-8">
-            
+
             <h2 class="card-title">{{ formattedBook.title }}</h2>
 
             <h3 class="card-title mt-5 mb-5">{{ formattedBook.subtitle }}</h3>
 
-            <div class="card-text" 
+            <div class="card-text"
               v-if="formattedBook.authors">
 
               <label>Authors: </label>
                 {{ formattedBook.authors }}
             </div>
 
-            <div class="card-text" 
+            <div class="card-text"
               v-if="formattedBook.publishedDate">
               <label>Publish Date: </label>
               {{ formattedBook.publishedDate }}
             </div>
 
-            <div class="card-text" 
+            <div class="card-text"
               v-if="formattedBook.publisher">
               <label>Publisher: </label>
               {{ formattedBook.publisher }}
             </div>
 
-            <div class="card-text" 
+            <div class="card-text"
               v-if="formattedBook.pageCount">
               <label>Number of Pages: </label>
               {{ formattedBook.pageCount }}
@@ -56,11 +56,11 @@
 
               <label>Average Rating: </label>
               {{ formattedBook.averageRating }}
-              
+
               <label v-if="formattedBook.ratingsCount">
                 ({{ formattedBook.ratingsCount }})
               </label>
-              
+
             </div>
 
             <v-rating
@@ -71,7 +71,7 @@
                 size="16">
               </v-rating>
 
-            <div class="card-text" 
+            <div class="card-text"
               v-if="formattedBook.price">
 
               <label>Price: </label>
@@ -84,13 +84,13 @@
           </div>
         </div>
 
-        <v-card 
+        <v-card
           v-if="readerFavoriteDetails"
           class="mx-auto"
           color="purple darken-3"
           dark
           max-width="400"
-          
+
         >
           <v-card-title>
             <v-icon
@@ -104,7 +104,7 @@
             <v-spacer></v-spacer>
 
             <v-btn icon
-              @click="openEditModal()">              
+              @click="openEditModal()">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-card-title>
@@ -185,7 +185,7 @@
                   color="amber"
                   size="30">
                 </v-rating>
-                
+
               </div>
           </v-card-text>
         </v-card>
@@ -196,11 +196,8 @@
 <script>
 const axios = require('axios')
 
-import {
-  mapGetters,
-  // mapActions,
-  // mapMutations
-} from 'vuex'
+import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'Show',
@@ -223,11 +220,11 @@ export default {
     buildImageSource () {
       if (
         this.googleBookDetails.volumeInfo &&
-        this.googleBookDetails.volumeInfo.imageLinks && 
+        this.googleBookDetails.volumeInfo.imageLinks &&
         this.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
 
         return this.googleBookDetails.volumeInfo.imageLinks.thumbnail
-      } 
+      }
       return '@/assets/bookNotFound.jpg'
     },
 
@@ -288,8 +285,8 @@ export default {
         book.ratingsCount = this.googleBookDetails.volumeInfo.ratingsCount
       }
 
-      if (this.googleBookDetails.saleInfo && 
-        this.googleBookDetails.saleInfo.listPrice && 
+      if (this.googleBookDetails.saleInfo &&
+        this.googleBookDetails.saleInfo.listPrice &&
         this.googleBookDetails.saleInfo.listPrice.amount) {
 
         book.price = this.googleBookDetails.saleInfo.listPrice.amount
@@ -299,7 +296,7 @@ export default {
         } else {
           book.price += this.googleBookDetails.saleInfo.listPrice.currencyCode
         }
-      }      
+      }
 
       if (this.googleBookDetails.volumeInfo.description) {
         book.description = this.googleBookDetails.volumeInfo.description
@@ -315,30 +312,27 @@ export default {
       let details = {}
 
       if (this.readerFavoriteDetails.created_at) {
-        details.createdAt = new Date(this.readerFavoriteDetails.created_at).toDateString()
+        details.createdAt = moment(this.readerFavoriteDetails.created_at).format('DD-MM-YYYY')
       }
 
       if (this.readerFavoriteDetails.start_reading) {
-        details.start = new Date(this.readerFavoriteDetails.start_reading).toDateString()
+        details.start = moment(this.readerFavoriteDetails.start_reading).format('DD-MM-YYYY')
       }
 
       if (this.readerFavoriteDetails.end_reading) {
-        details.end = new Date(this.readerFavoriteDetails.end_reading).toDateString()
+        details.end = moment(this.readerFavoriteDetails.end_reading).format('DD-MM-YYYY')
       }
 
        if (this.readerFavoriteDetails.reader_rating) {
         details.readerRating = this.readerFavoriteDetails.reader_rating
       }
 
-      //https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
       if (this.readerFavoriteDetails.end_reading && this.readerFavoriteDetails.reading_time) {
-        details.readingTime = parseInt(
-          (new Date(this.readerFavoriteDetails.end_reading) - new Date(this.readerFavoriteDetails.created_at))
-          / (1000 * 60 * 60 * 24), 10) + ' days'
+        let end = moment(this.readerFavoriteDetails.end_reading)
+        let start = moment(this.readerFavoriteDetails.start_reading)
+
+        details.readingTime = end.diff(start, 'days') + ' days'
       }
-
-     
-
 
       return details
     }
@@ -346,9 +340,8 @@ export default {
 
   methods: {
     openEditModal () {
-
-      this.modalInputsData.startReading = this.readerFavoriteDetails.start_reading
-      this.modalInputsData.endReading = this.readerFavoriteDetails.end_reading
+      this.modalInputsData.startReading = moment(this.readerFavoriteDetails.start_reading).format('YYYY-MM-DD')
+      this.modalInputsData.endReading = moment(this.readerFavoriteDetails.end_reading).format('YYYY-MM-DD')
       this.modalInputsData.personalRating = this.readerFavoriteDetails.reader_rating
 
       this.isModalOpen = true
@@ -356,8 +349,8 @@ export default {
   },
 
   created () {
-    //validar se existe no vuex os dois objetos googleBookDetails e readerFavoriteDetails
-    //se nao tiver entradas reencaminhar
+    // validar se existe no vuex os dois objetos googleBookDetails e readerFavoriteDetails
+    // se nao tiver entradas reencaminhar
     if (!Object.entries(this.googleBookDetails).length  || !Object.entries(this.readerFavoriteDetails).length) {
       this.$router.push({ name: 'Dashboard' })
     }
@@ -388,6 +381,6 @@ export default {
     }
     .v-card__text {
       text-align: left;
-    }    
+    }
   }
 </style>

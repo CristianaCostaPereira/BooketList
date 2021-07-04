@@ -5,12 +5,13 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import moment from 'moment'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { boot } from '@/app-bootstrap'
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios, moment)
 
 Vue.config.productionTip = false
 
