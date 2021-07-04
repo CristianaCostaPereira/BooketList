@@ -57,6 +57,7 @@
     <div class="book-api-list">
       <v-row
         v-if="searchedBooks">
+       
         <v-col
           cols="12"
           sm="6"
@@ -65,6 +66,7 @@
           xl="3"
           v-for="(searchedBook, index) in searchedBooks"
           :key="index">
+           {{searchedBook.id}}
 
           <v-card
             :color="color"
@@ -91,6 +93,8 @@
                 min-width="128"
                 min-height="200">
               </v-img>
+
+              
 
               <div class="api-card-content">
                 <h5
@@ -210,7 +214,7 @@
                       {{ selectedBook.volumeInfo.averageRating }} ({{ selectedBook.volumeInfo.ratingsCount }})
                     </div>
 
-                    <div class="card-text">
+                    <div class="card-text" v-if="selectedBook.saleInfo.listPrice">
                       <label>Price: </label>
                       {{ selectedBook.saleInfo.listPrice.amount }}€
                     </div>
@@ -257,7 +261,7 @@ export default {
 
   data() {
     return {
-      searchInput: 'da vinci code',
+      searchInput: 'lord of the rings',
       searchedBooks: [],
       color: '#a97fa4e3',
       selectedBook: null,

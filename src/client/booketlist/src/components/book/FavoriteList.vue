@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <v-row>
+    <v-row v-if="favoriteBooks.length">
       <v-col
         cols="12"
         sm="6"
@@ -15,6 +15,10 @@
           :reader-favorite-details="favoriteBook">
         </book-preview>
       </v-col>
+    </v-row>
+
+    <v-row v-else>
+      ainda num tem  ;(
     </v-row>
   </div>
 </template>

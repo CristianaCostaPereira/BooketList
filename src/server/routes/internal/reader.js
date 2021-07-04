@@ -47,8 +47,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
       if (error) {
         throw error
       }
-
-      // res.send(results)
+      console.log(1);
 
       if (results.length === 0) {
         // When book not found insert into book table
@@ -56,37 +55,48 @@ router.post('/:id/books/make-favorite', (req, res) => {
           if (error) {
             throw error
           }
-          // return results.insertId
         })
       }
-    })
 
-    // book exists on DB for certain
-    db.query('SELECT book_id FROM book WHERE google_api_id = ?', [google_api_id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      
-      let book_id = results[0].book_id // [0] because it comes inside of an array
+      // book exists on DB for certain
+      db.query('SELECT book_id FROM book WHERE google_api_id = ?', [google_api_id], (error, results) => {
+        if (error) {
+          throw error
+        }
+        console.log(results)
+        let book_id = results[0].book_id // [0] because it comes inside of an array
 
-      var data = {
-        reader_id,
-        book_id,
-        purchase_date,
-        reader_rating,
-        start_reading,
-        end_reading,
-        edition_number,
-        reading_time 
-      }
+        //check if book is already favorite
+        db.query('SELECT book_reader_id FROM book_reader WHERE book_id = ? AND reader_id = ?', [book_id, reader_id], (error, results) => {
+          if (results.length > 0) {
+            res.send({
+              status: 'failed',
+              message: 'Book already set as favorite'
+            })
+            return
+          }
+        })
 
-      db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
+        var data = {
+          reader_id,
+          book_id,
+          purchase_date,
+          reader_rating,
+          start_reading,
+          end_reading,
+          edition_number,
+          reading_time 
+        }
+
+        db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
           if (error) {
             throw error
           }
           res.send("WORKING ;)")
         })
       })
+
+    })
 
     // res.send('results')
 
