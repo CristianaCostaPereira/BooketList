@@ -62,6 +62,8 @@
             </button>
 
           </div>
+
+            <router-link :to="{ name: 'Register' }">Register</router-link>
         </div>
       </div>
     </v-card>
@@ -101,7 +103,6 @@ export default {
       
       this.$v.$touch()
       if (this.$v.$invalid) {
-        debugger
         return
       }
 

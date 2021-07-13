@@ -84,9 +84,7 @@
       return {
         menuItems: [
           { title: 'Book Search', icon: 'mdi-book-open-page-variant', to: '/' },
-          { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'favorite-list' },
-          { title: 'Show Favorite Book', icon: 'mdi-book-open-page-variant', to: 'show' },
-          // { title: 'Logout', icon: 'mdi-logout-variant', to: 'login' }
+          { title: 'My BooketList', icon: 'mdi-bookshelf', to: 'favorite-list' }
         ],
         drawer: null,
         readerInfo: null
