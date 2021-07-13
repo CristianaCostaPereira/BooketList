@@ -39,7 +39,10 @@ module.exports = (req, res) => { validate(req.body,
               res.send(returnValue)
 
             } else {
-              res.status(400).send('Cannot find any account that matches the given email and password')
+              res.send({
+                status: 'error',
+                message: 'Invalid credentials',
+              })
             }
           }).catch((error) => { throw error })
       }

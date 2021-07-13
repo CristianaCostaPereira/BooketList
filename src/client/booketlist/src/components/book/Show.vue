@@ -275,7 +275,9 @@ import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
 import { required, minValue, numeric } from 'vuelidate/lib/validators'
 
-const isDate = (value) => moment(value, 'YYYY-MM-DD', true).isValid()
+function isDate(value) {
+  return value === null || moment(value, 'YYYY-MM-DD', true).isValid()
+}
 
 export default {
   name: 'Show',
@@ -455,9 +457,16 @@ export default {
     ]),
 
     openEditModal () {
-      this.modalInputsData.startReading = moment(this.readerFavoriteDetails.start_reading).format('YYYY-MM-DD')
-      this.modalInputsData.endReading = moment(this.readerFavoriteDetails.end_reading).format('YYYY-MM-DD')
-      this.modalInputsData.purchaseDate = moment(this.readerFavoriteDetails.purchase_date).format('YYYY-MM-DD')
+      
+      let startReading = moment(this.readerFavoriteDetails.start_reading)
+      this.modalInputsData.startReading = startReading.isValid() ? startReading.format('YYYY-MM-DD') : null
+      
+      let endReading = moment(this.readerFavoriteDetails.end_reading)
+      this.modalInputsData.endReading = endReading.isValid() ? endReading.format('YYYY-MM-DD') : null
+
+      let purchaseDate = moment(this.readerFavoriteDetails.purchase_date)
+      this.modalInputsData.purchaseDate = purchaseDate.isValid() ? purchaseDate.format('YYYY-MM-DD') : null
+      
       this.modalInputsData.edition = this.readerFavoriteDetails.edition_number
       this.modalInputsData.personalRating = this.readerFavoriteDetails.reader_rating
 

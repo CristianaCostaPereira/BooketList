@@ -21,6 +21,8 @@
               placeholder="email@example.com"
               required
               v-model="email">
+
+              <div class="error" v-if="$v.email.$dirty && (!$v.email.required || !$v.email.email)">Must be a valid email address</div>
           </div>
 
           <div class="mb-3">
@@ -39,6 +41,8 @@
               v-model="password"
               required
               @keyup.enter="login()">
+
+              <div class="error" v-if="$v.password.$dirty && (!$v.password.required || !$v.password.minLength)">Must be at least 3 characters long</div>
           </div>
 
           <div class="form-buttons">
@@ -67,8 +71,22 @@
 <script>
 const axios = require('axios')
 
+import { required, minLength, email } from 'vuelidate/lib/validators'
+
 export default {
   name: 'Login',
+
+  validations: {
+    email: {
+      required,
+      email
+    },
+
+    password: {
+      required,
+      minLength: minLength(3)
+    }
+  },
 
   data () {
     return {
@@ -80,6 +98,13 @@ export default {
 
   methods: {
     async login() {
+      
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        debugger
+        return
+      }
+
       let data = {
         email: this.email,
         password: this.password
@@ -87,6 +112,17 @@ export default {
 
       try {
         const response = await axios.post('http://localhost:3000/login', data)
+
+        if (response.data.status === 'error') {
+          this.$notify({
+            title: response.data.status,
+            text: response.data.message,
+            type: response.data.status,
+            duration: 2000,
+            speed: 1000
+          })
+          return
+        }
 
         // Se bem autenticada -> redirect para landing page
         // Actualizar o BE para devolver info do user

@@ -126,7 +126,7 @@ router.put('/:id/books/:bookId', (req, res) => {
     end_reading: 'date',
     purchase_date: 'date',
     reader_rating: 'number',
-    reading_time: 'date',
+    reading_time: 'number',
     edition_number: 'number'
 
   }).then(async (value) => {
