@@ -225,7 +225,8 @@ export default {
             return
           }
 
-          this.$router.push({ name: 'FavoriteList' })
+          // this.$router.push({ name: 'FavoriteList' })
+          this.$emit('deleted')
 
         } catch (error) {
           console.error(error)

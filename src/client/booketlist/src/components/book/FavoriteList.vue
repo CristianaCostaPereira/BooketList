@@ -12,7 +12,8 @@
 
         <!-- Father Component of BookPreview -->
         <book-preview
-          :reader-favorite-details="favoriteBook">
+          :reader-favorite-details="favoriteBook"
+          @deleted="fetchFavoritesBooks()">
         </book-preview>
       </v-col>
     </v-row>

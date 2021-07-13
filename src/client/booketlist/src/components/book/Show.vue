@@ -430,9 +430,9 @@ export default {
 
         let readingTime = null
 
-        if (this.readerFavoriteDetails.end_reading && this.readerFavoriteDetails.start_reading) {
-          let end = moment(this.readerFavoriteDetails.end_reading)
-          let start = moment(this.readerFavoriteDetails.start_reading)
+        if (this.modalInputsData.startReading && this.modalInputsData.endReading) {
+          let start = moment(this.modalInputsData.startReading)
+          let end = moment(this.modalInputsData.endReading)
 
           readingTime = end.diff(start, 'days')
         }

@@ -66,7 +66,6 @@
           xl="3"
           v-for="(searchedBook, index) in searchedBooks"
           :key="index">
-           {{searchedBook.id}}
 
           <v-card
             :color="color"
