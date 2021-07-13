@@ -176,6 +176,8 @@
                   type="date"
                   id="startReading"
                   v-model="modalInputsData.startReading">
+
+                  <div class="error" v-if="$v.modalInputsData.startReading.$dirty && !$v.modalInputsData.startReading.isDate">Must be a date</div>
               </div>
 
               <div class="mb-5">
@@ -190,6 +192,8 @@
                   type="date"
                   id="endReading"
                   v-model="modalInputsData.endReading">
+
+                  <div class="error" v-if="$v.modalInputsData.endReading.$dirty && !$v.modalInputsData.endReading.isDate">Must be a date</div>
               </div>
 
               <div class="mb-5">
@@ -204,6 +208,8 @@
                   type="date"
                   id="purchaseDate"
                   v-model="modalInputsData.purchaseDate">
+
+                  <div class="error" v-if="$v.modalInputsData.purchaseDate.$dirty && !$v.modalInputsData.purchaseDate.isDate">Must be a date</div>
               </div>
 
               <div class="mb-5">
@@ -218,6 +224,8 @@
                   type="text"
                   id="edition"
                   v-model="modalInputsData.edition">
+
+                  <div class="error" v-if="$v.modalInputsData.edition.$dirty && !$v.modalInputsData.edition.numeric">Must be a number</div>
               </div>
 
               <div class="mb-5">
@@ -265,6 +273,9 @@ const axios = require('axios')
 
 import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
+import { required, minValue, numeric } from 'vuelidate/lib/validators'
+
+const isDate = (value) => moment(value, 'YYYY-MM-DD', true).isValid()
 
 export default {
   name: 'Show',
@@ -279,6 +290,32 @@ export default {
         purchaseDate: null,
         edition: null,
         personalRating: null,
+      }
+    }
+  },
+
+  validations: {
+    modalInputsData: {
+      startReading: {
+        isDate (value) {
+          return isDate(value)
+        },
+      },
+
+      endReading: {
+        isDate (value) {
+          return isDate(value)
+        },
+      },
+
+      purchaseDate: {
+        isDate (value) {
+          return isDate(value)
+        },
+      },
+
+      edition: {
+        numeric
       }
     }
   },
@@ -433,50 +470,50 @@ export default {
 
     async updateFavorite() {
       // pedido ao server para update
-      try {
-        let readerId = this.readerFavoriteDetails.reader_id
-        let bookId = this.readerFavoriteDetails.book_id
-
-        if (!readerId || !bookId) {
-          return
-        }
-
-        let readingTime = null
-
-        if (this.modalInputsData.startReading && this.modalInputsData.endReading) {
-          let start = moment(this.modalInputsData.startReading)
-          let end = moment(this.modalInputsData.endReading)
-
-          readingTime = end.diff(start, 'days')
-        }
-
-        let data = {
-          start_reading: this.modalInputsData.startReading,
-          end_reading: this.modalInputsData.endReading,
-          purchase_date: this.modalInputsData.purchaseDate,
-          reader_rating: this.modalInputsData.personalRating,
-          reading_time: readingTime,
-          edition_number: this.modalInputsData.edition
-        }
-
-        const response = await axios.put(`http://localhost:3000/readers/${readerId}/books/${bookId}`, data)
-
-        this.$notify({
-          title: response.data.status,
-          text: response.data.message,
-          type: response.data.status,
-          duration: 2000,
-          speed: 1000
-        })
-
-        //se sucesso update no vuex
-        this.updateReaderFavoriteDetails(data)
-
-        this.closeModal()
-
-      } catch (error) {
-        console.error(error)
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return
       }
+      
+      let readerId = this.readerFavoriteDetails.reader_id
+      let bookId = this.readerFavoriteDetails.book_id
+
+      if (!readerId || !bookId) {
+        return
+      }
+
+      let readingTime = null
+
+      if (this.modalInputsData.startReading && this.modalInputsData.endReading) {
+        let start = moment(this.modalInputsData.startReading)
+        let end = moment(this.modalInputsData.endReading)
+
+        readingTime = end.diff(start, 'days')
+      }
+
+      let data = {
+        start_reading: this.modalInputsData.startReading,
+        end_reading: this.modalInputsData.endReading,
+        purchase_date: this.modalInputsData.purchaseDate,
+        reader_rating: this.modalInputsData.personalRating,
+        reading_time: readingTime,
+        edition_number: this.modalInputsData.edition
+      }
+
+      const response = await axios.put(`http://localhost:3000/readers/${readerId}/books/${bookId}`, data)
+
+      this.$notify({
+        title: response.data.status,
+        text: response.data.message,
+        type: response.data.status,
+        duration: 2000,
+        speed: 1000
+      })
+
+      //se sucesso update no vuex
+      this.updateReaderFavoriteDetails(data)
+
+      this.closeModal()
     },
 
     async removeFavoriteBook () {

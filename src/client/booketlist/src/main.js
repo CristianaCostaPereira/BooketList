@@ -14,6 +14,9 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 Vue.use(VueAxios, axios, moment)
 Vue.use(VueSweetalert2)
 Vue.use(Notifications)
