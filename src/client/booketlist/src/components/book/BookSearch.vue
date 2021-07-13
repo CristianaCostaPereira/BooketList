@@ -320,45 +320,21 @@ export default {
       try {
         const response = await axios.post(`http://localhost:3000/readers/${this.readerId}/books/make-favorite`, data, config)
 
+        this.$notify({
+          title: response.data.status,
+          text: response.data.message,
+          type: response.data.status,
+          duration: 2000,
+          speed: 1000
+        })
+
       } catch (error) {
         console.error(error)
       }
-      //TODO:
-      // No BE:
-      // 1º ver se existe o livro na BD
-      // Caso exista colocar na tabela pivot book-reader o id do livro e do reader
-      // Caso não exista 1o coloca na tabela book e de seguida coloca como favorito
     }
   },
 
   created () {
-    this.$notify({
-      title: 'success',
-      text: 'Book set as favorite',
-      type: 'success',
-      duration: 5000,
-      speed: 1000
-    })
-    this.$notify({
-      title: 'danger',
-      text: 'Book set as favorite',
-      type: 'error',
-      duration: 5000,
-      speed: 1000
-    })
-    this.$notify({
-      title: 'warn',
-      text: 'Book set as favorite',
-      type: 'warn',
-      duration: 5000,
-      speed: 1000
-    })
-    this.$notify({
-      title: 'default',
-      text: 'Book set as favorite',
-      duration: 5000,
-      speed: 1000
-    })
     // To get the logged reader id (dinamic in my request)
     let readerInfoString = window.localStorage.getItem('reader-info')
     let readerInfoObject = JSON.parse(readerInfoString)

@@ -70,7 +70,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
         db.query('SELECT book_reader_id FROM book_reader WHERE book_id = ? AND reader_id = ?', [book_id, reader_id], (error, results) => {
           if (results.length > 0) {
             res.send({
-              status: 'failed',
+              status: 'error',
               message: 'Book already set as favorite'
             })
             return
@@ -92,7 +92,10 @@ router.post('/:id/books/make-favorite', (req, res) => {
           if (error) {
             throw error
           }
-          res.send("WORKING ;)")
+          res.send({
+            status: 'success',
+            message: 'Book added as favorite'
+          })
         })
       })
 
