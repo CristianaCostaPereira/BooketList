@@ -9,8 +9,19 @@
 
       <div class="d-flex flex-no-wrap justify-between">
         <v-img
+          v-if="apiInfo.volumeInfo && apiInfo.volumeInfo.imageLinks && apiInfo.volumeInfo.imageLinks.thumbnail"
           :src="apiInfo.volumeInfo.imageLinks.thumbnail"
           alt="Book Cover"
+          max-width="128"
+          max-height="200"
+          min-width="128"
+          min-height="200">
+        </v-img>
+
+        <v-img
+          v-else
+          alt="Book Cover"
+          src="@/assets/bookNotFound.jpg"
           max-width="128"
           max-height="200"
           min-width="128"
@@ -20,7 +31,7 @@
         <div>
           <v-card-title
             class="text-h5"
-            v-text="apiInfo.volumeInfo.title">
+            v-text="formattedBook.title">
           </v-card-title>
 
           <v-rating
@@ -66,109 +77,6 @@
       </div>
     </v-card>
 
-    <!-- Modal for personal book details-->
-    <!-- <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5
-              class="modal-title"
-              id="favoriteBookModalLabel">
-
-              Personal Details
-
-              <v-icon
-                class="heart-icon ml-2"
-                color="amber lighten">
-
-                mdi-star-face
-              </v-icon>
-            </h5>
-
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close">
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <div class="mb-3">
-              <label
-                for="starReading"
-                class="form-label">
-
-                Start reading at:
-              </label>
-
-              <input
-                class="form-control"
-                type="date"
-                id="starReading">
-            </div>
-
-            <div class="mb-3">
-              <label
-                for="endReading"
-                class="form-label">
-
-                End reading at:
-              </label>
-
-              <input
-                class="form-control"
-                type="date"
-                id="endReading">
-            </div>
-
-            <div class="mb-3">
-              <label
-                for="readerPersonalRating"
-                class="form-label">
-
-                My personal rating:
-              </label>
-
-              <input
-                class="form-control"
-                type="text"
-                id="readerPersonalRating">
-
-              <v-rating
-                v-if="readerFavoriteDetails.reader_rating"
-                align="center"
-                :value="readerFavoriteDetails.reader_rating"
-                color="amber"
-                size="16">
-              </v-rating>
-
-              <div class="grey--text ms-3" align="center">
-                {{ readerFavoriteDetails.reader_rating }}
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal">
-
-              Close
-            </button>
-
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal">
-
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -190,6 +98,22 @@ export default {
     return {
       apiInfo: null,
       color: '#492750'
+    }
+  },
+
+  computed: {
+
+    formattedBook () {
+      if (!this.apiInfo) {
+        return null
+      }
+
+      let book = {}
+
+      book.title = this.apiInfo.volumeInfo.title
+      //TODO: Image
+
+      return book
     }
   },
 

@@ -127,7 +127,7 @@ router.put('/:id/books/:bookId', (req, res) => {
 
     let response = {
       status: 'success',
-      data: results
+      message: 'Favorite book successfully edited',
     }
     res.send(response)
   })
@@ -142,7 +142,8 @@ router.delete('/:id/books/:bookId', (req, res) => {
     }
 
     res.send({
-      status: 'success'
+      status: 'success',
+      message: 'Book removed from favorite list'
     })
   })
 })

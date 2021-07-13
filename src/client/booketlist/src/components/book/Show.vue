@@ -1,15 +1,28 @@
 <template>
   <div class="container mt-12">
     <div class="card mb-3" style="max-width: 1800px;">
-      <div class="d-flex">
-        <div class="">
+      <div class="d-flex"
+        v-if="formattedReaderDetails && formattedBook">
+        <div>
 
           <v-img
-            min-width="300"
-            min-height="500"
+            v-if="googleBookDetails.volumeInfo && googleBookDetails.volumeInfo.imageLinks && googleBookDetails.volumeInfo.imageLinks.thumbnail"
+            :src="googleBookDetails.volumeInfo.imageLinks.thumbnail"
             alt="Book Cover"
-            :src="buildImageSource">
+            max-width="128"
+            max-height="200"
+            min-width="128"
+            min-height="200">
           </v-img>
+
+          <v-img
+            v-else
+            alt="Book Cover"
+            src="@/assets/bookNotFoundBig.png"
+            min-width="300"
+            min-height="500">
+          </v-img>
+          
         </div>
 
         <div v-if="formattedBook">
@@ -273,16 +286,16 @@ export default {
   computed: {
     ...mapGetters(['googleBookDetails', 'readerFavoriteDetails']),
 
-    buildImageSource () {
-      if (
-        this.googleBookDetails.volumeInfo &&
-        this.googleBookDetails.volumeInfo.imageLinks &&
-        this.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
+    // buildImageSource () {
+    //   if (
+    //     this.googleBookDetails.volumeInfo &&
+    //     this.googleBookDetails.volumeInfo.imageLinks &&
+    //     this.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
 
-        return this.googleBookDetails.volumeInfo.imageLinks.thumbnail
-      }
-      return '@/assets/bookNotFound.jpg'
-    },
+    //     return this.googleBookDetails.volumeInfo.imageLinks.thumbnail
+    //   }
+    //   return '@/assets/bookNotFound.jpg'
+    // },
 
     formattedBook () {
       if (!Object.entries(this.googleBookDetails).length) {
@@ -448,10 +461,13 @@ export default {
 
         const response = await axios.put(`http://localhost:3000/readers/${readerId}/books/${bookId}`, data)
 
-        if (response.data.status !== 'success') {
-          //TODO: mensagem
-          return
-        }
+        this.$notify({
+          title: response.data.status,
+          text: response.data.message,
+          type: response.data.status,
+          duration: 2000,
+          speed: 1000
+        })
 
         //se sucesso update no vuex
         this.updateReaderFavoriteDetails(data)
@@ -485,10 +501,13 @@ export default {
 
           const response = await axios.delete(`http://localhost:3000/readers/${readerId}/books/${bookId}`)
 
-          if (response.data.status !== 'success') {
-            //TODO: mensagem
-            return
-          }
+          this.$notify({
+            title: response.data.status,
+            text: response.data.message,
+            type: response.data.status,
+            duration: 2000,
+            speed: 1000
+          })
 
           this.$router.push({ name: 'FavoriteList' })
 
