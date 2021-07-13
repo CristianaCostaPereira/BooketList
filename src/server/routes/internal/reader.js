@@ -75,26 +75,26 @@ router.post('/:id/books/make-favorite', (req, res) => {
             })
             return
           }
-        })
 
-        var data = {
-          reader_id,
-          book_id,
-          purchase_date,
-          reader_rating,
-          start_reading,
-          end_reading,
-          edition_number,
-          reading_time 
-        }
-
-        db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
-          if (error) {
-            throw error
+          var data = {
+            reader_id,
+            book_id,
+            purchase_date,
+            reader_rating,
+            start_reading,
+            end_reading,
+            edition_number,
+            reading_time 
           }
-          res.send({
-            status: 'success',
-            message: 'Book added as favorite'
+  
+          db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
+            if (error) {
+              throw error
+            }
+            res.send({
+              status: 'success',
+              message: 'Book added as favorite'
+            })
           })
         })
       })

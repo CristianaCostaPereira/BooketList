@@ -176,7 +176,9 @@
 
                     <h3 class="card-title mt-5 mb-5">{{ selectedBook.volumeInfo.subtitle }}</h3>
 
-                    <div class="card-text">
+                    <div class="card-text"
+                      v-if="selectedBook.volumeInfo.authors">
+
                       <label>Author: </label>
                       {{ selectedBook.volumeInfo.authors[0] }}
                     </div>
@@ -196,7 +198,9 @@
                       {{ selectedBook.volumeInfo.pageCount }}
                     </div>
 
-                    <div class="card-text">
+                    <div class="card-text"
+                      v-if="selectedBook.volumeInfo.categories">
+
                       <label>Categories: </label>
                       {{ selectedBook.volumeInfo.categories[0] }}
                     </div>
@@ -235,7 +239,7 @@
             <v-btn
               color="green darken-1"
               text
-              @click="showModal = false">
+              @click="modalMakeFavorite()">
 
               Mark as Favorite
 
@@ -329,6 +333,11 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+
+    modalMakeFavorite () {
+      this.makeFavorite(this.selectedBook.id)
+      this.showModal = false
     }
   },
 
