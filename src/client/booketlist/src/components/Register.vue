@@ -120,6 +120,12 @@
               Register
             </button>
           </div>
+
+          <router-link class="d-flex justify-content-center"
+            :to="{ name: 'Login' }">
+
+            Go to login
+          </router-link>
         </div>
       </div>
     </v-card>
@@ -177,7 +183,6 @@ export default {
 
   methods: {
     async register() {
-
       this.$v.$touch()
 
       if (this.$v.$invalid) {
@@ -203,10 +208,11 @@ export default {
             duration: 2000,
             speed: 1000
           })
+          this.$router.push({ name: 'Login' })
+
           return
         }
 
-        this.$router.push({ name: 'Login' })
 
       } catch (error) {
         console.error(error)

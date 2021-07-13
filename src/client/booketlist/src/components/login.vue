@@ -63,7 +63,11 @@
 
           </div>
 
-            <router-link :to="{ name: 'Register' }">Register</router-link>
+          <router-link class="d-flex justify-content-center"
+            :to="{ name: 'Register' }">
+            
+            Go to registration
+          </router-link>
         </div>
       </div>
     </v-card>
