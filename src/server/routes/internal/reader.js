@@ -120,16 +120,43 @@ router.put('/:id/books/:bookId', (req, res) => {
     edition_number
   } = req.body
 
-  db.query('UPDATE book_reader SET ? WHERE reader_id = ? AND book_id = ?', [bodyData, id, bookId], (error, results) => {
-    if (error) {
-      throw error
-    }
 
-    let response = {
-      status: 'success',
-      message: 'Favorite book successfully edited',
-    }
-    res.send(response)
+  validate(bodyData, {
+    start_reading: 'date',
+    end_reading: 'date',
+    purchase_date: 'date',
+    reader_rating: 'number',
+    reading_time: 'date',
+    edition_number: 'number'
+
+  }).then(async (value) => {
+    sanitize(value, {
+      start_reading: 'trim',
+      end_reading: 'trim',
+      purchase_date: 'trim',
+      reader_rating: 'trim',
+      reading_time: 'trim',
+      edition_number: 'trim'
+    })
+
+    db.query('UPDATE book_reader SET ? WHERE reader_id = ? AND book_id = ?', [bodyData, id, bookId], (error, results) => {
+      if (error) {
+        throw error
+      }
+
+      let response = {
+        status: 'success',
+        message: 'Favorite book successfully edited',
+      }
+      res.send(response)
+    })
+
+  }).catch((error) => {
+    res.send({
+      status: 'error',
+      message: 'Invalid fields',
+      errors: error
+    })
   })
 })
 
