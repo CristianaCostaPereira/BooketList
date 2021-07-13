@@ -465,7 +465,7 @@ export default {
 
     async removeFavoriteBook () {
       let result = await this.$swal({
-        title: 'Are you sure you want to remove book from your favorites?',
+        title: 'Are you sure you want to remove this book from your favorites?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#00557a',

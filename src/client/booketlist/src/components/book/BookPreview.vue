@@ -41,12 +41,14 @@
               align="center"
               outlined
               small
-              data-bs-toggle="modal"
-              data-bs-target="#favoriteBookModal">
+              @click="removeFavorite()">
 
-              Edit
+              <!-- data-bs-toggle="modal"
+              data-bs-target="#favoriteBookModal" -->
 
-              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-book-edit-outline</v-icon>
+              Remove
+
+              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-close-thick</v-icon>
             </v-btn>
 
             <v-btn
@@ -65,7 +67,7 @@
     </v-card>
 
     <!-- Modal for personal book details-->
-    <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="favoriteBookModal" tabindex="-1" aria-labelledby="favoriteBookModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -166,7 +168,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -195,6 +197,41 @@ export default {
     ...mapMutations([
       'setGoogleBookDetails', 'setReaderFavoriteDetails'
     ]),
+
+    async removeFavorite () {
+      let result = await this.$swal({
+        title: 'Are you sure you want to remove this book from your favorites?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#00557a',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+    })
+
+      if (result.isConfirmed) {
+        try {
+          let readerId = this.readerFavoriteDetails.reader_id
+          let bookId = this.readerFavoriteDetails.book_id
+
+          if (!readerId || !bookId) {
+            return
+          }
+
+          const response = await axios.delete(`http://localhost:3000/readers/${readerId}/books/${bookId}`)
+
+          if (response.data.status !== 'success') {
+            //TODO: mensagem
+            return
+          }
+
+          this.$router.push({ name: 'FavoriteList' })
+
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    },
 
     async fetchBookDetails() {
       const VUE_APP_API_KEY = process.env.VUE_APP_API_KEY
