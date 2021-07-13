@@ -57,7 +57,7 @@
     <div class="book-api-list">
       <v-row
         v-if="searchedBooks">
-       
+
         <v-col
           cols="12"
           sm="6"
@@ -92,8 +92,6 @@
                 min-width="128"
                 min-height="200">
               </v-img>
-
-              
 
               <div class="api-card-content">
                 <h5
@@ -231,16 +229,16 @@
             <v-btn
               color="green darken-1"
               text
-              @click="showModal = false"
-            >
+              @click="showModal = false">
+
               Close
             </v-btn>
 
             <v-btn
               color="green darken-1"
               text
-              @click="showModal = false"
-            >
+              @click="showModal = false">
+
               Mark as Favorite
 
               <v-icon class="ml-1" color="amber lighten">mdi-star</v-icon>
@@ -325,16 +323,42 @@ export default {
       } catch (error) {
         console.error(error)
       }
-
+      //TODO:
       // No BE:
       // 1º ver se existe o livro na BD
       // Caso exista colocar na tabela pivot book-reader o id do livro e do reader
       // Caso não exista 1o coloca na tabela book e de seguida coloca como favorito
-
     }
   },
 
   created () {
+    this.$notify({
+      title: 'success',
+      text: 'Book set as favorite',
+      type: 'success',
+      duration: 5000,
+      speed: 1000
+    })
+    this.$notify({
+      title: 'danger',
+      text: 'Book set as favorite',
+      type: 'error',
+      duration: 5000,
+      speed: 1000
+    })
+    this.$notify({
+      title: 'warn',
+      text: 'Book set as favorite',
+      type: 'warn',
+      duration: 5000,
+      speed: 1000
+    })
+    this.$notify({
+      title: 'default',
+      text: 'Book set as favorite',
+      duration: 5000,
+      speed: 1000
+    })
     // To get the logged reader id (dinamic in my request)
     let readerInfoString = window.localStorage.getItem('reader-info')
     let readerInfoObject = JSON.parse(readerInfoString)

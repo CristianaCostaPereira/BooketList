@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notifications/>
     <router-view></router-view>
   </div>
 </template>
@@ -10,3 +11,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+  .vue-notification-group {
+    top: 70px !important;
+  }
+</style>
