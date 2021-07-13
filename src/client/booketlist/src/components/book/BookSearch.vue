@@ -23,10 +23,8 @@
         class="ghost-welcome-page"
         v-if="!searchedBooks.length">
 
-        <div id="background"></div>
-
           <div class="top">
-            <h2>Hello Again</h2>
+            <h1>Welcome to your BooketList App</h1>
           </div>
 
           <div class="ghost-drawing">
@@ -365,6 +363,14 @@ export default {
   .top {
     margin-top: 120px;
     margin-bottom: 65px;
+
+    h1 {
+      font-family: $big;
+      color: #8d6856;
+      text-align: center;
+      font-size: 5em !important;
+      text-shadow: -1px 0 $gray, 0 1px $gray, 1px 0 $gray, 0 -1px $gray;
+    }
   }
 
   .ghost-drawing {

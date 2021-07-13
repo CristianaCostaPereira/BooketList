@@ -1,7 +1,6 @@
 // Define all the routes I want the application to have
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../components/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -27,8 +26,8 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'Dashboard',
-        component: Dashboard,
+        name: 'BookSearch',
+        component: () => import('../components/book/BookSearch')
       },
       {
         path: '/favorite-list',
@@ -39,11 +38,6 @@ const routes = [
         path: '/show',
         name: 'Show',
         component: () => import('../components/book/Show')
-      },
-      {
-        path: '/search',
-        name: 'BookSearch',
-        component: () => import('../components/book/BookSearch')
       }
     ]
   }
@@ -71,7 +65,7 @@ router.beforeEach((to, from, next) => {
     }
   } else if (to.matched.some(record => record.meta.guest)) {
     if (localStorage.getItem('book-token') != null) {
-      next({ name: 'Dashboard'})
+      next({ name: 'BookSearch'})
     } else {
       next()
     }

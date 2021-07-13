@@ -503,7 +503,7 @@ export default {
     // validar se existe no vuex os dois objetos googleBookDetails e readerFavoriteDetails
     // se nao tiver entradas reencaminhar
     if (!Object.entries(this.googleBookDetails).length  || !Object.entries(this.readerFavoriteDetails).length) {
-      this.$router.push({ name: 'Dashboard' })
+      this.$router.push({ name: 'BookSearch' })
     }
   }
 }
