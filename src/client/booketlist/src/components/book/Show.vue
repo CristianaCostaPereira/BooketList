@@ -1,8 +1,8 @@
 <template>
-  <div class="container mt-12">
+  <div class="show-favorite container mt-12">
     <div class="card mb-3" style="max-width: 1800px;">
       <div
-        class="d-flex"
+        class="favorite-container d-flex"
         v-if="formattedReaderDetails && formattedBook">
 
         <div class="card-column">
@@ -87,7 +87,7 @@
               :value="formattedBook.averageRating"
               color="amber"
               readonly
-              size="16">
+              size="26">
             </v-rating>
 
             <div class="card-text"
@@ -581,23 +581,17 @@ export default {
 </script>
 
 <style lang="scss">
+.show-favorite{
+
   .container {
     display: table; /* Make the container element behave like a table */
     width: 100%; /* Set full-width to expand the whole page */
   }
 
-  .card-column {
-    display: table-cell; /* Make elements inside the container behave like table cells */
-  }
-
   .card-content {
-    padding: 100px;
+    padding: 50px;
   }
 
-  h5.description.card-text {
-    text-align: justify;
-    margin: 100px 40px 40px 40px;
-  }
 
 
 
@@ -607,6 +601,15 @@ export default {
 
   h1.card-title {
     font-size: 4.5rem;
+  }
+
+  h2.card-title {
+    font-size: 90px;
+  }
+  
+  h5.description.card-text {
+    text-align: justify;
+    margin: 90px 40px 40px 40px;
   }
 
   label {
@@ -627,4 +630,21 @@ export default {
       text-align: left;
     }
   }
+
+  .favorite-container {
+    flex-direction: row;
+  }
+
+  @media (max-width: 1200px) {
+    .favorite-container {
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0px 20px 0px;
+
+      h5 {
+        font-size: 25px;
+      }
+    }
+  }
+}
 </style>
