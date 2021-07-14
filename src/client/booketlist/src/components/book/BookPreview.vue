@@ -177,6 +177,7 @@ export default {
     },
 
     goToDetails() {
+      //Stores in vuex
       this.setGoogleBookDetails(this.apiInfo)
 
       this.setReaderFavoriteDetails(this.readerFavoriteDetails)
