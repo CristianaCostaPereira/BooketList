@@ -3,7 +3,7 @@
     <v-row v-if="favoriteBooks.length">
       <v-col
         cols="12"
-        sm="6"
+        sm="12"
         md="6"
         lg="6"
         xl="3"
@@ -18,8 +18,8 @@
       </v-col>
     </v-row>
 
+    <!-- Ghosty page -->
     <v-row v-if="!favoriteBooks.length">
-      <!-- Ghosty page -->
       <div class="ghost-welcome-page">
 
         <div class="top">

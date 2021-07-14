@@ -1,6 +1,5 @@
 <template>
-  <div class="pt-12">
-
+  <div class="book-search pt-12">
     <div class="container">
       <div class="input-group">
         <input
@@ -386,6 +385,7 @@ export default {
 </script>
 
 <style lang="scss">
+.book-search {
   @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Lato');
 
   $white: #EDEDED;
@@ -612,4 +612,5 @@ export default {
       transform: translateY(15px);
     }
   }
+}
 </style>

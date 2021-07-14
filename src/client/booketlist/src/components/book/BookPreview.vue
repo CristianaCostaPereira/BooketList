@@ -1,6 +1,6 @@
 <template>
   <!-- Child Component of List-->
-  <div>
+  <div class="book-preview">
     <v-skeleton-loader
       class="mx-auto"
       max-width="430"
@@ -15,7 +15,7 @@
       max-height="199"
       v-if="apiInfo">
 
-      <div class="d-flex flex-no-wrap justify-between">
+      <div class="d-flex">
         <v-img
           v-if="apiInfo.volumeInfo && apiInfo.volumeInfo.imageLinks && apiInfo.volumeInfo.imageLinks.thumbnail"
           :src="apiInfo.volumeInfo.imageLinks.thumbnail"
@@ -36,23 +36,29 @@
           min-height="200">
         </v-img>
 
-        <div>
-          <v-card-title
-            class="text-h5"
+        <div style="display: flex; flex-direction: column; flex-grow: 2;">
+          <span
+            class="text-h5 custom-card-title"
             v-text="formattedBook.title">
-          </v-card-title>
+          </span>
 
-          <v-rating
-            v-if="readerFavoriteDetails.reader_rating"
-            align="center"
-            :value="readerFavoriteDetails.reader_rating"
-            color="amber"
-            readonly
-            size="16">
-          </v-rating>
-
-          <div class="grey--text ms-3" align="center">
-            {{ readerFavoriteDetails.reader_rating }}
+          <div style="height: 55px;">
+            <v-rating
+              v-if="readerFavoriteDetails.reader_rating"
+              align="center"
+              :value="readerFavoriteDetails.reader_rating"
+              color="amber"
+              readonly
+              size="16">
+            </v-rating>
+         
+            <div
+              class="grey--text ms-3"
+              align="center"
+              v-if="readerFavoriteDetails.reader_rating">
+              
+              {{ readerFavoriteDetails.reader_rating }}
+            </div>
           </div>
 
           <v-card-actions class="book-card-button">
@@ -81,7 +87,6 @@
         </div>
       </div>
     </v-card>
-
   </div>
 </template>
 
@@ -107,7 +112,6 @@ export default {
   },
 
   computed: {
-
     formattedBook () {
       if (!this.apiInfo) {
         return null
@@ -197,7 +201,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.book-preview {
   .card {
     max-width: 540px;
     min-height: 280px;
@@ -209,6 +214,7 @@ export default {
 
   .book-card-button {
     justify-content: center;
+    margin-top: 5px;
   }
 
   .mark-as-favorite-icon {
@@ -217,8 +223,17 @@ export default {
     top: 0px;
   }
 
-  .v-card__text, .v-card__title {
+  .custom-card-title {
+    padding: 20px 0px 0px 0px;
     word-break: normal !important;
     text-align: center;
+    height: 82px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
+}
 </style>
