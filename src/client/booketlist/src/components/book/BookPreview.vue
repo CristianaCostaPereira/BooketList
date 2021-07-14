@@ -56,7 +56,7 @@
               class="grey--text ms-3"
               align="center"
               v-if="readerFavoriteDetails.reader_rating">
-              
+
               {{ readerFavoriteDetails.reader_rating }}
             </div>
           </div>
@@ -70,7 +70,7 @@
 
               Remove
 
-              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-close-thick</v-icon>
+              <v-icon class="ml-2" color="amber lighten" small>mdi-close-thick</v-icon>
             </v-btn>
 
             <v-btn
@@ -81,7 +81,7 @@
 
               Show Details
 
-              <v-icon class="heart-icon ml-2" color="amber lighten" small>mdi-book-open-page-variant-outline</v-icon>
+              <v-icon class="ml-2" color="amber lighten" small>mdi-book-open-page-variant-outline</v-icon>
             </v-btn>
           </v-card-actions>
         </div>

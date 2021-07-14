@@ -117,7 +117,7 @@
                   v-text="searchedBook.volumeInfo.title">
                 </span>
 
-                <div style="height: 55px;">
+                <div class="api-rating">
                   <v-rating
                     align="center"
                     :value="searchedBook.volumeInfo.averageRating"
@@ -579,6 +579,10 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 2;
+  }
+
+  .api-rating {
+    height: 55px;
   }
 
   .row.card-body {
