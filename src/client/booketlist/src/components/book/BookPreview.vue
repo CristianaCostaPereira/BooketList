@@ -1,6 +1,14 @@
 <template>
   <!-- Child Component of List-->
   <div>
+    <v-skeleton-loader
+      class="mx-auto"
+      max-width="430"
+      max-height="200"
+      type="image"
+      v-if="!apiInfo">
+    </v-skeleton-loader>
+
     <v-card
       :color="color"
       dark
@@ -53,9 +61,6 @@
               outlined
               small
               @click="removeFavorite()">
-
-              <!-- data-bs-toggle="modal"
-              data-bs-target="#favoriteBookModal" -->
 
               Remove
 

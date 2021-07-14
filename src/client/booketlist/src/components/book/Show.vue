@@ -26,7 +26,7 @@
         </div>
 
         <div v-if="formattedBook">
-          <div class="card-content col-xs-12 col-lg-8">
+          <div class="card-content col-xs-12 col-lg-12">
 
             <h2 class="card-title">{{ formattedBook.title }}</h2>
 

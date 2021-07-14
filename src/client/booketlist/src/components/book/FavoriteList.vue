@@ -18,7 +18,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-else>
+    <v-row v-if="!favoriteBooks.length">
       <!-- Ghosty page -->
       <div class="ghost-welcome-page">
 
@@ -72,7 +72,7 @@ export default {
     async fetchFavoritesBooks() {
       try {
         const response = await axios.get(`http://localhost:3000/readers/${this.readerId}/books`)
-
+        
         this.favoriteBooks = response.data.data
 
       } catch (error) {

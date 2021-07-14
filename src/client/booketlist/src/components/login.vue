@@ -5,7 +5,7 @@
       style="max-width: 1200px; min-height: 1020px; margin-top: 10px;">
 
       <div class="login-inputs px-4 py-3">
-        <div class="form-layout">
+        <div class="login-form-layout">
           <div class="mb-3">
             <label
               for="email"
@@ -65,7 +65,7 @@
 
           <router-link class="d-flex justify-content-center"
             :to="{ name: 'Register' }">
-            
+
             Go to registration
           </router-link>
         </div>
@@ -94,6 +94,7 @@ export default {
     }
   },
 
+
   data () {
     return {
       email: '',
@@ -104,7 +105,7 @@ export default {
 
   methods: {
     async login() {
-      
+
       this.$v.$touch()
       if (this.$v.$invalid) {
         return
@@ -145,6 +146,10 @@ export default {
       console.log('reset')
       this.email = ''
       this.password = ''
+    },
+
+    goToRegistration () {
+      this.$router.push('/register')
     }
   }
 }
@@ -155,11 +160,12 @@ export default {
     background-image: url('https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380_960_720.jpg');
     background-size: cover;
   }
+
   .login-main-card {
     background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/49ccf758592393.5a02159d4090a.jpg');
   }
 
-  .form-layout {
+  .login-form-layout {
     margin: 225px 40px 0px 0px;
   }
 

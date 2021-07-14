@@ -1,5 +1,6 @@
 <template>
   <div class="pt-12">
+
     <div class="container">
       <div class="input-group">
         <input
@@ -21,7 +22,7 @@
       <!-- Ghosty welcome page -->
       <div
         class="ghost-welcome-page"
-        v-if="!searchedBooks.length">
+        v-if="!isLoading && !searchedBooks.length">
 
           <div class="top">
             <h1>Welcome to your BooketList App</h1>
@@ -53,8 +54,30 @@
     </div>
 
     <div class="book-api-list">
+
       <v-row
-        v-if="searchedBooks">
+        v-if="isLoading">
+        <v-col
+          cols="12"
+          sm="6"
+          md="6"
+          lg="6"
+          xl="3"
+          v-for="(n, index) in 12"
+          :key="index">
+
+          <v-skeleton-loader
+            class="mx-auto"
+            max-width="430"
+            max-height="200"
+            type="image">
+          </v-skeleton-loader>
+
+        </v-col>
+      </v-row>
+
+      <v-row
+        v-if="searchedBooks && !isLoading">
 
         <v-col
           cols="12"
@@ -273,7 +296,9 @@ export default {
       // Para armazenar o que precisamos para o pedido
       // O que vem da localStorage
       readerId: null,
-      token: null
+      token: null,
+
+      isLoading: false
     }
   },
 
@@ -285,17 +310,22 @@ export default {
 
       this.searchedBooks = []
 
+      this.isLoading = true
+
       // vai à API externa buscar a lista de livros que dê match ao input
       const API_KEY = await process.env.API_KEY
 
       let config = {
         params: {
           q: this.searchInput, // quando o input é submetido, faz pedido à api do google
-          key: API_KEY
+          key: API_KEY,
+          maxResults: '12'
         }
       }
 
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes', config)
+
+      this.isLoading = false
 
       // guardar os resultados no []
       this.searchedBooks = response.data.items

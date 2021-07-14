@@ -7,7 +7,7 @@
       <div class="register-inputs">
         <h1>Register</h1>
 
-        <div class="form-layout">
+        <div class="register-form-layout">
           <div class="mb-3">
             <label
               for="first-name"
@@ -213,7 +213,6 @@ export default {
           return
         }
 
-
       } catch (error) {
         console.error(error)
       }
@@ -245,7 +244,7 @@ export default {
     color: #cab366;
   }
 
-  .form-layout {
+  .register-form-layout {
     margin: 30px 100px 0px 0px;
   }
 
