@@ -174,8 +174,8 @@ export default {
     return {
       firstName: '',
       lastName: '',
-      email: 'cris@gmail.com',
-      password: '123',
+      email: '',
+      password: '',
       confirmPassword: '',
       isLoading: false
     }

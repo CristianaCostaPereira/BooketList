@@ -172,9 +172,13 @@
                   </v-img>
 
                   <div class="card-content col-xs-12 col-lg-8">
-                    <h2 class="card-title">{{ selectedBook.volumeInfo.title }}</h2>
+                    <h2 class="card-title">
+                      {{ selectedBook.volumeInfo.title }}
+                    </h2>
 
-                    <h3 class="card-title mt-5 mb-5">{{ selectedBook.volumeInfo.subtitle }}</h3>
+                    <h3 class="card-title mt-5 mb-5">
+                      {{ selectedBook.volumeInfo.subtitle }}
+                    </h3>
 
                     <div class="card-text"
                       v-if="selectedBook.volumeInfo.authors">
@@ -260,7 +264,7 @@ export default {
 
   data() {
     return {
-      searchInput: 'lord of the rings',
+      searchInput: '',
       searchedBooks: [],
       color: '#a97fa4e3',
       selectedBook: null,
@@ -291,10 +295,6 @@ export default {
 
       // guardar os resultados no []
       this.searchedBooks = response.data.items
-
-
-      // max results
-      // paginação / offset
     },
 
     selectBook(book) {
