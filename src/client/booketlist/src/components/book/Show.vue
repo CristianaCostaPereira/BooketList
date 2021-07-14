@@ -5,8 +5,7 @@
         class="favorite-container d-flex"
         v-if="formattedReaderDetails && formattedBook">
 
-        <div class="card-column" style="margin-top: 57px;
-    margin-left: 15px;">
+        <div class="card-column thumbnail" style="margin-left: 15px;">
           <v-img
             v-if="googleBookDetails.volumeInfo && googleBookDetails.volumeInfo.imageLinks && googleBookDetails.volumeInfo.imageLinks.thumbnail"
             :src="googleBookDetails.volumeInfo.imageLinks.thumbnail"
@@ -81,6 +80,7 @@
             </div>
 
             <v-rating
+              class="mt-4"
               align="center"
               :value="formattedBook.averageRating"
               color="amber"
@@ -101,9 +101,10 @@
           </div>
         </div>
 
+        <!-- Reader story -->
         <v-card
           v-if="readerFavoriteDetails"
-          class="card-column mx-auto"
+          class="card-column personal-info mx-auto"
           color="purple darken-3"
           dark
           max-width="400">
@@ -116,7 +117,7 @@
               mdi-star-face
             </v-icon>
 
-            <span class="text-h6 font-weight-light">My Story</span>
+            <span class="text-h5 font-weight-light">My Story</span>
 
             <v-spacer></v-spacer>
 
@@ -128,16 +129,18 @@
 
             <v-btn icon
               @click="openEditModal()">
+
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-card-title>
 
           <div class="p-3">
-            <v-card-text class="text-h5 font-weight-bold">
+            <v-card-text class="text-h5 font-weight-bold mt-6">
               “A room without books is like a body without a soul.”  — Cicero
             </v-card-text>
 
             <v-rating
+              class="mt-7 mb-7"
               align="center"
               :value="formattedReaderDetails.readerRating"
               color="amber"
@@ -146,12 +149,41 @@
             </v-rating>
 
             <v-card-text class="text-h6 font-weight-bold">
-              <div class="reader-details-entry mb-1"><span class="pr-1">Added on:</span> {{ formattedReaderDetails.createdAt }}</div>
-              <div class="reader-details-entry mb-1"><span class="pr-1">Start on:</span> {{ formattedReaderDetails.start }}</div>
-              <div class="reader-details-entry mb-1"><span class="pr-1">End on:</span> {{ formattedReaderDetails.end }}</div>
-              <div class="reader-details-entry mb-1"><span class="pr-1">Purchased on:</span> {{ formattedReaderDetails.purchaseDate }}</div>
-              <div class="reader-details-entry mb-1"><span class="pr-1">Edition:</span> {{ formattedReaderDetails.edition }}</div>
-              <div class="reader-details-entry mb-1"><span class="pr-1">Reading Time:</span> {{ formattedReaderDetails.readingTime }}</div>
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">Added on:</span>
+
+                {{ formattedReaderDetails.createdAt }}
+              </div>
+
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">Start on:</span>
+
+                {{ formattedReaderDetails.start }}
+              </div>
+
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">End on:</span>
+
+                {{ formattedReaderDetails.end }}
+              </div>
+
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">Purchased on:</span>
+
+                {{ formattedReaderDetails.purchaseDate }}
+              </div>
+
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">Edition:</span>
+
+                {{ formattedReaderDetails.edition }}
+              </div>
+
+              <div class="reader-details-entry mb-1">
+                <span class="pr-1">Reading Time:</span>
+
+                {{ formattedReaderDetails.readingTime }}
+              </div>
             </v-card-text>
           </div>
         </v-card>
@@ -273,11 +305,11 @@
 </template>
 
 <script>
-const axios = require('axios')
-
 import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
 import { numeric } from 'vuelidate/lib/validators'
+
+const axios = require('axios')
 
 function isDate(value) {
   return value === null || moment(value, 'YYYY-MM-DD', true).isValid()
@@ -583,7 +615,7 @@ export default {
   .card-content {
     padding: 50px;
   }
-  
+
   input.form-control::placeholder {
     color: #bebcbca9;
   }
@@ -594,8 +626,9 @@ export default {
 
   h2.card-title {
     font-size: 90px;
+    color: darkgoldenrod;
   }
-  
+
   h5.description.card-text {
     text-align: justify;
     margin: 90px 40px 40px 40px;
@@ -615,9 +648,14 @@ export default {
       background-color: #492750;
       color: white;
     }
+
     .v-card__text {
       text-align: left;
     }
+  }
+
+  .thumbnail {
+    margin-top: 70px;
   }
 
   .favorite-container {
@@ -629,6 +667,15 @@ export default {
       flex-direction: column;
       align-items: center;
       margin: 20px 0px 20px 0px;
+
+      .thumbnail {
+        margin-top: 20px;
+      }
+
+      .personal-info {
+        max-width: 700px !important;
+
+      }
 
       h5 {
         font-size: 25px;

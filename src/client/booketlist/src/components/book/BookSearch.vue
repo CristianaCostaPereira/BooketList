@@ -54,7 +54,6 @@
     </div>
 
     <div class="book-api-list">
-
       <v-row
         v-if="isLoading">
         <v-col
@@ -72,7 +71,6 @@
             max-height="200"
             type="image">
           </v-skeleton-loader>
-
         </v-col>
       </v-row>
 
