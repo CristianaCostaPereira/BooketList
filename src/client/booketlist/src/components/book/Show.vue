@@ -5,7 +5,7 @@
         class="d-flex"
         v-if="formattedReaderDetails && formattedBook">
 
-        <div>
+        <div class="card-column">
           <v-img
             v-if="googleBookDetails.volumeInfo && googleBookDetails.volumeInfo.imageLinks && googleBookDetails.volumeInfo.imageLinks.thumbnail"
             :src="googleBookDetails.volumeInfo.imageLinks.thumbnail"
@@ -25,7 +25,10 @@
           </v-img>
         </div>
 
-        <div v-if="formattedBook">
+        <div
+          class="card-column"
+          v-if="formattedBook">
+
           <div class="card-content col-xs-12 col-lg-12">
 
             <h2 class="card-title">{{ formattedBook.title }}</h2>
@@ -102,7 +105,7 @@
 
         <v-card
           v-if="readerFavoriteDetails"
-          class="mx-auto"
+          class="card-column mx-auto"
           color="purple darken-3"
           dark
           max-width="400">
@@ -578,6 +581,26 @@ export default {
 </script>
 
 <style lang="scss">
+  .container {
+    display: table; /* Make the container element behave like a table */
+    width: 100%; /* Set full-width to expand the whole page */
+  }
+
+  .card-column {
+    display: table-cell; /* Make elements inside the container behave like table cells */
+  }
+
+  .card-content {
+    padding: 100px;
+  }
+
+  h5.description.card-text {
+    text-align: justify;
+    margin: 100px 40px 40px 40px;
+  }
+
+
+
   input.form-control::placeholder {
     color: #bebcbca9;
   }
@@ -585,6 +608,7 @@ export default {
   h1.card-title {
     font-size: 4.5rem;
   }
+
   label {
     font-weight: 700;
   }
