@@ -77,16 +77,15 @@
               <label v-if="formattedBook.ratingsCount">
                 ({{ formattedBook.ratingsCount }})
               </label>
-
             </div>
 
             <v-rating
-                align="center"
-                :value="formattedBook.averageRating"
-                color="amber"
-                readonly
-                size="16">
-              </v-rating>
+              align="center"
+              :value="formattedBook.averageRating"
+              color="amber"
+              readonly
+              size="16">
+            </v-rating>
 
             <div class="card-text"
               v-if="formattedBook.price">
@@ -111,10 +110,11 @@
           <v-card-title>
             <v-icon
               large
-              left
-            >
+              left>
+
               mdi-star-face
             </v-icon>
+
             <span class="text-h6 font-weight-light">My Story</span>
 
             <v-spacer></v-spacer>
@@ -581,6 +581,7 @@ export default {
   input.form-control::placeholder {
     color: #bebcbca9;
   }
+
   h1.card-title {
     font-size: 4.5rem;
   }
