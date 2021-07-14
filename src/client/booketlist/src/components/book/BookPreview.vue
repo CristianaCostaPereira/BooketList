@@ -112,7 +112,6 @@ export default {
       let book = {}
 
       book.title = this.apiInfo.volumeInfo.title
-      //TODO: Image
 
       return book
     }
@@ -146,7 +145,6 @@ export default {
           const response = await axios.delete(`http://localhost:3000/readers/${readerId}/books/${bookId}`)
 
           if (response.data.status !== 'success') {
-            //TODO: mensagem
             return
           }
 

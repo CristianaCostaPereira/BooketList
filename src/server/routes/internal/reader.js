@@ -47,7 +47,6 @@ router.post('/:id/books/make-favorite', (req, res) => {
       if (error) {
         throw error
       }
-      console.log(1);
 
       if (results.length === 0) {
         // When book not found insert into book table
@@ -58,7 +57,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
         })
       }
 
-      // book exists on DB for certain
+      // book exists on DB for certain and get his id to insert it into book_reader pivot table
       db.query('SELECT book_id FROM book WHERE google_api_id = ?', [google_api_id], (error, results) => {
         if (error) {
           throw error
@@ -98,10 +97,7 @@ router.post('/:id/books/make-favorite', (req, res) => {
           })
         })
       })
-
     })
-
-    // res.send('results')
 
   } catch (error) {
     res.status(400).send(error)

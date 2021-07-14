@@ -201,7 +201,7 @@
         </v-card-title>
 
         <v-card-text class="p-4">
-          <div class="mb-5">
+          <div class="modal-input">
             <label
               for="startReading">
 
@@ -217,7 +217,7 @@
             <div class="error" v-if="$v.modalInputsData.startReading.$dirty && !$v.modalInputsData.startReading.isDate">Must be a date</div>
           </div>
 
-          <div class="mb-5">
+          <div class="modal-input">
             <label
               for="endReading">
 
@@ -233,7 +233,7 @@
             <div class="error" v-if="$v.modalInputsData.endReading.$dirty && !$v.modalInputsData.endReading.isDate">Must be a date</div>
           </div>
 
-          <div class="mb-5">
+          <div class="modal-input">
             <label
               for="purchaseDate">
 
@@ -249,7 +249,7 @@
             <div class="error" v-if="$v.modalInputsData.purchaseDate.$dirty && !$v.modalInputsData.purchaseDate.isDate">Must be a date</div>
           </div>
 
-          <div class="mb-5">
+          <div class="modal-input">
             <label
               for="edition">
 
@@ -265,7 +265,7 @@
             <div class="error" v-if="$v.modalInputsData.edition.$dirty && !$v.modalInputsData.edition.numeric">Must be a number</div>
           </div>
 
-          <div class="mb-5">
+          <div>
             <label>
 
               My personal rating:
@@ -611,6 +611,21 @@ export default {
 </script>
 
 <style lang="scss">
+.v-dialog .v-card {
+  .v-card__title {
+    background-color: #492750 !important;
+    color: white;
+  }
+
+  .v-card__text {
+    text-align: left;
+  }
+}
+
+.modal-input {
+  margin-bottom: 15px;
+}
+
 .show-favorite{
   .card-content {
     padding: 50px;
@@ -641,17 +656,6 @@ export default {
   .reader-details-entry {
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-
-  .v-dialog .v-card {
-    .v-card__title {
-      background-color: #492750;
-      color: white;
-    }
-
-    .v-card__text {
-      text-align: left;
-    }
   }
 
   .thumbnail {
