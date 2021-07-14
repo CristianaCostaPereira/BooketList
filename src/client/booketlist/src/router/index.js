@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "book-preview" */ '../components/Register.vue'),
+    component: () => import('../components/Register.vue'),
     meta: {
       guest: true
     }
