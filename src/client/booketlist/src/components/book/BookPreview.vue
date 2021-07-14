@@ -51,14 +51,6 @@
               readonly
               size="16">
             </v-rating>
-         
-            <div
-              class="grey--text ms-3"
-              align="center"
-              v-if="readerFavoriteDetails.reader_rating">
-
-              {{ readerFavoriteDetails.reader_rating }}
-            </div>
           </div>
 
           <v-card-actions class="book-card-button">

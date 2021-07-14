@@ -171,83 +171,82 @@
         width="70%">
 
         <v-card>
-          <div class="row">
+          <div class="book-detail-modal">
             <div class="col-sm-12">
-              <div class="card">
-                <div class="row card-body">
-                  <v-img
-                    class="book-cover col-xs-12 col-lg-4"
-                    v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
-                    :src="selectedBook.volumeInfo.imageLinks.thumbnail"
-                    alt="Book Cover">
-                  </v-img>
+              <div class="row card-body">
+                <v-img
+                  class="book-cover col-xs-12 col-lg-4"
+                  v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.imageLinks && selectedBook.volumeInfo.imageLinks.thumbnail"
+                  :src="selectedBook.volumeInfo.imageLinks.thumbnail"
+                  alt="Book Cover">
+                </v-img>
 
-                  <v-img
-                    v-else
-                    class="col-xs-12 col-lg-4"
-                    alt="Book Cover"
-                    src="@/assets/bookNotFound.jpg"
-                    max-width="128"
-                    max-height="200"
-                    min-width="128"
-                    min-height="200">
-                  </v-img>
+                <v-img
+                  v-else
+                  class="col-xs-12 col-lg-4"
+                  alt="Book Cover"
+                  src="@/assets/bookNotFound.jpg"
+                  max-width="128"
+                  max-height="200"
+                  min-width="128"
+                  min-height="200">
+                </v-img>
 
-                  <div class="card-content col-xs-12 col-lg-8">
-                    <h2 class="card-title">
-                      {{ selectedBook.volumeInfo.title }}
-                    </h2>
+                <div class="card-content col-xs-12 col-lg-8">
+                  <h2 class="card-title">
+                    {{ selectedBook.volumeInfo.title }}
+                  </h2>
 
-                    <h3 class="card-title mt-5 mb-5">
-                      {{ selectedBook.volumeInfo.subtitle }}
-                    </h3>
+                  <h3 class="card-title mt-5 mb-5">
+                    {{ selectedBook.volumeInfo.subtitle }}
+                  </h3>
 
-                    <div class="card-text"
-                      v-if="selectedBook.volumeInfo.authors">
+                  <div class="card-text"
+                    v-if="selectedBook.volumeInfo.authors">
 
-                      <label>Author: </label>
-                      {{ selectedBook.volumeInfo.authors[0] }}
-                    </div>
-
-                    <div class="card-text">
-                      <label>Publish Date: </label>
-                      {{ selectedBook.volumeInfo.publishedDate }}
-                    </div>
-
-                    <div class="card-text">
-                      <label>Publisher: </label>
-                      {{ selectedBook.volumeInfo.publisher }}
-                    </div>
-
-                    <div class="card-text">
-                      <label>Number of Pages: </label>
-                      {{ selectedBook.volumeInfo.pageCount }}
-                    </div>
-
-                    <div class="card-text"
-                      v-if="selectedBook.volumeInfo.categories">
-
-                      <label>Categories: </label>
-                      {{ selectedBook.volumeInfo.categories[0] }}
-                    </div>
-
-                    <div
-                      v-if="selectedBook.volumeInfo.averageRating"
-                      class="card-text">
-
-                      <label>Rating: </label>
-                      {{ selectedBook.volumeInfo.averageRating }} ({{ selectedBook.volumeInfo.ratingsCount }})
-                    </div>
-
-                    <div class="card-text" v-if="selectedBook.saleInfo.listPrice">
-                      <label>Price: </label>
-                      {{ selectedBook.saleInfo.listPrice.amount }}€
-                    </div>
-
-                    <h5 class="description card-text">{{ selectedBook.volumeInfo.description }}</h5>
+                    <label>Author: </label>
+                    {{ selectedBook.volumeInfo.authors[0] }}
                   </div>
+
+                  <div class="card-text">
+                    <label>Publish Date: </label>
+                    {{ selectedBook.volumeInfo.publishedDate }}
+                  </div>
+
+                  <div class="card-text">
+                    <label>Publisher: </label>
+                    {{ selectedBook.volumeInfo.publisher }}
+                  </div>
+
+                  <div class="card-text">
+                    <label>Number of Pages: </label>
+                    {{ selectedBook.volumeInfo.pageCount }}
+                  </div>
+
+                  <div class="card-text"
+                    v-if="selectedBook.volumeInfo.categories">
+
+                    <label>Categories: </label>
+                    {{ selectedBook.volumeInfo.categories[0] }}
+                  </div>
+
+                  <div
+                    v-if="selectedBook.volumeInfo.averageRating"
+                    class="card-text">
+
+                    <label>Rating: </label>
+                    {{ selectedBook.volumeInfo.averageRating }} ({{ selectedBook.volumeInfo.ratingsCount }})
+                  </div>
+
+                  <div class="card-text" v-if="selectedBook.saleInfo.listPrice">
+                    <label>Price: </label>
+                    {{ selectedBook.saleInfo.listPrice.amount }}€
+                  </div>
+
+                  <h5 class="description card-text">{{ selectedBook.volumeInfo.description }}</h5>
                 </div>
               </div>
+             
             </div>
           </div>
 
@@ -606,6 +605,11 @@ export default {
   .book-cover {
     margin-left: 50px;
     max-width: 300px;
+  }
+
+  .book-detail-modal {
+    display: flex;
+    flex-direction: row;
   }
 
   @keyframes scale {

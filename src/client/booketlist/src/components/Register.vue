@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="register container">
     <v-card
       class="register-main-card mx-auto"
       style="min-height: 730px; margin-top: 100px;">
@@ -229,11 +229,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  
   body {
     background-image: url('https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314_960_720.jpg');
     background-size: cover;
   }
+
+.register {
+  max-width: 1325px !important;
 
   .register-main-card {
     background-image: url('https://i.pinimg.com/originals/ea/69/a4/ea69a45d5dc77fd29c7e3730f31f4f0c.jpg');
@@ -284,4 +288,5 @@ export default {
   input.form-control::placeholder {
     color: #bebcbca9;
   }
+}
 </style>

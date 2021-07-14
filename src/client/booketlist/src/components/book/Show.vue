@@ -616,12 +616,12 @@ export default {
     padding: 50px;
   }
 
-  input.form-control::placeholder {
-    color: #bebcbca9;
+  .card-column {
+    text-align: center;
   }
 
-  h1.card-title {
-    font-size: 4.5rem;
+  input.form-control::placeholder {
+    color: #bebcbca9;
   }
 
   h2.card-title {
