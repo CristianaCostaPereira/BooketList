@@ -318,7 +318,7 @@ export default {
       let config = {
         params: {
           q: this.searchInput, // quando o input é submetido, faz pedido à api do google
-          key: API_KEY,
+          // key: API_KEY,
           maxResults: '12'
         }
       }

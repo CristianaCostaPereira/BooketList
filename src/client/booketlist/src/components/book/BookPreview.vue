@@ -168,7 +168,7 @@ export default {
 
       let config = {
         params: {
-          key: VUE_APP_API_KEY,
+          // key: VUE_APP_API_KEY,
           q: this.readerFavoriteDetails.google_api_id
         }
       }

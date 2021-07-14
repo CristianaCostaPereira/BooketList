@@ -5,15 +5,13 @@
         class="favorite-container d-flex"
         v-if="formattedReaderDetails && formattedBook">
 
-        <div class="card-column">
+        <div class="card-column" style="margin-top: 57px;
+    margin-left: 15px;">
           <v-img
             v-if="googleBookDetails.volumeInfo && googleBookDetails.volumeInfo.imageLinks && googleBookDetails.volumeInfo.imageLinks.thumbnail"
             :src="googleBookDetails.volumeInfo.imageLinks.thumbnail"
             alt="Book Cover"
-            max-width="128"
-            max-height="200"
-            min-width="128"
-            min-height="200">
+            min-width="300">
           </v-img>
 
           <v-img
@@ -136,7 +134,7 @@
 
           <div class="p-3">
             <v-card-text class="text-h5 font-weight-bold">
-              “A room without books is like a body without a soul.”
+              “A room without books is like a body without a soul.”  — Cicero
             </v-card-text>
 
             <v-rating
@@ -582,19 +580,10 @@ export default {
 
 <style lang="scss">
 .show-favorite{
-
-  .container {
-    display: table; /* Make the container element behave like a table */
-    width: 100%; /* Set full-width to expand the whole page */
-  }
-
   .card-content {
     padding: 50px;
   }
-
-
-
-
+  
   input.form-control::placeholder {
     color: #bebcbca9;
   }
