@@ -279,6 +279,10 @@ export default {
 
   methods: {
     async bookSearch() {
+      if (!this.searchInput) {
+        return
+      }
+
       this.searchedBooks = []
 
       // vai à API externa buscar a lista de livros que dê match ao input

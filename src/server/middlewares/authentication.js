@@ -14,7 +14,6 @@ module.exports = (req, res, next) => {
   }
 
   const AUTHENTICATION_SECRET = process.env.AUTHENTICATION_SECRET
-  console.log(AUTHENTICATION_SECRET);
 
   try {
     const { id } = jwt.verify(token, AUTHENTICATION_SECRET) // destruturação do objecto que resultar, para só extrair o id

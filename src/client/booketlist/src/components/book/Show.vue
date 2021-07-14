@@ -1,10 +1,11 @@
 <template>
   <div class="container mt-12">
     <div class="card mb-3" style="max-width: 1800px;">
-      <div class="d-flex"
+      <div
+        class="d-flex"
         v-if="formattedReaderDetails && formattedBook">
-        <div>
 
+        <div>
           <v-img
             v-if="googleBookDetails.volumeInfo && googleBookDetails.volumeInfo.imageLinks && googleBookDetails.volumeInfo.imageLinks.thumbnail"
             :src="googleBookDetails.volumeInfo.imageLinks.thumbnail"
@@ -22,7 +23,6 @@
             min-width="300"
             min-height="500">
           </v-img>
-          
         </div>
 
         <div v-if="formattedBook">
@@ -41,24 +41,28 @@
 
             <div class="card-text"
               v-if="formattedBook.publishedDate">
+
               <label>Publish Date: </label>
               {{ formattedBook.publishedDate }}
             </div>
 
             <div class="card-text"
               v-if="formattedBook.publisher">
+
               <label>Publisher: </label>
               {{ formattedBook.publisher }}
             </div>
 
             <div class="card-text"
               v-if="formattedBook.pageCount">
+
               <label>Number of Pages: </label>
               {{ formattedBook.pageCount }}
             </div>
 
             <div class="card-text"
               v-if="formattedBook.categories">
+
               <label>Categories: </label>
               {{ formattedBook.categories }}
             </div>
@@ -155,116 +159,115 @@
 
     <!-- Modal for personal book details-->
     <v-dialog
-        v-model="isModalOpen"
-        width="500px">
+      v-model="isModalOpen"
+      width="500px">
 
-        <v-card>
-          <v-card-title>
-            Edit Favorite
-          </v-card-title>
+      <v-card>
+        <v-card-title>
+          Edit Favorite
+        </v-card-title>
 
-          <v-card-text class="p-4">
-            <div class="mb-5">
-                <label
-                  for="startReading">
+        <v-card-text class="p-4">
+          <div class="mb-5">
+            <label
+              for="startReading">
 
-                  Start reading at:
-                </label>
+              Start reading at:
+            </label>
 
-                <input
-                  class="form-control"
-                  type="date"
-                  id="startReading"
-                  v-model="modalInputsData.startReading">
+            <input
+              class="form-control"
+              type="date"
+              id="startReading"
+              v-model="modalInputsData.startReading">
 
-                  <div class="error" v-if="$v.modalInputsData.startReading.$dirty && !$v.modalInputsData.startReading.isDate">Must be a date</div>
-              </div>
+            <div class="error" v-if="$v.modalInputsData.startReading.$dirty && !$v.modalInputsData.startReading.isDate">Must be a date</div>
+          </div>
 
-              <div class="mb-5">
-                <label
-                  for="endReading">
+          <div class="mb-5">
+            <label
+              for="endReading">
 
-                  End reading at:
-                </label>
+              End reading at:
+            </label>
 
-                <input
-                  class="form-control"
-                  type="date"
-                  id="endReading"
-                  v-model="modalInputsData.endReading">
+            <input
+              class="form-control"
+              type="date"
+              id="endReading"
+              v-model="modalInputsData.endReading">
 
-                  <div class="error" v-if="$v.modalInputsData.endReading.$dirty && !$v.modalInputsData.endReading.isDate">Must be a date</div>
-              </div>
+            <div class="error" v-if="$v.modalInputsData.endReading.$dirty && !$v.modalInputsData.endReading.isDate">Must be a date</div>
+          </div>
 
-              <div class="mb-5">
-                <label
-                  for="purchaseDate">
+          <div class="mb-5">
+            <label
+              for="purchaseDate">
 
-                  Purchased at:
-                </label>
+              Purchased at:
+            </label>
 
-                <input
-                  class="form-control"
-                  type="date"
-                  id="purchaseDate"
-                  v-model="modalInputsData.purchaseDate">
+            <input
+              class="form-control"
+              type="date"
+              id="purchaseDate"
+              v-model="modalInputsData.purchaseDate">
 
-                  <div class="error" v-if="$v.modalInputsData.purchaseDate.$dirty && !$v.modalInputsData.purchaseDate.isDate">Must be a date</div>
-              </div>
+            <div class="error" v-if="$v.modalInputsData.purchaseDate.$dirty && !$v.modalInputsData.purchaseDate.isDate">Must be a date</div>
+          </div>
 
-              <div class="mb-5">
-                <label
-                  for="edition">
+          <div class="mb-5">
+            <label
+              for="edition">
 
-                  Edition:
-                </label>
+              Edition:
+            </label>
 
-                <input
-                  class="form-control"
-                  type="text"
-                  id="edition"
-                  v-model="modalInputsData.edition">
+            <input
+              class="form-control"
+              type="text"
+              id="edition"
+              v-model="modalInputsData.edition">
 
-                  <div class="error" v-if="$v.modalInputsData.edition.$dirty && !$v.modalInputsData.edition.numeric">Must be a number</div>
-              </div>
+            <div class="error" v-if="$v.modalInputsData.edition.$dirty && !$v.modalInputsData.edition.numeric">Must be a number</div>
+          </div>
 
-              <div class="mb-5">
-                <label>
+          <div class="mb-5">
+            <label>
 
-                  My personal rating:
-                </label>
+              My personal rating:
+            </label>
 
-                <v-rating
-                  align="center"
-                  v-model="modalInputsData.personalRating"
-                  color="amber"
-                  size="30">
-                </v-rating>
+            <v-rating
+              align="center"
+              v-model="modalInputsData.personalRating"
+              color="amber"
+              size="30">
+            </v-rating>
+          </div>
+        </v-card-text>
 
-              </div>
-          </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
+          <v-btn
+            color="deep-purple lighten-2"
+            text
+            @click="closeModal()">
 
-            <v-btn
-              color="deep-purple lighten-2"
-              text
-              @click="closeModal()">
+            CLOSE
+          </v-btn>
 
-              CLOSE
-            </v-btn>
+          <v-btn
+            color="deep-purple lighten-2"
+            text
+            @click="updateFavorite()">
 
-            <v-btn
-              color="deep-purple lighten-2"
-              text
-              @click="updateFavorite()">
-
-              SAVE
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+            SAVE
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -273,7 +276,7 @@ const axios = require('axios')
 
 import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
-import { required, minValue, numeric } from 'vuelidate/lib/validators'
+import { numeric } from 'vuelidate/lib/validators'
 
 function isDate(value) {
   return value === null || moment(value, 'YYYY-MM-DD', true).isValid()
@@ -457,16 +460,16 @@ export default {
     ]),
 
     openEditModal () {
-      
+
       let startReading = moment(this.readerFavoriteDetails.start_reading)
       this.modalInputsData.startReading = startReading.isValid() ? startReading.format('YYYY-MM-DD') : null
-      
+
       let endReading = moment(this.readerFavoriteDetails.end_reading)
       this.modalInputsData.endReading = endReading.isValid() ? endReading.format('YYYY-MM-DD') : null
 
       let purchaseDate = moment(this.readerFavoriteDetails.purchase_date)
       this.modalInputsData.purchaseDate = purchaseDate.isValid() ? purchaseDate.format('YYYY-MM-DD') : null
-      
+
       this.modalInputsData.edition = this.readerFavoriteDetails.edition_number
       this.modalInputsData.personalRating = this.readerFavoriteDetails.reader_rating
 
@@ -483,7 +486,7 @@ export default {
       if (this.$v.$invalid) {
         return
       }
-      
+
       let readerId = this.readerFavoriteDetails.reader_id
       let bookId = this.readerFavoriteDetails.book_id
 
