@@ -22,7 +22,7 @@
       <div
         class="ghost-welcome-page"
         v-if="!isLoading && !searchedBooks.length">
-        
+
 
           <div class="top">
             <h1>Welcome to your BooketList App</h1>
@@ -269,11 +269,11 @@
 
                 </v-col>
 
-                
 
-                
+
+
               </div>
-             
+
             </div>
           </div>
 
@@ -629,7 +629,7 @@ export default {
     margin-top: 5px;
   }
 
-  
+
 
   .book-detail-modal {
     display: flex;

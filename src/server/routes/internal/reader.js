@@ -31,7 +31,7 @@ router.get('/:id/books', (req, res) => {
 router.post('/:id/books/make-favorite', (req, res) => {
   const reader_id = req.params.id
 
-  const { 
+  const {
     google_api_id,
     purchase_date,
     reader_rating,
@@ -83,9 +83,9 @@ router.post('/:id/books/make-favorite', (req, res) => {
             start_reading,
             end_reading,
             edition_number,
-            reading_time 
+            reading_time
           }
-  
+
           db.query('INSERT INTO book_reader SET ?', data, (error, results) => {
             if (error) {
               throw error
