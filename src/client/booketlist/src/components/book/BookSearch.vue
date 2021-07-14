@@ -78,7 +78,7 @@
 
         <v-col
           cols="12"
-          sm="6"
+          sm="12"
           md="6"
           lg="6"
           xl="3"
@@ -90,7 +90,7 @@
             dark
             max-height="200">
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex">
               <v-img
                 v-if="searchedBook.volumeInfo && searchedBook.volumeInfo.imageLinks && searchedBook.volumeInfo.imageLinks.thumbnail"
                 :src="searchedBook.volumeInfo.imageLinks.thumbnail"
@@ -112,21 +112,23 @@
               </v-img>
 
               <div class="api-card-content">
-                <h5
-                  class="book-title"
+                <span
+                  class="text-h5 book-title"
                   v-text="searchedBook.volumeInfo.title">
-                </h5>
+                </span>
 
-                <v-rating
-                  align="center"
-                  :value="searchedBook.volumeInfo.averageRating"
-                  color="amber"
-                  readonly
-                  size="16">
-                </v-rating>
+                <div style="height: 55px;">
+                  <v-rating
+                    align="center"
+                    :value="searchedBook.volumeInfo.averageRating"
+                    color="amber"
+                    readonly
+                    size="16">
+                  </v-rating>
 
-                <div align="center">
-                  {{ searchedBook.volumeInfo.ratingsCount }}
+                  <div align="center">
+                    {{ searchedBook.volumeInfo.ratingsCount }}
+                  </div>
                 </div>
 
                 <v-card-actions class="book-card-button">
@@ -138,7 +140,7 @@
 
                     Set as Favorite
 
-                    <v-icon class=" ml-1" color="amber lighten" small>mdi-star-outline</v-icon>
+                    <v-icon class="ml-1" color="amber lighten" small>mdi-star-outline</v-icon>
                   </v-btn>
 
                   <v-btn
@@ -286,7 +288,7 @@ export default {
     return {
       searchInput: '',
       searchedBooks: [],
-      color: '#a97fa4e3',
+      color: '#492750',
       selectedBook: null,
       showModal: false,
 
@@ -557,19 +559,26 @@ export default {
   }
 
   .book-title {
+    padding: 20px 10px 0px 10px;
+    word-break: normal !important;
     text-align: center;
-    font-size: 24px;
+    height: 82px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
 
   .book-api-list {
-    padding: 35px;
+    padding: 50px;
   }
 
   .api-card-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0px 32px 0px -5px;
+    flex-grow: 2;
   }
 
   .row.card-body {
@@ -586,13 +595,13 @@ export default {
   }
 
   .book-card-button {
-    margin-left: 20px;
+    justify-content: center;
+    margin-top: 5px;
   }
 
   .book-cover {
     margin-left: 50px;
     max-width: 300px;
-    // max-height: 450px;
   }
 
   @keyframes scale {
